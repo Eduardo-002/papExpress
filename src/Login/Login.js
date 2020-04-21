@@ -30,7 +30,7 @@
     if(registData.password!=registData.confirmPassword){res.redirect('/regist');return;}
 
     doRegist(firebase,registData,(log)=>{
-      console.log(log);
+      //console.log(log);
       if(log.err){res.send(log.err);return;}
       doLogin(firebase,log.email,log.password,(log)=>{
         if(log.logged)res.redirect('/dashboard');
