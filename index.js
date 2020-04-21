@@ -9,7 +9,7 @@ const app = express();
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const login = require('./src/Login/Login.js');
+const router = require('./router.js');
 
 require('firebase/firestore');
 firebase.initializeApp({
@@ -22,13 +22,13 @@ firebase.initializeApp({
   appId: "1:699724819078:web:a15f45b5863546d0b6ff07"
 });
 
-app.get('/', (req,res)=>res.send('Hello World!'));
-app.get('/login', (req,res)=>res.sendFile(path.join(__dirname,'/public','/Login/Login.html')));
-app.post('/login',(req,res)=>login.handleLogin(firebase,req,res));
-app.get('/regist', (req,res)=>res.sendFile(path.join(__dirname,'/public','/Login/Regist.html')));
-app.post('/regist',(req,res)=>login.handleRegist(firebase,req,res));
+router.routes.forEach(route => {
+  if(route.method=='get')app.get(route.path,route.action);
+  else if(route.method=='post')app.post(route.path,route.action);
+});
 
-
-console.log("asdasdasd");
+app.use('/static', express.static(path.join(__dirname, 'static')))
 
 app.listen(PORT,()=>console.log('Server is runing on http://localhost:'+PORT));
+
+//https://startbootstrap.com/previews/sb-admin-2/

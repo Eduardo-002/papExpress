@@ -4,7 +4,7 @@
       email: req.body.email,
       password: req.body.password
     }
-    console.log(req.body);
+    //console.log(req.body);
     doLogin(firebase,loginData.email,loginData.password,(log)=>{
       if(log.logged)res.redirect('/dashboard');
     })
