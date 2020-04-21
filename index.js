@@ -28,4 +28,7 @@ app.post('/login',(req,res)=>login.handleLogin(firebase,req,res));
 app.get('/regist', (req,res)=>res.sendFile(path.join(__dirname,'/public','/Login/Regist.html')));
 app.post('/regist',(req,res)=>login.handleRegist(firebase,req,res));
 
+
+console.log("asdasdasd");
+
 app.listen(PORT,()=>console.log('Server is runing on http://localhost:'+PORT));
