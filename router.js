@@ -40,7 +40,13 @@ const dashboard = require('./src/Dashboard/Dashboard.js');
       name:'dashboard',
       path:'/dashboard',
       method: 'get',
-      action: (req,res)=>res.sendFile(path.join(__dirname,'public','/Dashboard/Dashboard.html'))
+      action: /*(req,res)=>dashboard.start(firebase,req,res,*/(req,res)=>res.sendFile(path.join(__dirname,'public','/Dashboard/dashboard.html'))
+    },
+    {
+      name:'dashButtons',
+      path:'/dashboard/buttons',
+      method:'get',
+      action: (req,res)=>res.sendFile(path.join(__dirname,'public','Dashboard/Components/buttons.html'))
     }
   ];
 

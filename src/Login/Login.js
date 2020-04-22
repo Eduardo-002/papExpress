@@ -6,7 +6,7 @@
     }
     //console.log(req.body);
     doLogin(firebase,loginData.email,loginData.password,(log)=>{
-      if(log.logged)res.redirect('/dashboard');
+      if(log.logged){console.log(1);res.redirect('/dashboard');}
     })
   }
   const doLogin = async (firebase,email,password,callback) => {

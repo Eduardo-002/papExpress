@@ -22,6 +22,7 @@ firebase.initializeApp({
   appId: "1:699724819078:web:a15f45b5863546d0b6ff07"
 });
 
+
 router.routes.forEach(route => {
   if(route.method=='get')app.get(route.path,route.action);
   else if(route.method=='post')app.post(route.path,route.action);
