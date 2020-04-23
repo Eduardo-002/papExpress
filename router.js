@@ -53,6 +53,12 @@ const dashboard = require('./src/Dashboard/Dashboard.js');
       path:'/dashboard/blank',
       method:'get',
       action: (req,res)=>res.sendFile(path.join(__dirname,'public','Dashboard/Pages/blank.html'))
+    },
+    {
+      name:'dashBlank2',
+      path:'/dashboard/blank2',
+      method:'get',
+      action: (req,res)=>res.sendFile(path.join(__dirname,'public','Dashboard/Pages/blank2.html'))
     }
   ];
 

@@ -33,3 +33,5 @@ app.use('/static', express.static(path.join(__dirname, 'static')))
 app.listen(PORT,()=>console.log('Server is runing on http://localhost:'+PORT));
 
 //https://startbootstrap.com/previews/sb-admin-2/
+
+//npx nodemon index -p 8080
