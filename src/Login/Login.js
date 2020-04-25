@@ -33,7 +33,7 @@
       //console.log(log);
       if(log.err){res.send(log.err);return;}
       doLogin(firebase,log.email,log.password,(log)=>{
-        if(log.logged)res.redirect('/dashboard');
+        if(log.logged||true)res.redirect('/dashboard');
       })
       //if(log.logged)res.redirect('/dashboard');
     })
@@ -62,9 +62,15 @@
         callback({err:authErr});
       })
   }
+
+  const handleLogout = async (firebase,req,res) => {
+    await firebase.auth().signOut();
+    res.redirect('/login');
+  }
   
   module.exports.handleLogin = (firebase,req,res) => handleLogin(firebase,req,res);
   module.exports.handleRegist = (firebase,req,res) => handleRegist(firebase,req,res);
+  module.exports.handleLogout = (firebase,req,res) => handleLogout(firebase,req,res);
 
 }());
 
