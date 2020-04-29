@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>SB Admin 2 - Blank</title>
+
+  <!-- Custom fonts for this template-->
+  <link href="/static/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+  <!-- Custom styles for this template-->
+  <link href="/static/css/sb-admin-2.min.css" rel="stylesheet">
+
+
+<style>
+.table-image, td, th {
+    vertical-align: middle;
+}
+.img-square{
+    width:70px;
+    height:70px;
+    margin: auto;
+    border:0;
+    background-size:cover;
+}
+
+</style>
+
+</head>
+
+<body id="page-top">
+
+  <!-- Page Wrapper -->
+  <div id="wrapper">
+
+    <!-- Sidebar -->
+    <nonsensetag class="sideBarExternal"></nonsensetag>
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+      <!-- Main Content -->
+      <div id="content">
+
+        <!-- Topbar -->
+        <nonsensetag class="navExternal"></nonsensetag>
+        <!-- End of Topbar -->
+
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
+
+          <!-- Page Heading -->
+          <div class="container">
+            <div class="row">
+              <div class="col-12 table-responsive-xl">
+                  <table class="table table-image">
+                    <thead>
+                      <tr>
+                        <th style="width:12%" scope="col">Imagem</th>
+                        <th style="width:12%" scope="col">Posição</th>
+                        <th style="width:76%" scope="col">Nome</th>
+                      </tr>
+                    </thead>
+                    <tbody class="tableData">
+                        
+                    </tbody>
+                  </table>   
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <!-- /.container-fluid -->
+
+      </div>
+      <!-- End of Main Content -->
+
+      <!-- Footer -->
+      <nonsensetag class="footerExternal"></nonsensetag>
+      <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+  </div>
+  <!-- End of Page Wrapper -->
+
+  <!-- Scroll to Top Button-->
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
+
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="card">
+                <img id="modalImg" class="card-img-top" src="..." alt="Card image cap">
+                <div class="card-body">
+                    <p id="modalNumber" class="card-text">Numero: 12</p>
+                    <p id="modalPosition" class="card-text">GR</p>
+                    <p id="modalAge" class="card-text">Idade: 22</p>
+                    <p id="modalGames" class="card-text">Jogos: 10</p>
+                    <p id="modalConcededGoals" class="card-text">Golos Sofridos: 18</p>
+                    <p id="modalMinutes" class="card-text">Minutos: 1801</p>
+                    <p id="modalNationality" class="card-text">Nacionalidade: Português</p>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Logout Modal-->
+  <nonsensetag class="logoutModalExternal"></nonsensetag>
+
+  <!-- Bootstrap core JavaScript-->
+  <script src="/static/vendor/jquery/jquery.min.js"></script>
+  <script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="/static/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="/static/js/sb-admin-2.min.js"></script>
+
+  <script>
+
+const externalContent = [
+  {
+    class: ".sideBarExternal",
+    url: "/static/html/sideBar.html"
+  },
+  {
+    class: ".navExternal",
+    url: "/static/html/nav.html"
+  },
+  {
+    class: ".footerExternal",
+    url: "/static/html/footer.html"
+  },
+  {
+    class: ".logoutModalExternal",
+    url: "/static/html/logoutModal.html"
+  }
+]
+
+const loadhtml = () => {
+  externalContent.forEach((elem)=>{
+    var xhr = new XMLHttpRequest();
+    xhr.onload = function() {
+      document.querySelector(elem.class).innerHTML=this.responseText;
+    }
+    xhr.open("GET", elem.url);
+    xhr.responseType = "text";
+    xhr.send();
+  })
+}
+
+loadhtml();
+
+let t = false;
+const loadTable = () => {
+  externalContent.forEach((elem)=>{
+    var xhr = new XMLHttpRequest();
+    xhr.onload = function() {
+      if(t)return;
+      console.log(JSON.parse(this.response));
+      let parsed = JSON.parse(this.response);
+      let obj = Object.entries(parsed);
+      console.log(obj);
+      obj.forEach(elem=>{
+        console.log(elem);
+        // Start of table row
+        let row = document.createElement('tr');
+        row.setAttribute('data-toggle','modal');
+        row.setAttribute('data-target','#exampleModal');
+        row.onclick = () => setModal(elem[1]);
+
+        let cell = document.createElement('td');
+        let img = document.createElement('div');
+        img.style = "background-image: url("+elem[1].image+")";
+        img.className = 'img-square';
+        cell.append(img);
+        row.append(cell);
+        
+        cell = document.createElement('td');
+        cell.innerHTML = elem[1].position;
+        cell.className = 'align-middle';
+        row.append(cell);
+
+        cell = document.createElement('td');
+        cell.innerHTML = elem[1].firstName + ' ' + elem[1].lastName;
+        cell.className = 'align-middle';
+        row.append(cell);
+
+        let table = document.querySelector('.tableData');
+        table.appendChild(row);
+        // End of table row
+
+        // Start of model
+
+
+      })
+      t=true;
+    }
+    xhr.open("POST", '/database/jogadores');
+    //xhr.responseType = "text";
+    xhr.send();
+  })
+}
+
+const setModal = (elem) => {
+    document.querySelector('#exampleModalLabel').innerHTML=elem.firstName + ' ' + elem.lastName;
+    document.querySelector('#modalImg').src=elem.image;
+    document.querySelector('#modalAge').innerHTML="Idade: " + elem.age;
+    document.querySelector('#modalConcededGoals').innerHTML="Golos Sofridos: " + elem.concededGoals;
+    document.querySelector('#modalMinutes').innerHTML="Minutos Jogados: " + elem.minutes;
+    document.querySelector('#modalNationality').innerHTML="Nacionalidade: " + elem.nationality;
+    document.querySelector('#modalNumber').innerHTML="Numero: " + elem.number;
+    document.querySelector('#modalPosition').innerHTML="Posição: " + elem.position;
+}
+
+loadTable();
+/*
+<tr>
+    <th scope="row">1</th>
+    <td class="w-25">
+        <img src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/sheep-3.jpg" class="img-fluid img-thumbnail" alt="Sheep">
+    </td>
+    <td>Bootstrap 4 CDN and Starter Template</td>
+    <td>Cristina</td>
+    <td>913</td>
+    <td>2.846</td>
+</tr>
+<tr>
+    <th scope="row">2</th>
+    <td class="w-25">
+        <img src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/sheep-5.jpg" class="img-fluid img-thumbnail" alt="Sheep">
+    </td>
+    <td>Bootstrap Grid 4 Tutorial and Examples</td>
+    <td>Cristina</td>
+    <td>1.434</td>
+    <td>3.417</td>
+</tr>
+    */
+
+  </script>
+
+</body>
+
+</html>

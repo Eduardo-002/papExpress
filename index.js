@@ -1,4 +1,3 @@
-
 const PORT = process.argv[process.argv.findIndex((elem)=>elem=='-p')+1] || 8080;
 const path = require('path');
 const firebase = require('firebase');
@@ -13,24 +12,18 @@ const router = require('./router.js');
 
 require('firebase/firestore');
 firebase.initializeApp({
-  apiKey: "AIzaSyAt7jG7uuoAu9AV8pWzHnh9Izlh31lbXV0",
-  authDomain: "pap1-369f6.firebaseapp.com",
-  databaseURL: "https://pap1-369f6.firebaseio.com",
-  projectId: "pap1-369f6",
-  storageBucket: "pap1-369f6.appspot.com",
-  messagingSenderId: "699724819078",
-  appId: "1:699724819078:web:a15f45b5863546d0b6ff07"
+  apiKey: "AIzaSyBdQoH1N7z5Wo79QUUOBa3GkIpYczYGB7g",
+  authDomain: "treinadorbancada-79ea9.firebaseapp.com",
+  databaseURL: "https://treinadorbancada-79ea9.firebaseio.com",
+  projectId: "treinadorbancada-79ea9",
+  storageBucket: "treinadorbancada-79ea9.appspot.com",
+  messagingSenderId: "238339926937",
+  appId: "1:238339926937:web:d2a8d28be7198822104108"
 });
 
+const routerInputs = {app,firebase,express,path,PORT};
+router.set(routerInputs);
 
-router.routes.forEach(route => {
-  if(route.method=='get')app.get(route.path,route.action);
-  else if(route.method=='post')app.post(route.path,route.action);
-});
-
-app.use('/static', express.static(path.join(__dirname, 'static')))
-
-app.listen(PORT,()=>console.log('Server is runing on http://localhost:'+PORT));
 
 //https://startbootstrap.com/previews/sb-admin-2/
 

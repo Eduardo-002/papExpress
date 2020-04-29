@@ -1,86 +1,63 @@
-const firebase = require('firebase');
-require('firebase/firestore');
-const path = require('path');
-
-const login = require('./src/Login/Login.js');
-const dashboard = require('./src/Dashboard/Dashboard.js');
-
 (function(){
-  const routes = [
-    {
-      name:'home',
-      path:'/',
-      method: 'get',
-      action: (req,res)=>res.send('Hello World!')
-    },
-    {
-      name:'login',
-      path:'/login',
-      method: 'get',
-      action: (req,res)=>res.sendFile(path.join(__dirname,'/public','/Login/login.html'))
-    },
-    {
-      name:'login',
-      path:'/login',
-      method: 'post',
-      action: (req,res)=>login.handleLogin(firebase,req,res)
-    },
-    {
-      name:'regist',
-      path:'/regist',
-      method: 'get',
-      action: (req,res)=>res.sendFile(path.join(__dirname,'/public','/Login/Regist.html'))
-    },
-    {
-      name:'regist',
-      path:'/regist',
-      method: 'post',
-      action: (req,res)=>login.handleRegist(firebase,req,res)
-    },
-    {
-      name:'logout',
-      path:'/logout',
-      method: 'post',
-      action: (req,res)=>login.handleLogout(firebase,req,res)
-    },
-    {
-      name:'dashboard',
-      path:'/dashboard',
-      method: 'get',
-      action: (req,res)=>dashboard.start(firebase,req,res,({res})=>res.sendFile(path.join(__dirname,'public','/Dashboard/dashboard.html')))
-    },
-    {
-      name:'classificação',
-      path:'/dashboard/classificacao',
-      method: 'get',
-      action: (req,res)=>dashboard.start(firebase,req,res,({res})=>res.sendFile(path.join(__dirname,'public','/Dashboard/Tabelas/classificacao.html')))
-    },
-    {
-      name:'dashButtons',
-      path:'/dashboard/buttons',
-      method:'get',
-      action: (req,res)=>dashboard.start(firebase,req,res,({res})=>res.sendFile(path.join(__dirname,'public','Dashboard/Components/buttons.html')))
-    },
-    {
-      name:'dashBlank',
-      path:'/dashboard/blank',
-      method:'get',
-      action: (req,res)=>res.sendFile(path.join(__dirname,'public','Dashboard/Pages/blank.html'))
-    },
-    {
-      name:'dashBlank2',
-      path:'/dashboard/blank2',
-      method:'get',
-      action: (req,res)=>dashboard.start(firebase,req,res,({res})=>res.sendFile(path.join(__dirname,'public','Dashboard/Pages/blank2.html')))
-    }
-    ,
-    {
-      name:'databaseRequest',
-      path:'/database/classificacao',
-      method:'get',
-      action: (req,res)=>dashboard.start(firebase,req,res,({firebase,req,res})=>dashboard.databaseData(firebase,req,res))
-    }
-  ];
+  const login = require('./src/Login/Login.js');
+  const database = require('./src/Dashboard/Database/Database.js');
+  let app,firebase,express,path,PORT;
+  const set = (routerInputs) => {
+    app = routerInputs.app;
+    firebase = routerInputs.firebase;
+    express = routerInputs.express;
+    path = routerInputs.path;
+    PORT = routerInputs.PORT;
 
-  module.exports.routes = routes;
+    app.get('/',(req,res)=>res.redirect('/dashboard'));
+    app.get('/login',(req,res)=>res.sendFile(path.join(__dirname,'/public','/Login/login.html')));
+    app.get('/regist',(req,res)=>res.sendFile(path.join(__dirname,'/public','/Login/regist.html')));
+    app.get('/dashboard',(req,res)=>checkLogin({firebase,req,res},()=>res.sendFile(path.join(__dirname,'/public','/Dashboard/dashboard.html'))));
+    app.get('/dashboard/blank2',(req,res)=>checkLogin({firebase,req,res},()=>res.sendFile(path.join(__dirname,'/public','/Dashboard/Pages/blank2.html'))));
+    app.get('/dashboard/classificacao',(req,res)=>checkLogin({firebase,req,res},()=>res.sendFile(path.join(__dirname,'/public','/Dashboard/Tabelas/classificacao.html'))));
+    app.get('/dashboard/jogadores',(req,res)=>checkLogin({firebase,req,res},()=>res.sendFile(path.join(__dirname,'/public','/Dashboard/Tabelas/jogadores.html'))));
+    app.get('/dashboard/novidades',(req,res)=>checkLogin({firebase,req,res},()=>res.sendFile(path.join(__dirname,'/public','/Dashboard/Tabelas/novidades.html'))));
+
+    app.post('/login',(req,res)=>{
+      login.doLogin({firebase,req},(response)=>{
+        if(response.logged){res.redirect('/dashboard');}
+        else res.redirect('/login?error='+response.error);
+      });
+    })
+    app.post('/regist',(req,res)=>{
+      login.doRegist({firebase,req},(response)=>{
+        if(response.registered){
+          login.doLogin({firebase,req},(response)=>{
+            if(response.logged)res.redirect('/dashboard');
+            else res.redirect('/login?error='+response.error);
+          });
+        }
+        else res.redirect('/regist?error='+response.error);
+      })
+    })
+    app.post('/logout',(req,res)=>{
+      login.doLogout({firebase,req},(response)=>{
+        if(response.loggedOut)res.redirect('/login');
+        else res.redirect('/login?error='+response.error);
+      })
+    })
+    app.post('/database/classificacao',(req,res)=>{database.get({firebase,table:'Classificacao'},({response})=>{res.send(response);})})
+    app.post('/database/jogadores',(req,res)=>{database.get({firebase,table:'Jogadores'},({response})=>{res.send(response);})})
+
+    app.use('/static', express.static(path.join(__dirname, 'static')))
+
+    app.listen(PORT,()=>console.log('Server is runing on http://localhost:'+PORT));
+  }
+
+  const checkLogin = ({firebase,req,res},callback) => {
+    let done = false;
+    login.checkLogged({firebase},(response)=>{
+      if(!done){
+        if(!response.logged)res.redirect('/login')
+        else {done=true;callback();}
+      }
+    })
+  }
+  
+  module.exports.set = set;
 }())

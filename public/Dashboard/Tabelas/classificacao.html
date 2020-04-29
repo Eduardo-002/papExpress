@@ -43,35 +43,23 @@
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-4 text-gray-800">Distrital de Aveiro</h1>
+          <h1 class="h3 mb-4 text-gray-800">AF Aveiro 1ª Divisão</h1>
           <table class="table table-striped">
             <thead class="thead-dark">
               <tr>
                 <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
+                <th scope="col"></th>
+                <th scope="col">P</th>
+                <th scope="col">J</th>
+                <th scope="col">V</th>
+                <th scope="col">E</th>
+                <th scope="col">D</th>
+                <th scope="col">GM</th>
+                <th scope="col">GS</th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
-              </tr>
+            <tbody class="tableData">
+              
             </tbody>
           </table>
 
@@ -143,19 +131,39 @@ const loadhtml = () => {
 }
 loadhtml();
 
+let t = false;
 const loadTable = () => {
   externalContent.forEach((elem)=>{
     var xhr = new XMLHttpRequest();
     xhr.onload = function() {
-      //document.querySelector(elem.class).innerHTML=this.responseText;
-      console.log(this.response);
+      if(t)return;
+      let classificacao = JSON.parse(this.response);
+      let obj = Object.entries(classificacao);
+      obj.forEach(elem=>{
+        let table=document.querySelector('.tableData');
+        let row = document.createElement('tr');
+        elem[1].forEach(e=>{
+          let cell = document.createElement('td');
+          cell.innerHTML=e;
+          row.append(cell);
+        })
+        table.appendChild(row);
+      })
+      t=true;
     }
-    xhr.open("GET", '/database/classificacao');
+    xhr.open("POST", '/database/classificacao');
     //xhr.responseType = "text";
     xhr.send();
   })
 }
 loadTable();
+
+// <tr>
+//   <th scope="row">3</th>
+//   <td>Larry</td>
+//   <td>the Bird</td>
+//   <td>@twitter</td>
+// </tr>
 
   </script>
 

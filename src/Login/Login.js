@@ -1,76 +1,52 @@
 (function(){
-  const handleLogin = (firebase,req,res) => {
-    const loginData = {
-      email: req.body.email,
-      password: req.body.password
-    }
-    //console.log(req.body);
-    doLogin(firebase,loginData.email,loginData.password,(log)=>{
-      if(log.logged){console.log(1);res.redirect('/dashboard');}
+  const checkLogged = ({firebase},callback) => {
+    firebase.auth().onAuthStateChanged((user)=>{
+      if(!user&&false)callback({logged:false});
+      else callback({logged:true});
     })
   }
-  const doLogin = async (firebase,email,password,callback) => {
-    await firebase.auth()
-      .signInWithEmailAndPassword(email,password)
-        .then(()=>{
-          callback({logged:true});
+
+  const doLogin = ({firebase,req},callback) => {
+    const email = req.body.email;
+    const password = req.body.password;
+
+    firebase.auth().signInWithEmailAndPassword(email,password)
+      .then(()=>{
+        callback({logged:true});
       },err=>{
-        callback({err:err});
+        callback({error:err});
       })
   }
 
-  const handleRegist = (firebase,req,res) => {
-    const registData = {
-      firstName: req.body.firstName,
-      lastName: req.body.lastName,
-      email: req.body.email,
-      password: req.body.password,
-      confirmPassword: req.body.confirmPassword,
-    }
-    if(registData.password!=registData.confirmPassword){res.redirect('/regist');return;}
+  const doRegist = ({firebase,req},callback) => {
+    const firstName = req.body.firstName;
+    const lastName = req.body.lastName;
+    const email = req.body.email;
+    const password = req.body.password;
+    const confirmPassword = req.body.confirmPassword;
 
-    doRegist(firebase,registData,(log)=>{
-      //console.log(log);
-      if(log.err){res.send(log.err);return;}
-      doLogin(firebase,log.email,log.password,(log)=>{
-        if(log.logged||true)res.redirect('/dashboard');
-      })
-      //if(log.logged)res.redirect('/dashboard');
-    })
-  }
-  const doRegist = (firebase,registData,callback) => {
-    firebase
-      .auth()
-      .createUserWithEmailAndPassword(registData.email,registData.password)
-      .then(authRes => {
-        const userObj = {
-          email: registData.email,
-          firstName: registData.firstName,
-          lastName: registData.lastName
-        };
-        firebase
-          .firestore()
-          .collection('users')
-          .doc(registData.email)
-          .set(userObj)
-          .then(()=>{
-            callback({email:registData.email,password:registData.password});
-          }, dbErr => {
-            callback({err:dbErr});
-          })
-      }, authErr => {
-        callback({err:authErr});
+    if(password!=confirmPassword)callback({error:'password does not match'});
+
+    firebase.auth().createUserWithEmailAndPassword(email,password)
+      .then(response=>{
+        callback({registered:true});
+      },err=>{
+        callback({error:err});
       })
   }
 
-  const handleLogout = async (firebase,req,res) => {
-    await firebase.auth().signOut();
-    res.redirect('/login');
+  const doLogout = ({firebase,req},callback) => {
+    firebase.auth().signOut()
+      .then((response)=>{
+        callback({loggedOut:true});
+      },err=>{
+        callback({error:err});
+      })
   }
-  
-  module.exports.handleLogin = (firebase,req,res) => handleLogin(firebase,req,res);
-  module.exports.handleRegist = (firebase,req,res) => handleRegist(firebase,req,res);
-  module.exports.handleLogout = (firebase,req,res) => handleLogout(firebase,req,res);
 
+  module.exports.doLogin = doLogin;
+  module.exports.doRegist = doRegist;
+  module.exports.doLogout = doLogout;
+  module.exports.checkLogged = checkLogged;
 }());
 

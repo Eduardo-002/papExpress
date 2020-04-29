@@ -10,3 +10,5 @@ git add ./
 git commit -m "c%nn%"
 git remote add origin https://github.com/Eduardo-002/papExpress.git
 git push -u origin master
+
+pause
