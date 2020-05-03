@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npx nodemon index -p 8080"
+    "start": "npx nodemon index -p 8080",
+    "commitLinux":"read i < commitNum;i=`expr $i + 1`;echo $i > commitNum;git init;git add ./;git commit -m \"c$i\";git remote add origin https://github.com/Eduardo-002/papExpress.git;git push -u origin master",
+    "commitWindows":""
   },
   "author": "",
   "license": "ISC",
