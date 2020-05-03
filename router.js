@@ -15,6 +15,7 @@
     app.get('/dashboard',(req,res)=>checkLogin({firebase,req,res},()=>res.sendFile(path.join(__dirname,'/public','/Dashboard/dashboard.html'))));
     app.get('/dashboard/blank',(req,res)=>checkLogin({firebase,req,res},()=>res.sendFile(path.join(__dirname,'/public','/Dashboard/Pages/blank.html'))));
     app.get('/dashboard/blank2',(req,res)=>checkLogin({firebase,req,res},()=>res.sendFile(path.join(__dirname,'/public','/Dashboard/Pages/blank2.html'))));
+    app.get('/dashboard/user',(req,res)=>checkLogin({firebase,req,res},()=>res.sendFile(path.join(__dirname,'/public','/Dashboard/User/user.html'))));
     app.get('/dashboard/classificacao',(req,res)=>checkLogin({firebase,req,res},()=>res.sendFile(path.join(__dirname,'/public','/Dashboard/Tabelas/classificacao.html'))));
     app.get('/dashboard/jogadores',(req,res)=>checkLogin({firebase,req,res},()=>res.sendFile(path.join(__dirname,'/public','/Dashboard/Tabelas/jogadores.html'))));
     app.get('/dashboard/novidades',(req,res)=>checkLogin({firebase,req,res},()=>res.sendFile(path.join(__dirname,'/public','/Dashboard/Tabelas/novidades.html'))));

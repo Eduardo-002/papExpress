@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Treinador de Bancada - Classificações</title>
+  <title>SB Admin 2 - Blank</title>
 
   <!-- Custom fonts for this template-->
   <link href="/static/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -43,34 +43,7 @@
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <div class="card" style=""><!--Criar um modal para os comentarios-->
-            <img class="card-img-top" src="/static/img/Novidades/relvado.jpg" alt="Card image cap">
-            <div class="card-body">
-              <h5 class="card-title">Titulo</h5>
-              <h6 class="card-subtitle mb-2 text-muted">35 minutes</h6><br>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="#" class="btn btn-primary">Like!</a>
-              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Comentários...</button>
-            </div>
-          </div>
-          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Comentários</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body">
-                  ...
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
-              </div>
-            </div>
-          </div>
+          <h1 class="h3 mb-4 text-gray-800">Perfil</h1>
 
         </div>
         <!-- /.container-fluid -->
@@ -104,7 +77,7 @@
   <script src="/static/vendor/jquery-easing/jquery.easing.min.js"></script>
 
   <!-- Custom scripts for all pages-->
-  <script src="/static/js/sb-admin-2.js"></script>
+  <script src="/static/js/sb-admin-2.js"></script>-
 
   <script>
 
@@ -125,7 +98,7 @@ const externalContent = [
     class: ".logoutModalExternal",
     url: "/static/html/logoutModal.html"
   }
-]
+];
 
 const loadhtml = () => {
   let counter = externalContent.length;
@@ -134,6 +107,7 @@ const loadhtml = () => {
     xhr.onload = function() {
       document.querySelector(elem.class).innerHTML=this.responseText;
       counter--;
+      console.log(counter);
       if(counter<=0)loadScripts();
     }
     xhr.open("GET", elem.url);
@@ -143,40 +117,6 @@ const loadhtml = () => {
 }
 
 loadhtml();
-
-let t = false;
-const loadTable = () => {
-  externalContent.forEach((elem)=>{
-    var xhr = new XMLHttpRequest();
-    xhr.onload = function() {
-      if(t)return;
-      let classificacao = JSON.parse(this.response);
-      let obj = Object.entries(classificacao);
-      obj.forEach(elem=>{
-        let table=document.querySelector('.tableData');
-        let row = document.createElement('tr');
-        elem[1].forEach(e=>{
-          let cell = document.createElement('td');
-          cell.innerHTML=e;
-          row.append(cell);
-        })
-        table.appendChild(row);
-      })
-      t=true;
-    }
-    xhr.open("POST", '/database/classificacao');
-    //xhr.responseType = "text";
-    xhr.send();
-  })
-}
-//loadTable();
-
-// <tr>
-//   <th scope="row">3</th>
-//   <td>Larry</td>
-//   <td>the Bird</td>
-//   <td>@twitter</td>
-// </tr>
 
   </script>
 
