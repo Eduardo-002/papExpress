@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>SB Admin 2 - Blank</title>
+  <title>Treinador de Bancada - Classificações</title>
 
   <!-- Custom fonts for this template-->
   <link href="/static/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -43,10 +43,10 @@
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-4 text-gray-800">Blank Page</h1>
+          <h1 class="h3 mb-4 text-gray-800">AF Aveiro 1ª Divisão</h1>
 
         </div>
-        <!-- /.container-fluid -->
+        <!-- End Page Content -->
 
       </div>
       <!-- End of Main Content -->
@@ -77,42 +77,10 @@
   <script src="/static/vendor/jquery-easing/jquery.easing.min.js"></script>
 
   <!-- Custom scripts for all pages-->
-  <script src="/static/js/sb-admin-2.min.js"></script>
+  <script src="/static/js/sb-admin-2.js"></script>
 
   <script>
 
-const externalContent = [
-  {
-    class: ".sideBarExternal",
-    url: "/static/html/sideBar.html"
-  },
-  {
-    class: ".navExternal",
-    url: "/static/html/nav.html"
-  },
-  {
-    class: ".footerExternal",
-    url: "/static/html/footer.html"
-  },
-  {
-    class: ".logoutModalExternal",
-    url: "/static/html/logoutModal.html"
-  }
-]
-
-const loadhtml = () => {
-  externalContent.forEach((elem)=>{
-    var xhr = new XMLHttpRequest();
-    xhr.onload = function() {
-      document.querySelector(elem.class).innerHTML=this.responseText;
-    }
-    xhr.open("GET", elem.url);
-    xhr.responseType = "text";
-    xhr.send();
-  })
-}
-
-loadhtml();
 
   </script>
 
