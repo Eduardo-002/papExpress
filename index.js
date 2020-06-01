@@ -18,7 +18,7 @@ firebase.initializeApp({
   projectId: "treinadorbancada-79ea9",
   storageBucket: "treinadorbancada-79ea9.appspot.com",
   messagingSenderId: "238339926937",
-  appId: "1:238339926937:web:d2a8d28be7198822104108"
+  appId: "1:238339926937:web:7e2bb4360350c18a104108"
 });
 
 const routerInputs = {app,firebase,express,path,PORT};

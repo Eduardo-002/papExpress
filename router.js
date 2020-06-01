@@ -22,6 +22,7 @@
 
     app.post('/login',(req,res)=>{
       login.doLogin({firebase,req},(response)=>{
+        console.log(response);
         if(response.logged){res.redirect('/dashboard');}
         else res.redirect('/login?error='+response.error);
       });
@@ -43,8 +44,10 @@
         else res.redirect('/login?error='+response.error);
       })
     })
-    app.post('/database/classificacao',(req,res)=>{database.get({firebase,table:'Classificacao'},({response})=>{res.send(response);})})
-    app.post('/database/jogadores',(req,res)=>{database.get({firebase,table:'Jogadores'},({response})=>{res.send(response);})})
+    app.post('/database/classificacao',(req,res)=>{database.getClassificacao({firebase},({response})=>{res.send(response);})})
+    app.post('/database/jogadores',(req,res)=>{database.getJogadores({firebase},({response})=>{res.send(response);})})
+    app.post('/database/novidades',(req,res)=>{database.getNoticias({firebase},({response})=>{res.send(response);})})
+    app.post('/database/comentarios',(req,res)=>{database.getComentarios({req,firebase},({response})=>{res.send(response);})})
 
     app.use('/static', express.static(path.join(__dirname, 'static')))
 

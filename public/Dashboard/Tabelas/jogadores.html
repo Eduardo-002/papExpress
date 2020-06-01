@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>SB Admin 2 - Blank</title>
+  <title>Treinador de Bancada - Classificações</title>
 
   <!-- Custom fonts for this template-->
   <link href="/static/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -18,20 +18,18 @@
   <!-- Custom styles for this template-->
   <link href="/static/css/sb-admin-2.min.css" rel="stylesheet">
 
-
-<style>
-.table-image, td, th {
-    vertical-align: middle;
-}
-.img-square{
-    width:70px;
-    height:70px;
-    margin: auto;
-    border:0;
-    background-size:cover;
-}
-
-</style>
+  <style>
+    .table-image, td, th {
+      vertical-align: middle;
+    }
+    .img-square{
+      width:70px;
+      height:70px;
+      margin: auto;
+      border:0;
+      background-size:cover;
+    }
+  </style>
 
 </head>
 
@@ -41,7 +39,109 @@
   <div id="wrapper">
 
     <!-- Sidebar -->
-    <nonsensetag class="sideBarExternal"></nonsensetag>
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+      <!-- Sidebar - Brand -->
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+        <div class="sidebar-brand-icon rotate-n-15">
+          <i class="fas fa-laugh-wink"></i>
+        </div>
+        <div class="sidebar-brand-text mx-3">Treinador de Bancada</div>
+      </a>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider my-0">
+
+      <!-- Nav Item - Dashboard -->
+      <li class="nav-item">
+        <a class="nav-link" href="/dashboard">
+          <i class="fas fa-fw fa-futbol"></i>
+          <span>Próximo Jogo</span></a>
+      </li>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider">
+
+      <!-- Heading -->
+      <div class="sidebar-heading">
+        Apostas
+      </div>
+
+      <li class="nav-item">
+        <a class="nav-link" href="charts.html">
+          <i class="fas fa-fw fa-dice"></i>
+          <span>Resultado</span></a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="charts.html">
+          <i class="fas fa-fw fa-tshirt"></i>
+          <span>11 Inicial</span></a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="charts.html">
+          <i class="fas fa-fw fa-history"></i>
+          <span>Histórico</span></a>
+      </li>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider">
+
+      <!-- Heading -->
+      <div class="sidebar-heading">
+        Tabelas
+      </div>
+
+      <li class="nav-item">
+        <a class="nav-link" href="/dashboard/classificacao">
+          <i class="fas fa-fw fa-list-ol"></i>
+          <span>Classificação</span></a>
+      </li>
+
+      <!-- Nav Item - Charts -->
+      <li class="nav-item">
+        <a class="nav-link" href="/dashboard/jogadores">
+          <i class="fas fa-fw fa-running"></i>
+          <span>Jogadores</span></a>
+      </li>
+
+      <!-- Nav Item - Tables -->
+      <li class="nav-item">
+        <a class="nav-link" href="/dashboard/novidades">
+          <i class="fas fa-fw fa-globe"></i>
+          <span>Novidades</span></a>
+      </li>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider">
+
+      <!-- Heading -->
+      <div class="sidebar-heading">
+        Acerca de
+      </div>
+
+      <li class="nav-item">
+        <a class="nav-link" href="tables.html">
+          <i class="fas fa-fw fa-address-book"></i>
+          <span>A Nossa História</span></a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="tables.html">
+          <i class="fas fa-fw fa-book-open"></i>
+          <span>Mourisquense</span></a>
+      </li>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider d-none d-md-block">
+
+      <!-- Sidebar Toggler (Sidebar) -->
+      <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+      </div>
+
+    </ul>
     <!-- End of Sidebar -->
 
     <!-- Content Wrapper -->
@@ -51,13 +151,95 @@
       <div id="content">
 
         <!-- Topbar -->
-        <nonsensetag class="navExternal"></nonsensetag>
+        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+          <!-- Sidebar Toggle (Topbar) -->
+          <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+            <i class="fa fa-bars"></i>
+          </button>
+        
+          <!-- Topbar Navbar -->
+          <ul class="navbar-nav ml-auto">
+        
+            <!-- Nav Item - Alerts -->
+            <li class="nav-item dropdown no-arrow mx-1">
+              <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-bell fa-fw"></i>
+                <!-- Counter - Alerts -->
+                <span class="badge badge-danger badge-counter">3+</span>
+              </a>
+              <!-- Dropdown - Alerts -->
+              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
+                <h6 class="dropdown-header">
+                  Notificações
+                </h6>
+                <a class="dropdown-item d-flex align-items-center" href="#">
+                  <div class="mr-3">
+                    <div class="icon-circle bg-primary">
+                      <i class="fas fa-file-alt text-white"></i>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="small text-gray-500">December 12, 2019</div>
+                    <span class="font-weight-bold">A new monthly report is ready to download!</span>
+                  </div>
+                </a>
+                <a class="dropdown-item d-flex align-items-center" href="#">
+                  <div class="mr-3">
+                    <div class="icon-circle bg-success">
+                      <i class="fas fa-donate text-white"></i>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="small text-gray-500">December 7, 2019</div>
+                    $290.29 has been deposited into your account!
+                  </div>
+                </a>
+                <a class="dropdown-item d-flex align-items-center" href="#">
+                  <div class="mr-3">
+                    <div class="icon-circle bg-warning">
+                      <i class="fas fa-exclamation-triangle text-white"></i>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="small text-gray-500">December 2, 2019</div>
+                    Spending Alert: We've noticed unusually high spending for your account.
+                  </div>
+                </a>
+                <a class="dropdown-item text-center small text-gray-500" href="#">Mostrar todas</a>
+              </div>
+            </li>
+        
+            <div class="topbar-divider d-none d-sm-block"></div>
+        
+            <!-- Nav Item - User Information -->
+            <li class="nav-item dropdown no-arrow">
+              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
+                <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
+              </a>
+              <!-- Dropdown - User Information -->
+              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                <a class="dropdown-item" href="/dashboard/user">
+                  <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Perfil
+                </a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Logout
+                </a>
+              </div>
+            </li>
+        
+          </ul>
+        
+        </nav>
         <!-- End of Topbar -->
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
-          <!-- Page Heading -->
           <div class="container">
             <div class="row">
               <div class="col-12 table-responsive-xl">
@@ -84,7 +266,13 @@
       <!-- End of Main Content -->
 
       <!-- Footer -->
-      <nonsensetag class="footerExternal"></nonsensetag>
+      <footer class="sticky-footer bg-white">
+        <div class="container my-auto">
+          <div class="copyright text-center my-auto">
+            <span>Copyright &copy; Your Website 2019</span>
+          </div>
+        </div>
+      </footer>
       <!-- End of Footer -->
 
     </div>
@@ -98,6 +286,29 @@
     <i class="fas fa-angle-up"></i>
   </a>
 
+  <!-- Logout Modal-->
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+          <form action='/logout' method='POST'>
+            <input class="btn btn-primary" type="Submit" value='Logout'>
+          </form>
+          <!-- <a class="btn btn-primary" href="/logout">Logout</a> -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Jogador Modal -->
   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -125,9 +336,6 @@
     </div>
   </div>
 
-  <!-- Logout Modal-->
-  <nonsensetag class="logoutModalExternal"></nonsensetag>
-
   <!-- Bootstrap core JavaScript-->
   <script src="/static/vendor/jquery/jquery.min.js"></script>
   <script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -139,55 +347,50 @@
   <script src="/static/js/sb-admin-2.js"></script>
 
   <script>
+(function(){
+  let url = '/database/jogadores';
+  var xhr = new XMLHttpRequest();
+  xhr.onload = function() {
+    let data = JSON.parse(this.response);
+    setTable(data);
+  }
+  xhr.open('POST',url);
+  xhr.send();
+}())
 
-let t = false;
-const loadTable = () => {
-  externalContent.forEach((elem)=>{
-    var xhr = new XMLHttpRequest();
-    xhr.onload = function() {
-      if(t)return;
-      console.log(JSON.parse(this.response));
-      let parsed = JSON.parse(this.response);
-      let obj = Object.entries(parsed);
-      console.log(obj);
-      obj.forEach(elem=>{
-        console.log(elem);
-        // Start of table row
-        let row = document.createElement('tr');
-        row.setAttribute('data-toggle','modal');
-        row.setAttribute('data-target','#exampleModal');
-        row.onclick = () => setModal(elem[1]);
+const setTable = (data) => {
+  let obj = Object.entries(data);
+  console.log(obj);
+  obj.forEach(elem=>{
+    console.log(elem);
+    // Start of table row
+    let row = document.createElement('tr');
+    row.setAttribute('data-toggle','modal');
+    row.setAttribute('data-target','#exampleModal');
+    row.onclick = () => setModal(elem[1]);
 
-        let cell = document.createElement('td');
-        let img = document.createElement('div');
-        img.style = "background-image: url("+elem[1].image+")";
-        img.className = 'img-square';
-        cell.append(img);
-        row.append(cell);
-        
-        cell = document.createElement('td');
-        cell.innerHTML = elem[1].position;
-        cell.className = 'align-middle';
-        row.append(cell);
+    let cell = document.createElement('td');
+    let img = document.createElement('div');
+    img.style = "background-image: url("+elem[1].image+")";
+    img.className = 'img-square';
+    cell.append(img);
+    row.append(cell);
+    
+    cell = document.createElement('td');
+    cell.innerHTML = elem[1].position;
+    cell.className = 'align-middle';
+    row.append(cell);
 
-        cell = document.createElement('td');
-        cell.innerHTML = elem[1].firstName + ' ' + elem[1].lastName;
-        cell.className = 'align-middle';
-        row.append(cell);
+    cell = document.createElement('td');
+    cell.innerHTML = elem[1].firstName + ' ' + elem[1].lastName;
+    cell.className = 'align-middle';
+    row.append(cell);
 
-        let table = document.querySelector('.tableData');
-        table.appendChild(row);
-        // End of table row
+    let table = document.querySelector('.tableData');
+    table.appendChild(row);
+    // End of table row
 
-        // Start of model
-
-
-      })
-      t=true;
-    }
-    xhr.open("POST", '/database/jogadores');
-    //xhr.responseType = "text";
-    xhr.send();
+    // Start of model
   })
 }
 
@@ -201,31 +404,6 @@ const setModal = (elem) => {
     document.querySelector('#modalNumber').innerHTML="Numero: " + elem.number;
     document.querySelector('#modalPosition').innerHTML="Posição: " + elem.position;
 }
-
-loadTable();
-/*
-<tr>
-    <th scope="row">1</th>
-    <td class="w-25">
-        <img src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/sheep-3.jpg" class="img-fluid img-thumbnail" alt="Sheep">
-    </td>
-    <td>Bootstrap 4 CDN and Starter Template</td>
-    <td>Cristina</td>
-    <td>913</td>
-    <td>2.846</td>
-</tr>
-<tr>
-    <th scope="row">2</th>
-    <td class="w-25">
-        <img src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/sheep-5.jpg" class="img-fluid img-thumbnail" alt="Sheep">
-    </td>
-    <td>Bootstrap Grid 4 Tutorial and Examples</td>
-    <td>Cristina</td>
-    <td>1.434</td>
-    <td>3.417</td>
-</tr>
-    */
-
   </script>
 
 </body>

@@ -1,7 +1,7 @@
 (function(){
   const start = (firebase,req,res,callback) => {
     firebase.auth().onAuthStateChanged((user)=>{
-      if(!user&&false)res.redirect('/login?error=semLogin');
+      if(!user&&false)res.redirect('/login?error=semLogin');//tirar '&&false' para utilizar o check de sessao automatico
       else callback({firebase,req,res});
     })
   }

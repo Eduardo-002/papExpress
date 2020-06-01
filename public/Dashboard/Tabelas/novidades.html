@@ -18,6 +18,22 @@
   <!-- Custom styles for this template-->
   <link href="/static/css/sb-admin-2.min.css" rel="stylesheet">
 
+  <style>
+    .cardImage{
+      object-fit:contain;
+      width:100%;
+      height:400px;
+    }
+    #sampleCard{
+      max-width:800px;
+      margin:auto;
+      background: rgba(255, 255, 255, 1);
+    }
+    #content-wrapper{
+      background: rgb(235, 235, 235) !important;
+    }
+  </style>
+
 </head>
 
 <body id="page-top">
@@ -26,7 +42,109 @@
   <div id="wrapper">
 
     <!-- Sidebar -->
-    <nonsensetag class="sideBarExternal"></nonsensetag>
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+      <!-- Sidebar - Brand -->
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+        <div class="sidebar-brand-icon rotate-n-15">
+          <i class="fas fa-laugh-wink"></i>
+        </div>
+        <div class="sidebar-brand-text mx-3">Treinador de Bancada</div>
+      </a>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider my-0">
+
+      <!-- Nav Item - Dashboard -->
+      <li class="nav-item">
+        <a class="nav-link" href="/dashboard">
+          <i class="fas fa-fw fa-futbol"></i>
+          <span>Próximo Jogo</span></a>
+      </li>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider">
+
+      <!-- Heading -->
+      <div class="sidebar-heading">
+        Apostas
+      </div>
+
+      <li class="nav-item">
+        <a class="nav-link" href="charts.html">
+          <i class="fas fa-fw fa-dice"></i>
+          <span>Resultado</span></a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="charts.html">
+          <i class="fas fa-fw fa-tshirt"></i>
+          <span>11 Inicial</span></a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="charts.html">
+          <i class="fas fa-fw fa-history"></i>
+          <span>Histórico</span></a>
+      </li>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider">
+
+      <!-- Heading -->
+      <div class="sidebar-heading">
+        Tabelas
+      </div>
+
+      <li class="nav-item">
+        <a class="nav-link" href="/dashboard/classificacao">
+          <i class="fas fa-fw fa-list-ol"></i>
+          <span>Classificação</span></a>
+      </li>
+
+      <!-- Nav Item - Charts -->
+      <li class="nav-item">
+        <a class="nav-link" href="/dashboard/jogadores">
+          <i class="fas fa-fw fa-running"></i>
+          <span>Jogadores</span></a>
+      </li>
+
+      <!-- Nav Item - Tables -->
+      <li class="nav-item">
+        <a class="nav-link" href="/dashboard/novidades">
+          <i class="fas fa-fw fa-globe"></i>
+          <span>Novidades</span></a>
+      </li>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider">
+
+      <!-- Heading -->
+      <div class="sidebar-heading">
+        Acerca de
+      </div>
+
+      <li class="nav-item">
+        <a class="nav-link" href="tables.html">
+          <i class="fas fa-fw fa-address-book"></i>
+          <span>A Nossa História</span></a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="tables.html">
+          <i class="fas fa-fw fa-book-open"></i>
+          <span>Mourisquense</span></a>
+      </li>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider d-none d-md-block">
+
+      <!-- Sidebar Toggler (Sidebar) -->
+      <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+      </div>
+
+    </ul>
     <!-- End of Sidebar -->
 
     <!-- Content Wrapper -->
@@ -36,50 +154,194 @@
       <div id="content">
 
         <!-- Topbar -->
-        <nonsensetag class="navExternal"></nonsensetag>
+        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+          <!-- Sidebar Toggle (Topbar) -->
+          <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+            <i class="fa fa-bars"></i>
+          </button>
+        
+          <!-- Topbar Navbar -->
+          <ul class="navbar-nav ml-auto">
+        
+            <!-- Nav Item - Alerts -->
+            <li class="nav-item dropdown no-arrow mx-1">
+              <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-bell fa-fw"></i>
+                <!-- Counter - Alerts -->
+                <span class="badge badge-danger badge-counter">3+</span>
+              </a>
+              <!-- Dropdown - Alerts -->
+              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
+                <h6 class="dropdown-header">
+                  Notificações
+                </h6>
+                <a class="dropdown-item d-flex align-items-center" href="#">
+                  <div class="mr-3">
+                    <div class="icon-circle bg-primary">
+                      <i class="fas fa-file-alt text-white"></i>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="small text-gray-500">December 12, 2019</div>
+                    <span class="font-weight-bold">A new monthly report is ready to download!</span>
+                  </div>
+                </a>
+                <a class="dropdown-item d-flex align-items-center" href="#">
+                  <div class="mr-3">
+                    <div class="icon-circle bg-success">
+                      <i class="fas fa-donate text-white"></i>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="small text-gray-500">December 7, 2019</div>
+                    $290.29 has been deposited into your account!
+                  </div>
+                </a>
+                <a class="dropdown-item d-flex align-items-center" href="#">
+                  <div class="mr-3">
+                    <div class="icon-circle bg-warning">
+                      <i class="fas fa-exclamation-triangle text-white"></i>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="small text-gray-500">December 2, 2019</div>
+                    Spending Alert: We've noticed unusually high spending for your account.
+                  </div>
+                </a>
+                <a class="dropdown-item text-center small text-gray-500" href="#">Mostrar todas</a>
+              </div>
+            </li>
+        
+            <div class="topbar-divider d-none d-sm-block"></div>
+        
+            <!-- Nav Item - User Information -->
+            <li class="nav-item dropdown no-arrow">
+              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
+                <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
+              </a>
+              <!-- Dropdown - User Information -->
+              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                <a class="dropdown-item" href="/dashboard/user">
+                  <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Perfil
+                </a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Logout
+                </a>
+              </div>
+            </li>
+        
+          </ul>
+        
+        </nav>
         <!-- End of Topbar -->
 
         <!-- Begin Page Content -->
-        <div class="container-fluid">
+        
+        <div class="container-fluid" id="container">
 
-          <!-- Page Heading -->
-          <div class="card" style=""><!--Criar um modal para os comentarios-->
-            <img class="card-img-top" src="/static/img/Novidades/relvado.jpg" alt="Card image cap">
-            <div class="card-body">
-              <h5 class="card-title">Titulo</h5>
-              <h6 class="card-subtitle mb-2 text-muted">35 minutes</h6><br>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="#" class="btn btn-primary">Like!</a>
-              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Comentários...</button>
-            </div>
-          </div>
-          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Comentários</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body">
-                  ...
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
+          <!-- <div class="row" id="sampleCard" style="display: none;"> -->
+            <!-- Page Heading -->
+            <div class="card mb-1" style="display: none;" id="sampleCard"><!--Criar um modal para os comentarios-->
+              <img class="card-img-top cardImage" src="/static/img/Novidades/relvado.jpg" alt="Card image cap" id="cimage">
+              <div class="card-body">
+                <h5 class="card-title" id="ctitle">Titulo</h5>
+                <!-- <h6 class="card-subtitle mb-2 text-muted">35 minutes</h6><br> -->
+                <p class="card-text" id="cdescription">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="#" class="btn btn-primary" id="clikebutton">Like!</a>
+                <button id="cardComButton" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Comentários...</button>
               </div>
             </div>
-          </div>
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Comentários</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <div id="messagesContainer" class="container">
+                      <div class="row border my-1 p-2">
+                        <form class="w-100">
+                          <div class="form-group">
+                            <label for="exampleInputEmail1">Escrever Comentário.</label>
+                            <input type="text" class="form-control " id="exampleInputEmail1" aria-describedby="emailHelp">
+                          </div>
+                          <div class="row">
+                            <div class="col-8"></div>
+                            <div class="col-4">
+                              <button type="submit" class="btn btn-primary btn-block">Comentar</button>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                      <div id="commentBox" class="row border my-1" style="display: none;">
+                        <div class="col-2">
+                          <img src="/static/img/Jogadores/vascoCoelho.jpg" class="img-fluid m-1 rounded-circle border" alt="Responsive image">
+                        </div>
+                        <div class="col-10">
+                          <p id="commentName" class="p-2 h5">Nome</p>
+                          <p id="commentDesc" class="p-2">texto do comentáro</p>
+                        </div>
+                        <div class="col-12 text-right pb-1">
+                          <small class="text-muted">12/05/2005</small>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- <div class="list-group">
+                      <a href="#" class="list-group-item list-group-item-action">
+                        <div class="d-flex w-100 justify-content-between">
+                          <h5 class="mb-1">List group item heading</h5>
+                          <small>3 days ago</small>
+                        </div>
+                        <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+                        <small>Donec id elit non mi porta.</small>
+                      </a>
+                      <a href="#" class="list-group-item list-group-item-action">
+                        <div class="d-flex w-100 justify-content-between">
+                          <h5 class="mb-1">List group item heading</h5>
+                          <small class="text-muted">3 days ago</small>
+                        </div>
+                        <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+                        <small class="text-muted">Donec id elit non mi porta.</small>
+                      </a>
+                      <a href="#" class="list-group-item list-group-item-action">
+                        <div class="d-flex w-100 justify-content-between">
+                          <h5 class="mb-1">List group item heading</h5>
+                          <small class="text-muted">3 days ago</small>
+                        </div>
+                        <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+                        <small class="text-muted">Donec id elit non mi porta.</small>
+                      </a>
+                    </div> -->
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
+            <!-- </div> -->
 
-        </div>
+          </div>
         <!-- /.container-fluid -->
 
       </div>
       <!-- End of Main Content -->
 
       <!-- Footer -->
-      <nonsensetag class="footerExternal"></nonsensetag>
+      <footer class="sticky-footer bg-white">
+        <div class="container my-auto">
+          <div class="copyright text-center my-auto">
+            <span>Copyright &copy; Your Website 2019</span>
+          </div>
+        </div>
+      </footer>
       <!-- End of Footer -->
 
     </div>
@@ -94,7 +356,26 @@
   </a>
 
   <!-- Logout Modal-->
-  <nonsensetag class="logoutModalExternal"></nonsensetag>
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+          <form action='/logout' method='POST'>
+            <input class="btn btn-primary" type="Submit" value='Logout'>
+          </form>
+          <!-- <a class="btn btn-primary" href="/logout">Logout</a> -->
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- Bootstrap core JavaScript-->
   <script src="/static/vendor/jquery/jquery.min.js"></script>
@@ -107,41 +388,63 @@
   <script src="/static/js/sb-admin-2.js"></script>
 
   <script>
+(function(){
+  let url = '/database/novidades';
+  var xhr = new XMLHttpRequest();
+  xhr.onload = function() {
+    let data = JSON.parse(this.response);
+    setTable(data);
+  }
+  xhr.open('POST',url);
+  xhr.send();
+}())
 
-let t = false;
-const loadTable = () => {
-  externalContent.forEach((elem)=>{
-    var xhr = new XMLHttpRequest();
-    xhr.onload = function() {
-      if(t)return;
-      let classificacao = JSON.parse(this.response);
-      let obj = Object.entries(classificacao);
-      obj.forEach(elem=>{
-        let table=document.querySelector('.tableData');
-        let row = document.createElement('tr');
-        elem[1].forEach(e=>{
-          let cell = document.createElement('td');
-          cell.innerHTML=e;
-          row.append(cell);
-        })
-        table.appendChild(row);
-      })
-      t=true;
-    }
-    xhr.open("POST", '/database/classificacao');
-    //xhr.responseType = "text";
-    xhr.send();
+const setTable = (data) => {
+  let obj = Object.entries(data);
+  obj.forEach(elem => {
+    console.log(elem);
+    let card = document.getElementById("sampleCard");
+    let clone = card.cloneNode(true);
+    clone.style ="";
+    let title = clone.querySelector("#ctitle");
+    title.innerHTML = elem[1].title;
+    let description = clone.querySelector("#cdescription");
+    description.innerHTML = elem[1].description;
+    let image = clone.querySelector("#cimage");
+    image.src = elem[1].image;
+    let like = clone.querySelector("#clikebutton");
+    like.innerHTML = elem[1].likes + " &#9829;";
+    let coments = clone.querySelector("#cardComButton");
+    coments.onclick = ()=>loadComments(elem);
+    document.getElementById("container").appendChild(clone);
   })
 }
-//loadTable();
 
-// <tr>
-//   <th scope="row">3</th>
-//   <td>Larry</td>
-//   <td>the Bird</td>
-//   <td>@twitter</td>
-// </tr>
+const loadComments = (elem) => {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      console.log(this.response);
+      let data = JSON.parse(this.response);
+      setCard(data);
+    }
+  };
+  xhttp.open("POST", "/database/comentarios", true);
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhttp.send("name="+elem[0]);
+}
 
+const setCard = (data) => {
+  console.log(data);
+  let commentBox = document.getElementById("commentBox");
+  let clone = commentBox.cloneNode(true);
+  clone.style.display = "flex";
+  let name = clone.querySelector("#commentName");
+  name.innerHTML = data[1].userName;
+  let coment = clone.querySelector("#commentDesc");
+  name.innerHTML = data[1].userText;
+  document.getElementById("messagesContainer").appendChild(clone);
+}
   </script>
 
 </body>

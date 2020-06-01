@@ -1,4 +1,3 @@
-const loadScripts = () => {
 (function($) {
   "use strict"; // Start of use strict
 
@@ -48,41 +47,3 @@ const loadScripts = () => {
   });
 
 })(jQuery); // End of use strict
-}
-
-
-const externalContent = [
-  {
-    class: ".sideBarExternal",
-    url: "/static/html/sideBar.html"
-  },
-  {
-    class: ".navExternal",
-    url: "/static/html/nav.html"
-  },
-  {
-    class: ".footerExternal",
-    url: "/static/html/footer.html"
-  },
-  {
-    class: ".logoutModalExternal",
-    url: "/static/html/logoutModal.html"
-  }
-]
-
-const loadhtml = () => {
-  let counter = externalContent.length;
-  externalContent.forEach((elem)=>{
-    var xhr = new XMLHttpRequest();
-    xhr.onload = function() {
-      document.querySelector(elem.class).innerHTML=this.responseText;
-      counter--;
-      console.log(counter);
-      if(counter<=0)loadScripts();
-    }
-    xhr.open("GET", elem.url);
-    xhr.responseType = "text";
-    xhr.send();
-  })
-}
-loadhtml();
