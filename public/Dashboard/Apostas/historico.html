@@ -18,22 +18,6 @@
   <!-- Custom styles for this template-->
   <link href="/static/css/sb-admin-2.min.css" rel="stylesheet">
 
-  <style>
-    .cardImage{
-      object-fit:contain;
-      width:100%;
-      height:400px;
-    }
-    #sampleCard{
-      max-width:800px;
-      margin:auto;
-      background: rgba(255, 255, 255, 1);
-    }
-    #content-wrapper{
-      background: rgb(235, 235, 235) !important;
-    }
-  </style>
-
 </head>
 
 <body id="page-top">
@@ -241,95 +225,10 @@
         <!-- End of Topbar -->
 
         <!-- Begin Page Content -->
-        
-        <div class="container-fluid" id="container">
+        <div class="container-fluid">
 
-          <!-- <div class="row" id="sampleCard" style="display: none;"> -->
-            <!-- Page Heading -->
-            <div class="card mb-1" style="display: none;" id="sampleCard"><!--Criar um modal para os comentarios-->
-              <img class="card-img-top cardImage" src="/static/img/Novidades/relvado.jpg" alt="Card image cap" id="cimage">
-              <div class="card-body">
-                <h5 class="card-title" id="ctitle">Titulo</h5>
-                <!-- <h6 class="card-subtitle mb-2 text-muted">35 minutes</h6><br> -->
-                <p class="card-text" id="cdescription">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-primary" id="clikebutton">Like!</a>
-                <button id="cardComButton" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Comentários...</button>
-              </div>
-            </div>
-            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Comentários</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                    <div id="messagesContainer" class="container">
-                      <div class="row border my-1 p-2">
-                        <form class="w-100">
-                          <div class="form-group">
-                            <label for="exampleInputEmail1">Escrever Comentário.</label>
-                            <input type="text" class="form-control " id="exampleInputEmail1" aria-describedby="emailHelp">
-                          </div>
-                          <div class="row">
-                            <div class="col-8"></div>
-                            <div class="col-4">
-                              <button type="submit" class="btn btn-primary btn-block">Comentar</button>
-                            </div>
-                          </div>
-                        </form>
-                      </div>
-                      <div id="commentBox" class="row border my-1" style="display: none;">
-                        <div class="col-2">
-                          <img src="/static/img/Jogadores/vascoCoelho.jpg" class="img-fluid m-1 rounded-circle border" alt="Responsive image">
-                        </div>
-                        <div class="col-10">
-                          <p id="commentName" class="p-2 h5">Nome</p>
-                          <p id="commentDesc" class="p-1">texto do comentáro</p>
-                        </div>
-                        <div class="col-12 text-right pb-1">
-                          <small class="text-muted">12/05/2005</small>
-                        </div>
-                      </div>
-                    </div>
-                    <!-- <div class="list-group">
-                      <a href="#" class="list-group-item list-group-item-action">
-                        <div class="d-flex w-100 justify-content-between">
-                          <h5 class="mb-1">List group item heading</h5>
-                          <small>3 days ago</small>
-                        </div>
-                        <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                        <small>Donec id elit non mi porta.</small>
-                      </a>
-                      <a href="#" class="list-group-item list-group-item-action">
-                        <div class="d-flex w-100 justify-content-between">
-                          <h5 class="mb-1">List group item heading</h5>
-                          <small class="text-muted">3 days ago</small>
-                        </div>
-                        <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                        <small class="text-muted">Donec id elit non mi porta.</small>
-                      </a>
-                      <a href="#" class="list-group-item list-group-item-action">
-                        <div class="d-flex w-100 justify-content-between">
-                          <h5 class="mb-1">List group item heading</h5>
-                          <small class="text-muted">3 days ago</small>
-                        </div>
-                        <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                        <small class="text-muted">Donec id elit non mi porta.</small>
-                      </a>
-                    </div> -->
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  </div>
-                </div>
-              </div>
-            <!-- </div> -->
-
-          </div>
-        <!-- /.container-fluid -->
+        </div>
+        <!-- End Page Content -->
 
       </div>
       <!-- End of Main Content -->
@@ -388,84 +287,8 @@
   <script src="/static/js/sb-admin-2.js"></script>
 
   <script>
-(function(){
-  let url = '/database/novidades';
-  var xhr = new XMLHttpRequest();
-  xhr.onload = function() {
-    let data = JSON.parse(this.response);
-    setTable(data);
-  }
-  xhr.open('POST',url);
-  xhr.send();
-}())
 
-const setTable = (data) => {
-  let obj = Object.entries(data);
-  obj.sort((a,b)=>{
-    return a[1].id - b[1].id
-  })
-  console.log(obj);
-  obj.forEach(elem => {
-    console.log(elem);
-    let card = document.getElementById("sampleCard");
-    let clone = card.cloneNode(true);
-    clone.style ="";
-    let title = clone.querySelector("#ctitle");
-    title.innerHTML = elem[1].title;
-    let description = clone.querySelector("#cdescription");
-    description.innerHTML = elem[1].description;
-    let image = clone.querySelector("#cimage");
-    image.src = elem[1].image;
-    let like = clone.querySelector("#clikebutton");
-    like.innerHTML = elem[1].likes + " &#9829;";
-    let coments = clone.querySelector("#cardComButton");
-    coments.onclick = ()=>loadComments(elem);
-    document.getElementById("container").appendChild(clone);
-  })
-}
 
-const loadComments = (elem) => {
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      let data;
-      try{
-        data = JSON.parse(this.response);
-      }catch(e){
-        data = {};
-      };
-      setCard(data);
-    }
-  };
-  xhttp.open("POST", "/database/comentarios", true);
-  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-  xhttp.send("name="+elem[0]);
-}
-
-const setCard = (data) => {
-  // remove all old comments
-  let clones = document.getElementsByClassName('cloneCloneMessage');
-  for(let i=0;i<clones.length;i++)clones[i].parentNode.removeChild(clones[i]);
-  
-  // get the data object keys
-  let keys = Object.keys(data);
-  if(keys.length==0)return;
-
-  keys.forEach(key=>{
-    // clone message element
-    let commentBox = document.getElementById("commentBox");
-    let clone = commentBox.cloneNode(true);
-    // set the values
-    clone.style.display = "flex";
-    clone.classList.add("cloneCloneMessage");
-    let name = clone.querySelector("#commentName");
-    name.innerHTML = data[key].userName;
-    let coment = clone.querySelector("#commentDesc");
-    coment.innerHTML = data[key].userText;
-    // add clone to container
-    document.getElementById("messagesContainer").appendChild(clone);
-  })
-}
   </script>
 
 </body>

@@ -1,8 +1,8 @@
 (function(){
   const checkLogged = ({firebase},callback) => {
     firebase.auth().onAuthStateChanged((user)=>{
-      if(!user&&false)callback({logged:false});
-      else callback({logged:true});
+      if(!user)callback({logged:false});
+      else callback({logged:true,email:user.email});
     })
   }
 

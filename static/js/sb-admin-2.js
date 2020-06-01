@@ -47,3 +47,30 @@
   });
 
 })(jQuery); // End of use strict
+
+(function(){
+  let url = '/database/user';
+  var xhr = new XMLHttpRequest();
+  xhr.onload = function() {
+    let data = JSON.parse(this.response);
+    let name = document.querySelector("#navName");
+    name.innerHTML = data.firstName;
+    let img = document.querySelector("#navImagem");
+    img.src = data.image;
+    let notCounter = document.querySelector("#navNotificationCounter");
+    notCounter.innerHTML = data.notifications.length+"+";
+    data.notifications.forEach(noti=>{
+      let clone = document.querySelector("#navNotiElem").cloneNode(true);
+      clone.id="";
+      clone.style.display = "flex !import";
+      let date = clone.querySelector("#navNotiDate");
+      date.innerHTML = noti.date;
+      let title = clone.querySelector("#navNotiTitle");
+      title.innerHTML = noti.title;
+      document.querySelector("#navNoti").appendChild(clone);
+    })
+    document.querySelector("#navNotiElem").remove();
+  }
+  xhr.open('POST',url);
+  xhr.send();
+}());
