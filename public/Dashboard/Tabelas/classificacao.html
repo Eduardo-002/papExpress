@@ -30,10 +30,11 @@
 
       <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/dashboard">
-        <div class="sidebar-brand-icon rotate-n-15">
+        <img src="/static/img/udmLogo.png" width="40" height="40"></img>
+        <!-- <div class="sidebar-brand-icon">
           <i class="fas fa-laugh-wink"></i>
-        </div>
-        <div class="sidebar-brand-text mx-3">Treinador de Bancada</div>
+        </div> -->
+        <div class="sidebar-brand-text mr-3 ml-1">U.D. Mourisquense</div>
       </a>
 
       <!-- Divider -->
@@ -324,14 +325,21 @@
 
 const setTable = (data) => {
   let array = Object.entries(data);
+  array.sort((a,b)=>parseInt(a[1][0])-parseInt(b[1][0]))
   array.forEach((elem)=>{
     let table=document.querySelector('.tableData');
     let row = document.createElement('tr');
-    elem[1].forEach(e=>{
-      let cell = document.createElement('td');
-      cell.innerHTML=e;
+    let cell = document.createElement('td');
+    cell.innerHTML = elem[1][0];
+    row.append(cell);
+    cell = document.createElement('td');
+    cell.innerHTML = elem[0];
+    row.append(cell);
+    for(let i=1;i<8;i++){
+      cell = document.createElement('td');
+      cell.innerHTML = elem[1][i];
       row.append(cell);
-    })
+    }
     table.appendChild(row);
   })
 }

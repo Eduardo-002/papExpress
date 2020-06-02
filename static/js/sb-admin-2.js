@@ -52,17 +52,20 @@
   let url = '/database/user';
   var xhr = new XMLHttpRequest();
   xhr.onload = function() {
+    console.log(this.response);
     let data = JSON.parse(this.response);
     let name = document.querySelector("#navName");
     name.innerHTML = data.firstName;
     let img = document.querySelector("#navImagem");
-    img.src = data.image;
+    if(data.image)img.src = data.image;
+    else img.src="/static/img/avataaars.png";
     let notCounter = document.querySelector("#navNotificationCounter");
     notCounter.innerHTML = data.notifications.length+"+";
     data.notifications.forEach(noti=>{
       let clone = document.querySelector("#navNotiElem").cloneNode(true);
       clone.id="";
       clone.style.display = "flex !import";
+      clone.href = noti.href;
       let date = clone.querySelector("#navNotiDate");
       date.innerHTML = noti.date;
       let title = clone.querySelector("#navNotiTitle");

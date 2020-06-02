@@ -29,7 +29,21 @@
 
     firebase.auth().createUserWithEmailAndPassword(email,password)
       .then(response=>{
-        callback({registered:true});
+        let date = new Date();
+        firebase.firestore().collection("users").doc(email.toLowerCase()).set({
+          firstName:firstName,
+          lastName:lastName,
+          email:email,
+          notifications:[{
+            date:date.getHours()+":"+date.getMinutes()+"  "+date.getDay()+"/"+date.getMonth()+"/"+date.getYear(),
+            title:"Clique para configurar a sua conta!",
+            href:"/dashboard/perfil"
+          }]
+        }).then(()=>{
+          callback({registered:true});
+        }).catch((e)=>{
+          console.log(error);
+        });
       },err=>{
         callback({error:err});
       })

@@ -167,8 +167,15 @@
                     </div>
                   </div> -->
                   <div>
-                    <div id="navNotiDate" class="small text-gray-500">December 12, 2019</div>
-                    <span id="navNotiTitle" class="font-weight-bold">A new monthly report is ready to download!</span>
+                    <div class="row">
+                      <div class="col-lg-10">
+                        <div id="navNotiDate" class="small text-gray-500">December 12, 2019</div>
+                        <span id="navNotiTitle" class="font-weight-bold">A new monthly report is ready to download!</span>
+                      </div>
+                      <div class="col-lg-2 text-center">
+                        <p>a</p>
+                      </div>
+                    </div>
                   </div>
                 </a>
                 <!-- <a class="dropdown-item d-flex align-items-center" href="#">
@@ -226,6 +233,43 @@
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
+
+          <h1>Perfil</h1>
+
+          <form>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label>Primeiro Nome</label>
+                <input type="text" class="form-control" id="inpFirstName" placeholder="Email">
+              </div>
+              <div class="form-group col-md-6">
+                <label>Ultimo Nome</label>
+                <input type="text" class="form-control" id="inpLastName" placeholder="Password">
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Email</label>
+              <input type="text" class="form-control" id="inpEmail" placeholder="1234 Main St" value="asd@asd.com" readonly>
+            </div>
+            <div class="form-group">
+              <label>Nacionalidade</label>
+              <input type="text" class="form-control" id="inpNationality" placeholder="">
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-2">
+                <label>Idade</label>
+                <select id="inpAge" class="form-control">
+                  <option selected>...</option>
+                  <option>0-17</option>
+                  <option>18-30</option>
+                  <option>31-45</option>
+                  <option>46-66</option>
+                  <option>67-&#8734;</option>
+                </select>
+              </div>
+            </div>
+          </form>
+          <button class="btn btn-primary" onclick="console.log(getInputs());">Atualizar</button>
 
         </div>
         <!-- End Page Content -->
@@ -288,6 +332,48 @@
 
   <script>
 
+(function(){
+  let url = '/database/user';
+  let xhr = new XMLHttpRequest();
+  xhr.onload = function() {
+    try{
+      let data = JSON.parse(this.response);
+      setInputs(data);
+    }catch(e){
+      console.log(this.response);
+    }
+  }
+  xhr.open('POST',url);
+  xhr.send();
+}())
+
+const setInputs = (data) => {
+  let inputs = {
+    firstName:document.querySelector("#inpFirstName"),
+    lastName:document.querySelector("#inpLastName"),
+    email:document.querySelector("#inpEmail"),
+    nationality:document.querySelector("#inpNationality"),
+    age:document.querySelector("#inpAge")
+  }
+  console.log(inputs);
+  inputs.firstName.value = data.firstName;
+  inputs.lastName.value = data.lastName;
+  inputs.email.value = data.email;
+  inputs.nationality.value = data.nationality;
+  inputs.age.value = data.age;
+}
+
+const getInputs = () => {
+  console.log(1);
+  let inputs = {
+    firstName:document.querySelector("#inpFirstName").value,
+    lastName:document.querySelector("#inpLastName").value,
+    email:document.querySelector("#inpEmail").value,
+    nationality:document.querySelector("#inpNationality").value,
+    age:document.querySelector("#inpAge").value
+  }
+  console.log(inputs);
+}
 
   </script>
 
