@@ -18,6 +18,7 @@
     
     app.get('/dashboard/blank',(req,res)=>checkLogin({firebase,req,res},()=>res.sendFile(path.join(__dirname,'/public','/Dashboard/Pages/blank.html'))));
     app.get('/dashboard/blank2',(req,res)=>checkLogin({firebase,req,res},()=>res.sendFile(path.join(__dirname,'/public','/Dashboard/Pages/blank2.html'))));
+    
     app.get('/dashboard/user',(req,res)=>checkLogin({firebase,req,res},()=>res.sendFile(path.join(__dirname,'/public','/Dashboard/User/user.html'))));
     
     app.get('/dashboard/proximo',(req,res)=>checkLogin({firebase,req,res},()=>res.sendFile(path.join(__dirname,'/public','/Dashboard/proximo.html'))));
@@ -28,7 +29,8 @@
     
     app.get('/dashboard/classificacao',(req,res)=>checkLogin({firebase,req,res},()=>res.sendFile(path.join(__dirname,'/public','/Dashboard/Tabelas/classificacao.html'))));
     app.get('/dashboard/jogadores',(req,res)=>checkLogin({firebase,req,res},()=>res.sendFile(path.join(__dirname,'/public','/Dashboard/Tabelas/jogadores.html'))));
-    app.get('/dashboard/novidades',(req,res)=>checkLogin({firebase,req,res},()=>res.sendFile(path.join(__dirname,'/public','/Dashboard/Tabelas/novidades.html'))));
+    app.get('/dashboard/novidadesold',(req,res)=>checkLogin({firebase,req,res},()=>res.sendFile(path.join(__dirname,'/public','/Dashboard/Tabelas/novidades.html'))));
+    app.get('/dashboard/novidades',(req,res)=>checkLogin({firebase,req,res},()=>res.sendFile(path.join(__dirname,'/public','/Dashboard/Tabelas/novidadesNew.html'))));
 
     app.get('/dashboard/historia',(req,res)=>checkLogin({firebase,req,res},()=>res.sendFile(path.join(__dirname,'/public','/Dashboard/Acerca/historia.html'))));
     app.get('/dashboard/mourisquense',(req,res)=>checkLogin({firebase,req,res},()=>res.sendFile(path.join(__dirname,'/public','/Dashboard/Acerca/mourisquense.html'))));
@@ -59,6 +61,8 @@
     })
 
     app.post('/database/user',(req,res)=>{login.checkLogged({firebase,req,res},()=>{database.getUserData({firebase},({response})=>{res.send(response);})})})
+    app.post('/database/user/set',(req,res)=>{login.checkLogged({firebase,req,res},()=>{database.setUserData({firebase,req},({response})=>{res.send(response);})})})
+    app.post('/database/notificacoesRemove',(req,res)=>{login.checkLogged({firebase,req,res},()=>{database.removeNotification({firebase,req},({response})=>{res.send(response);})})})
 
     app.post('/database/classificacao',(req,res)=>{login.checkLogged({firebase,req,res},()=>{database.getClassificacao({firebase},({response})=>{res.send(response);})})})
     app.post('/database/jogadores',(req,res)=>{database.getJogadores({firebase},({response})=>{res.send(response);})})

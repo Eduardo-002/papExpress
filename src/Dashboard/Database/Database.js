@@ -16,7 +16,34 @@
                 callback({response:res.data()});
             })
         })
+    }
 
+    module.exports.removeNotification = ({req,firebase},callback) => {
+        let collection = 'users';
+        firebase.auth().onAuthStateChanged((user)=>{
+            let doc = user.email;
+            const docRef = firebase.firestore().collection(collection).doc(doc);
+            docRef.get().then(res=>{
+                let notifications = res.data().notifications;
+                notifications.splice(-req.body.i,1);
+                firebase.firestore().collection(collection).doc(doc).update({
+                    notifications:notifications
+                }).then(()=>callback({done:true}));
+            })
+        })
+    }
+
+    module.exports.setUserData = ({firebase,req},callback)=>{
+        let collection = 'users';
+        let doc = req.body.email.toLowerCase();
+        firebase.firestore().collection(collection).doc(doc).update({
+            firstName:req.body.firstName,
+            lastName:req.body.lastName,
+            pais:req.body.pais,
+            distrito:req.body.distrito,
+            concelho:req.body.concelho,
+            idade:req.body.age,
+        })
     }
 
     module.exports.getClassificacao = ({firebase},callback) => {
@@ -38,11 +65,16 @@
     }
 
     module.exports.getNoticias = ({firebase},callback) => {
-        let collection = 'club';
-        let doc = 'News';
-        const docRef = firebase.firestore().collection(collection).doc(doc);
-        docRef.get().then(res=>{
-            callback({response:res.data()});
+        let collection1 = 'club';
+        let doc1 = 'News';
+        let collection2 = 'Noticias';
+        const docRef = firebase.firestore().collection(collection1).doc(doc1).collection(collection2);
+        docRef.get().then(querySnapshot=>{
+            let r = querySnapshot.docs.map((doc)=>{
+                return {id:doc.id,...doc.data()}
+            })
+            console.log(r);
+            callback({response:r});
         })
     }
 

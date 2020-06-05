@@ -35,7 +35,7 @@
           lastName:lastName,
           email:email,
           notifications:[{
-            date:date.getHours()+":"+date.getMinutes()+"  "+date.getDay()+"/"+date.getMonth()+"/"+date.getYear(),
+            date:date.getHours()+":"+date.getMinutes()+"  "+date.getDay()+"/"+date.getMonth()+"/"+date.getFullYear(),
             title:"Clique para configurar a sua conta!",
             href:"/dashboard/perfil"
           }]

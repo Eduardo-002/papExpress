@@ -54,26 +54,45 @@
   xhr.onload = function() {
     console.log(this.response);
     let data = JSON.parse(this.response);
-    let name = document.querySelector("#navName");
-    name.innerHTML = data.firstName;
-    let img = document.querySelector("#navImagem");
-    if(data.image)img.src = data.image;
-    else img.src="/static/img/avataaars.png";
-    let notCounter = document.querySelector("#navNotificationCounter");
-    notCounter.innerHTML = data.notifications.length+"+";
-    data.notifications.forEach(noti=>{
-      let clone = document.querySelector("#navNotiElem").cloneNode(true);
-      clone.id="";
-      clone.style.display = "flex !import";
-      clone.href = noti.href;
-      let date = clone.querySelector("#navNotiDate");
-      date.innerHTML = noti.date;
-      let title = clone.querySelector("#navNotiTitle");
-      title.innerHTML = noti.title;
-      document.querySelector("#navNoti").appendChild(clone);
-    })
-    document.querySelector("#navNotiElem").remove();
+    fillNav(data);
   }
   xhr.open('POST',url);
   xhr.send();
 }());
+
+const fillNav = (data) => {
+  let name = document.querySelector("#navName");
+  name.innerHTML = data.firstName;
+  let img = document.querySelector("#navImagem");
+  if(data.image)img.src = data.image;
+  else img.src="/static/img/avataaars.png";
+  let notCounter = document.querySelector("#navNotificationCounter");
+  notCounter.innerHTML = data.notifications.length+"+";
+  for(let i=0;i<data.notifications.length;i++){
+    let clone = document.querySelector("#navNotiElem").cloneNode(true);
+    clone.id="";
+    clone.style.display = "flex !important";
+    clone.href = data.notifications[i].href;
+    clone.onclick = (e) => {
+      e.preventDefault();
+      let href = data.notifications[i].href;
+
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          location.href=href;
+        }
+      };
+      xhttp.open("POST", "/database/notificacoesRemove", true);
+      xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+      xhttp.send("i="+i);
+
+    }
+    let date = clone.querySelector("#navNotiDate");
+    date.innerHTML = data.notifications[i].date;
+    let title = clone.querySelector("#navNotiTitle");
+    title.innerHTML = data.notifications[i].title;
+    document.querySelector("#navNoti").appendChild(clone);
+  }
+  document.querySelector("#navNotiElem").remove();
+}

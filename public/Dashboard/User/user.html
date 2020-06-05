@@ -14,6 +14,7 @@
   <!-- Custom fonts for this template-->
   <link href="/static/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
   <!-- Custom styles for this template-->
   <link href="/static/css/sb-admin-2.min.css" rel="stylesheet">
@@ -30,10 +31,11 @@
 
       <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/dashboard">
-        <div class="sidebar-brand-icon rotate-n-15">
+        <img src="/static/img/udmLogo.png" width="40" height="40"></img>
+        <!-- <div class="sidebar-brand-icon">
           <i class="fas fa-laugh-wink"></i>
-        </div>
-        <div class="sidebar-brand-text mx-3">Treinador de Bancada</div>
+        </div> -->
+        <div class="sidebar-brand-text mr-3 ml-1">U.D. Mourisquense</div>
       </a>
 
       <!-- Divider -->
@@ -167,15 +169,8 @@
                     </div>
                   </div> -->
                   <div>
-                    <div class="row">
-                      <div class="col-lg-10">
-                        <div id="navNotiDate" class="small text-gray-500">December 12, 2019</div>
-                        <span id="navNotiTitle" class="font-weight-bold">A new monthly report is ready to download!</span>
-                      </div>
-                      <div class="col-lg-2 text-center">
-                        <p>a</p>
-                      </div>
-                    </div>
+                    <div id="navNotiDate" class="small text-gray-500">December 12, 2019</div>
+                    <span id="navNotiTitle" class="font-weight-bold">A new monthly report is ready to download!</span>
                   </div>
                 </a>
                 <!-- <a class="dropdown-item d-flex align-items-center" href="#">
@@ -251,20 +246,30 @@
               <label>Email</label>
               <input type="text" class="form-control" id="inpEmail" placeholder="1234 Main St" value="asd@asd.com" readonly>
             </div>
-            <div class="form-group">
-              <label>Nacionalidade</label>
-              <input type="text" class="form-control" id="inpNationality" placeholder="">
+            <div class="form-row">
+              <div class="form-group col-md-4">
+                <label>País</label>
+                <input type="text" class="form-control" id="inpPais" placeholder=".">
+              </div>
+              <div class="form-group col-md-4">
+                <label>Distrito</label>
+                <input type="text" class="form-control" id="inpDist" placeholder=".">
+              </div>
+              <div class="form-group col-md-4">
+                <label>Concelho</label>
+                <input type="text" class="form-control" id="inpConc" placeholder=".">
+              </div>
             </div>
             <div class="form-row">
               <div class="form-group col-md-2">
                 <label>Idade</label>
                 <select id="inpAge" class="form-control">
-                  <option selected>...</option>
-                  <option>0-17</option>
-                  <option>18-30</option>
-                  <option>31-45</option>
-                  <option>46-66</option>
-                  <option>67-&#8734;</option>
+                  <option value="-1" disabled selected>...</option>
+                  <option value="0">0-17</option>
+                  <option value="1">18-30</option>
+                  <option value="2">31-45</option>
+                  <option value="3">46-66</option>
+                  <option value="4">67-&#8734;</option>
                 </select>
               </div>
             </div>
@@ -352,15 +357,19 @@ const setInputs = (data) => {
     firstName:document.querySelector("#inpFirstName"),
     lastName:document.querySelector("#inpLastName"),
     email:document.querySelector("#inpEmail"),
-    nationality:document.querySelector("#inpNationality"),
+    pais:document.querySelector("#inpPais"),
+    distrito:document.querySelector("#inpDist"),
+    concelho:document.querySelector("#inpConc"),
     age:document.querySelector("#inpAge")
   }
   console.log(inputs);
   inputs.firstName.value = data.firstName;
   inputs.lastName.value = data.lastName;
   inputs.email.value = data.email;
-  inputs.nationality.value = data.nationality;
-  inputs.age.value = data.age;
+  inputs.pais.value = data.pais?data.pais:"";
+  inputs.distrito.value = data.pais?data.distrito:"";
+  inputs.concelho.value = data.pais?data.concelho:"";
+  inputs.age.value = data.idade?data.idade:"-1";
 }
 
 const getInputs = () => {
@@ -369,10 +378,25 @@ const getInputs = () => {
     firstName:document.querySelector("#inpFirstName").value,
     lastName:document.querySelector("#inpLastName").value,
     email:document.querySelector("#inpEmail").value,
-    nationality:document.querySelector("#inpNationality").value,
+    pais:document.querySelector("#inpPais").value,
+    distrito:document.querySelector("#inpDist").value,
+    concelho:document.querySelector("#inpConc").value,
     age:document.querySelector("#inpAge").value
   }
+  let url = '/database/user/set';
+  let xhr = new XMLHttpRequest();
+  xhr.onload = function() {
+    try{
+      let data = JSON.parse(this.response);
+      setInputs(data);
+    }catch(e){
+      console.log(this.response);
+    }
+  }
+  xhr.open('POST',url);
+  xhr.setRequestHeader('Content-type', 'application/json');
   console.log(inputs);
+  xhr.send(JSON.stringify(inputs));
 }
 
   </script>

@@ -26,14 +26,15 @@
   <div id="wrapper">
 
     <!-- Sidebar -->
-    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+    <ul class="navbar-nav bg-gradient-dark sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/dashboard">
-        <div class="sidebar-brand-icon rotate-n-15">
+        <img src="/static/img/udmLogo.png" width="40" height="40"></img>
+        <!-- <div class="sidebar-brand-icon">
           <i class="fas fa-laugh-wink"></i>
-        </div>
-        <div class="sidebar-brand-text mx-3">Treinador de Bancada</div>
+        </div> -->
+        <div class="sidebar-brand-text mr-3 ml-1">U.D. Mourisquense</div>
       </a>
 
       <!-- Divider -->
@@ -153,25 +154,25 @@
               <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-bell fa-fw"></i>
                 <!-- Counter - Alerts -->
-                <span class="badge badge-danger badge-counter">3+</span>
+                <span id="navNotificationCounter" class="badge badge-danger badge-counter">3+</span>
               </a>
               <!-- Dropdown - Alerts -->
-              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
+              <div id="navNoti" class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
                 <h6 class="dropdown-header">
                   Notificações
                 </h6>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="mr-3">
+                <a id="navNotiElem" style="display: none;" class="dropdown-item d-flex align-items-center" href="#">
+                  <!-- <div class="mr-3">
                     <div class="icon-circle bg-primary">
                       <i class="fas fa-file-alt text-white"></i>
                     </div>
-                  </div>
+                  </div> -->
                   <div>
-                    <div class="small text-gray-500">December 12, 2019</div>
-                    <span class="font-weight-bold">A new monthly report is ready to download!</span>
+                    <div id="navNotiDate" class="small text-gray-500">December 12, 2019</div>
+                    <span id="navNotiTitle" class="font-weight-bold">A new monthly report is ready to download!</span>
                   </div>
                 </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
+                <!-- <a class="dropdown-item d-flex align-items-center" href="#">
                   <div class="mr-3">
                     <div class="icon-circle bg-success">
                       <i class="fas fa-donate text-white"></i>
@@ -192,8 +193,8 @@
                     <div class="small text-gray-500">December 2, 2019</div>
                     Spending Alert: We've noticed unusually high spending for your account.
                   </div>
-                </a>
-                <a class="dropdown-item text-center small text-gray-500" href="#">Mostrar todas</a>
+                </a> -->
+                <!-- <a class="dropdown-item text-center small text-gray-500" href="#"></a> -->
               </div>
             </li>
         
@@ -202,8 +203,8 @@
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
-                <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
+                <span id="navName" class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
+                <img id="navImagem" class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -226,7 +227,34 @@
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
-
+          <h1 class="h1">História mourisquense</h1>
+          <p class="h5 my-4">
+            O clube União Desportiva Mourisquense é um clube desportivo português,
+            localizado na vila de Mourisca do Vouga, concelho de Águeda, distrito de
+            Aveiro. A sua sede (e campo) situa-se nas Sobreirinhas, Freguesia de
+            Valongo do Vouga.
+          </p>
+          <p class="h5 my-4">
+            Foi fundado em 1949 e atualmente (2020) é gerido pelo seu presidente
+            João Silva.
+          </p>
+          <p class="h5 my-4">
+            O seu estádio denomina-se por Manuel castro Azevedo e tem uma
+            capacidade para 4000 pessoas. Conta ainda como dois campos: um de
+            futebol 11 e outro de futebol 5.
+          </p>
+          <p class="h5 my-4">
+            Há uma particularidade muito interessante neste clube que o torna
+            especial. No ano de 2006, infelizmente, o Mourisquense perdeu um atleta
+            num acidente viação, chamava-se Hugo Negrão. Então os dirigentes do
+            clube decidiram homenagear este campeão fazendo um torneio na
+            primavera todos os anos com o nome “Torneio Hugo negrão”.
+          </p>
+          <p class="h5 my-4">
+            A União Desportiva Mourisquense conquistou várias subidas de divisão
+            tendo chegado à divisão SABSEG em 2017/2018 e tem ainda o título de
+            campeão da taça de Aveiro conquistado em 1996/1997.
+          </p>
         </div>
         <!-- End Page Content -->
 
