@@ -49,10 +49,12 @@
 })(jQuery); // End of use strict
 
 (function(){
+  document.querySelector("#sidebarToggle").click();
+
   let url = '/database/user';
   var xhr = new XMLHttpRequest();
   xhr.onload = function() {
-    console.log(this.response);
+    //console.log(this.response);
     let data = JSON.parse(this.response);
     fillNav(data);
   }

@@ -228,6 +228,66 @@
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
+          <div class="container bg-white border" style="max-width:900px;">
+            <div class="row">
+              <div class="col-4">
+                <img id="casaLogo" class="w-100" src="">
+              </div>
+              <div class="col-4 text-center align-bottom">
+                <p class="mt-2 mb-3"><span id="proxCompeticao"></span> - <span id="proxJornada"></span>ª Jornada</p>
+                <p id="proxData"></p>
+                <p id="proxHora"></p>
+              </div>
+              <div class="col-4">
+                <img id="foraLogo" class="w-100" src="">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-4 text-center">
+                <h5 id="casaNome"></h5>
+              </div>
+              <div class="col-4 text-center">
+                <h4>VS</h4>
+              </div>
+              <div class="col-4 text-center">
+                <h5 id="foraNome"></h5>
+              </div>
+            </div>
+            <div class="row my-3">
+              <div class="col-4 text-center text-white">
+                <span id="casaForma0" class="px-2 py-1 rounded-lg">V</span>
+                <span id="casaForma1" class="px-2 py-1 rounded-lg">V</span>
+                <span id="casaForma2" class="px-2 py-1 rounded-lg">V</span>
+                <span id="casaForma3" class="px-2 py-1 rounded-lg">V</span>
+                <span id="casaForma4" class="px-2 py-1 rounded-lg">V</span>
+              </div>
+              <div class="col-4 text-center">
+                <h4></h4>
+              </div>
+              <div class="col-4 text-center text-white">
+                <span id="foraForma0" class="px-2 py-1 rounded-lg">V</span>
+                <span id="foraForma1" class="px-2 py-1 rounded-lg">V</span>
+                <span id="foraForma2" class="px-2 py-1 rounded-lg">V</span>
+                <span id="foraForma3" class="px-2 py-1 rounded-lg">V</span>
+                <span id="foraForma4" class="px-2 py-1 rounded-lg">V</span>
+              </div>
+            </div>
+            <div class="row my-1">
+              <div class="col-12 text-center">Posição</div>
+              <div class="col-3 text-right">
+                <h5 id="casaPosicao"></h5>
+              </div>
+              <div class="col-6 text-center">
+                <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 15%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+                  <div class="progress-bar bg-success" role="progressbar" style="width: 85%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+              </div>
+              <div class="col-3 text-left">
+                <h5 id="foraPosicao"></h5>
+              </div>
+            </div>
+          </div>
         </div>
         <!-- End Page Content -->
 
@@ -289,6 +349,34 @@
 
   <script>
 
+(function(){
+  let url = '/database/proximo';
+  var xhr = new XMLHttpRequest();
+  xhr.onload = function() {
+    let data = JSON.parse(this.response);
+    console.log(data);
+    setData(data);
+  }
+  xhr.open('POST',url);
+  xhr.send();
+}())
+
+const setData = (data) => {
+  document.querySelector("#casaLogo").src = data.casa.image;
+  document.querySelector("#foraLogo").src = data.fora.image;
+  document.querySelector("#proxCompeticao").innerHTML = data.competicao;
+  document.querySelector("#proxJornada").innerHTML = data.nJornada;
+  document.querySelector("#proxData").innerHTML = data.data;
+  document.querySelector("#proxHora").innerHTML = data.horas+"h";
+  document.querySelector("#casaNome").innerHTML = data.casa.nome;
+  document.querySelector("#foraNome").innerHTML = data.fora.nome;
+  for(let i=0;i<5;i++){
+    document.querySelector("#casaForma"+i).innerHTML = data.casa.forma[i].toUpperCase();
+    document.querySelector("#foraForma"+i).innerHTML = data.fora.forma[i].toUpperCase();
+    document.querySelector("#casaForma"+i).classList.add(data.casa.forma[i]=='v'?'bg-success':'bg-danger');
+    document.querySelector("#foraForma"+i).classList.add(data.fora.forma[i]=='v'?'bg-success':'bg-danger');
+  }
+}
 
   </script>
 

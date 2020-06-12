@@ -46,6 +46,15 @@
         })
     }
 
+    module.exports.getProximo = ({firebase},callback) => {
+        let collection = 'Jogos';
+        let doc = 'Proximo';
+        const docRef = firebase.firestore().collection(collection).doc(doc);
+        docRef.get().then(res=>{
+            callback({response:res.data()});
+        })
+    }
+
     module.exports.getClassificacao = ({firebase},callback) => {
         let collection = 'club';
         let doc = 'Classificacao';

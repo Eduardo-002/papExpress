@@ -64,6 +64,8 @@
     app.post('/database/user/set',(req,res)=>{login.checkLogged({firebase,req,res},()=>{database.setUserData({firebase,req},({response})=>{res.send(response);})})})
     app.post('/database/notificacoesRemove',(req,res)=>{login.checkLogged({firebase,req,res},()=>{database.removeNotification({firebase,req},({response})=>{res.send(response);})})})
 
+    app.post('/database/proximo',(req,res)=>{login.checkLogged({firebase,req,res},()=>{database.getProximo({firebase},({response})=>{res.send(response);})})})
+
     app.post('/database/classificacao',(req,res)=>{login.checkLogged({firebase,req,res},()=>{database.getClassificacao({firebase},({response})=>{res.send(response);})})})
     app.post('/database/jogadores',(req,res)=>{database.getJogadores({firebase},({response})=>{res.send(response);})})
     app.post('/database/novidades',(req,res)=>{database.getNoticias({firebase},({response})=>{res.send(response);})})
