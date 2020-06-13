@@ -272,19 +272,126 @@
                 <span id="foraForma4" class="px-2 py-1 rounded-lg">V</span>
               </div>
             </div>
+          </div>
+          <div class="container bg-white border">
             <div class="row my-1">
               <div class="col-12 text-center">Posição</div>
               <div class="col-3 text-right">
                 <h5 id="casaPosicao"></h5>
               </div>
               <div class="col-6 text-center">
-                <div class="progress">
-                  <div class="progress-bar" role="progressbar" style="width: 15%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
-                  <div class="progress-bar bg-success" role="progressbar" style="width: 85%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+                <div class="progress mt-1">
+                  <div id="casaPosicaoProg" class="progress-bar bg-dark" role="progressbar" style="width: 15%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+                  <div id="foraPosicaoProg" class="progress-bar bg-warning" role="progressbar" style="width: 85%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
               </div>
               <div class="col-3 text-left">
                 <h5 id="foraPosicao"></h5>
+              </div>
+            </div>
+            <div class="row my-1">
+              <div class="col-12 text-center">Pontos</div>
+              <div class="col-3 text-right">
+                <h5 id="casaPontos"></h5>
+              </div>
+              <div class="col-6 text-center">
+                <div class="progress mt-1">
+                  <div id="casaPontosProg" class="progress-bar bg-dark" role="progressbar" style="width: 15%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+                  <div id="foraPontosProg" class="progress-bar bg-warning" role="progressbar" style="width: 85%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+              </div>
+              <div class="col-3 text-left">
+                <h5 id="foraPontos"></h5>
+              </div>
+            </div>
+            <div class="row my-1">
+              <div class="col-12 text-center">Vitórias</div>
+              <div class="col-3 text-right">
+                <h5 id="casaVitorias"></h5>
+              </div>
+              <div class="col-6 text-center">
+                <div class="progress mt-1">
+                  <div id="casaVitoriasProg" class="progress-bar bg-dark" role="progressbar" style="width: 15%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+                  <div id="foraVitoriasProg" class="progress-bar bg-warning" role="progressbar" style="width: 85%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+              </div>
+              <div class="col-3 text-left">
+                <h5 id="foraVitorias"></h5>
+              </div>
+            </div>
+            <div class="row my-1">
+              <div class="col-12 text-center">Empates</div>
+              <div class="col-3 text-right">
+                <h5 id="casaEmpates"></h5>
+              </div>
+              <div class="col-6 text-center">
+                <div class="progress mt-1">
+                  <div id="casaEmpatesProg" class="progress-bar bg-dark" role="progressbar" style="width: 15%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+                  <div id="foraEmpatesProg" class="progress-bar bg-warning" role="progressbar" style="width: 85%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+              </div>
+              <div class="col-3 text-left">
+                <h5 id="foraEmpates"></h5>
+              </div>
+            </div>
+            <div class="row my-1">
+              <div class="col-12 text-center">Derrotas</div>
+              <div class="col-3 text-right">
+                <h5 id="casaDerrotas"></h5>
+              </div>
+              <div class="col-6 text-center">
+                <div class="progress mt-1">
+                  <div id="casaDerrotasProg" class="progress-bar bg-dark" role="progressbar" style="width: 15%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+                  <div id="foraDerrotasProg" class="progress-bar bg-warning" role="progressbar" style="width: 85%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+              </div>
+              <div class="col-3 text-left">
+                <h5 id="foraDerrotas"></h5>
+              </div>
+            </div>
+            <div class="row my-1">
+              <div class="col-12 text-center">Golos Marcados</div>
+              <div class="col-3 text-right">
+                <h5 id="casaGolosMarcados"></h5>
+              </div>
+              <div class="col-6 text-center">
+                <div class="progress mt-1">
+                  <div id="casaGolosMarcadosProg" class="progress-bar bg-dark" role="progressbar" style="width: 15%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+                  <div id="foraGolosMarcadosProg" class="progress-bar bg-warning" role="progressbar" style="width: 85%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+              </div>
+              <div class="col-3 text-left">
+                <h5 id="foraGolosMarcados"></h5>
+              </div>
+            </div>
+            <div class="row my-1">
+              <div class="col-12 text-center">Golos Sofridos</div>
+              <div class="col-3 text-right">
+                <h5 id="casaGolosSofridos"></h5>
+              </div>
+              <div class="col-6 text-center">
+                <div class="progress mt-1">
+                  <div id="casaGolosSofridosProg" class="progress-bar bg-dark" role="progressbar" style="width: 15%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+                  <div id="foraGolosSofridosProg" class="progress-bar bg-warning" role="progressbar" style="width: 85%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+              </div>
+              <div class="col-3 text-left">
+                <h5 id="foraGolosSofridos"></h5>
+              </div>
+            </div>
+            <div class="row my-1">
+              <div class="col-12 text-center">Média Golos</div>
+              <div class="col-3 text-right">
+                <h5 id="casaMediaGolos"></h5>
+              </div>
+              <div class="col-6 text-center">
+                <div class="progress mt-1">
+                  <div id="casaMediaGolosProg" class="progress-bar bg-dark" role="progressbar" style="width: 15%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+                  <div id="foraMediaGolosProg" class="progress-bar bg-warning" role="progressbar" style="width: 85%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+              </div>
+              <div class="col-3 text-left">
+                <h5 id="foraMediaGolos"></h5>
               </div>
             </div>
           </div>
@@ -376,8 +483,39 @@ const setData = (data) => {
     document.querySelector("#casaForma"+i).classList.add(data.casa.forma[i]=='v'?'bg-success':'bg-danger');
     document.querySelector("#foraForma"+i).classList.add(data.fora.forma[i]=='v'?'bg-success':'bg-danger');
   }
+  document.querySelector("#casaPosicao").innerHTML = data.casa.posicao;
+  document.querySelector("#foraPosicao").innerHTML = data.fora.posicao;
+  document.querySelector("#casaPosicaoProg").style.width = ((parseInt(data.casa.posicao)/(parseInt(data.casa.posicao)+parseInt(data.fora.posicao)))*100)+'%';
+  document.querySelector("#foraPosicaoProg").style.width = ((parseInt(data.fora.posicao)/(parseInt(data.casa.posicao)+parseInt(data.fora.posicao)))*100)+'%';
+  document.querySelector("#casaPontos").innerHTML = data.casa.pontos;
+  document.querySelector("#foraPontos").innerHTML = data.fora.pontos;
+  document.querySelector("#casaPontosProg").style.width = ((parseInt(data.casa.pontos)/(parseInt(data.casa.pontos)+parseInt(data.fora.pontos)))*100)+'%';
+  document.querySelector("#foraPontosProg").style.width = ((parseInt(data.fora.pontos)/(parseInt(data.casa.pontos)+parseInt(data.fora.pontos)))*100)+'%';
+  document.querySelector("#casaVitorias").innerHTML = data.casa.vitorias;
+  document.querySelector("#foraVitorias").innerHTML = data.fora.vitorias;
+  document.querySelector("#casaVitoriasProg").style.width = ((parseInt(data.casa.vitorias)/(parseInt(data.casa.vitorias)+parseInt(data.fora.vitorias)))*100)+'%';
+  document.querySelector("#foraVitoriasProg").style.width = ((parseInt(data.fora.vitorias)/(parseInt(data.casa.vitorias)+parseInt(data.fora.vitorias)))*100)+'%';
+  document.querySelector("#casaEmpates").innerHTML = data.casa.empates;
+  document.querySelector("#foraEmpates").innerHTML = data.fora.empates;
+  document.querySelector("#casaEmpatesProg").style.width = ((parseInt(data.casa.empates)/(parseInt(data.casa.empates)+parseInt(data.fora.empates)))*100)+'%';
+  document.querySelector("#foraEmpatesProg").style.width = ((parseInt(data.fora.empates)/(parseInt(data.casa.empates)+parseInt(data.fora.empates)))*100)+'%';
+  document.querySelector("#casaDerrotas").innerHTML = data.casa.derrotas;
+  document.querySelector("#foraDerrotas").innerHTML = data.fora.derrotas;
+  document.querySelector("#casaDerrotasProg").style.width = ((parseInt(data.casa.derrotas)/(parseInt(data.casa.derrotas)+parseInt(data.fora.derrotas)))*100)+'%';
+  document.querySelector("#foraDerrotasProg").style.width = ((parseInt(data.fora.derrotas)/(parseInt(data.casa.derrotas)+parseInt(data.fora.derrotas)))*100)+'%';
+  document.querySelector("#casaGolosMarcados").innerHTML = data.casa.golosMarcados;
+  document.querySelector("#foraGolosMarcados").innerHTML = data.fora.golosMarcados;
+  document.querySelector("#casaGolosMarcadosProg").style.width = ((parseInt(data.casa.golosMarcados)/(parseInt(data.casa.golosMarcados)+parseInt(data.fora.golosMarcados)))*100)+'%';
+  document.querySelector("#foraGolosMarcadosProg").style.width = ((parseInt(data.fora.golosMarcados)/(parseInt(data.casa.golosMarcados)+parseInt(data.fora.golosMarcados)))*100)+'%';
+  document.querySelector("#casaGolosSofridos").innerHTML = data.casa.golosSofridos;
+  document.querySelector("#foraGolosSofridos").innerHTML = data.fora.golosSofridos;
+  document.querySelector("#casaGolosSofridosProg").style.width = ((parseInt(data.casa.golosSofridos)/(parseInt(data.casa.golosSofridos)+parseInt(data.fora.golosSofridos)))*100)+'%';
+  document.querySelector("#foraGolosSofridosProg").style.width = ((parseInt(data.fora.golosSofridos)/(parseInt(data.casa.golosSofridos)+parseInt(data.fora.golosSofridos)))*100)+'%';
+  document.querySelector("#casaMediaGolos").innerHTML = data.casa.mediaGolos;
+  document.querySelector("#foraMediaGolos").innerHTML = data.fora.mediaGolos;
+  document.querySelector("#casaMediaGolosProg").style.width = ((parseFloat(data.casa.mediaGolos)/(parseFloat(data.casa.mediaGolos)+parseFloat(data.fora.mediaGolos)))*100)+'%';
+  document.querySelector("#foraMediaGolosProg").style.width = ((parseFloat(data.fora.mediaGolos)/(parseFloat(data.casa.mediaGolos)+parseFloat(data.fora.mediaGolos)))*100)+'%';
 }
-
   </script>
 
 </body>
