@@ -18,6 +18,63 @@
   <!-- Custom styles for this template-->
   <link href="/static/css/sb-admin-2.min.css" rel="stylesheet">
 
+  <style>
+.row:hover{
+  cursor:pointer;
+}
+.tableSmallText{
+  font-size:0.5rem;
+}
+.tableBigText{
+  font-size:0.75rem;
+}
+.tableSmallTextModal{
+  font-size:0.6rem;
+}
+.tableBigTextModal{
+  font-size:0.80rem;
+}
+@media (min-width: 576px){
+  .tableSmallText{
+    font-size:0.8rem;
+  }
+  .tableBigText{
+    font-size:1.2rem;
+  }
+}
+
+@media (min-width: 768px){
+  .tableSmallText{
+    font-size:0.9rem;
+  }
+  .tableBigText{
+    font-size:1.4rem;
+  }
+  .tableSmallTextModal{
+    font-size:0.8rem;
+  }
+  .tableBigTextModal{
+    font-size:1.1rem;
+}
+}
+
+@media (min-width: 992px){ 
+  .tableSmallText{
+    font-size:1.1rem;
+  }
+  .tableBigText{
+    font-size:1.8rem;
+  }
+}
+
+@media (min-width: 1200px){
+  .tableSmallText{
+    font-size:1.2rem;
+  }
+}
+  </style>
+
+
 </head>
 
 <body id="page-top">
@@ -226,7 +283,50 @@
         <!-- End of Topbar -->
 
         <!-- Begin Page Content -->
-        <div class="container-fluid">
+        <div class="container-fluid" style="max-width: 900px;">
+
+          <table class="table table-bordered table-hover">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">Resultados</th>
+              </tr>
+            </thead>
+            <tbody id="tableBody">
+              <tr id="sampleRow" data-toggle="modal" data-target="#matchModal" onclick="setMatchModal(0)" style="display:none;">
+                <td><div class="container-fluid" style="">
+                  <div class="row text-center">
+                    <div class="col-1 pb-2 tableSmallText">
+                      <span id="data"></span>
+                    </div>
+                    <div class="col-1 tableSmallText">
+                      <span id="hora"></span>
+                    </div>
+                    <div class="col-4 tableSmallText">
+                      <span id="estadio"></span>
+                    </div>
+                    <div class="col-1 tableSmallText">
+                      <span id="jornada"></span>
+                    </div>
+                    <div class="col-5 tableSmallText">
+                      <span id="competicao"></span>
+                    </div>
+                    <div class="col-2">
+                      <img id="casaImg" src="" class="p-1 w-100 border bg-secondary rounded">
+                    </div>
+                    <div class="col-4 text-left d-flex align-items-center justify-content-start pb-2 tableBigText">
+                      <span id="casa"></span>
+                    </div>
+                    <div class="col-4 text-right d-flex align-items-center justify-content-end pb-2 tableBigText">
+                      <span id="fora"></span>
+                    </div>
+                    <div class="col-2">
+                      <img id="foraImg" src="" class="p-1 w-100 border bg-secondary rounded">
+                    </div>
+                  </div>
+                </div></td>
+              </tr>
+            </tbody>
+          </table>
 
         </div>
         <!-- End Page Content -->
@@ -254,6 +354,74 @@
   <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
   </a>
+
+  <!-- Match Modal -->
+  <div class="modal fade" id="matchModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Resultado</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div id="matchModal" class="modal-body">
+          <div class="container-fluid" style="">
+            <div class="row text-center">
+              <div class="col-1 pb-2 tableSmallText tableSmallTextModal">
+                <span id="data"></span>
+              </div>
+              <div class="col-1 tableSmallText tableSmallTextModal">
+                <span id="hora"></span>
+              </div>
+              <div class="col-4 tableSmallText tableSmallTextModal">
+                <span id="estadio"></span>
+              </div>
+              <div class="col-1 tableSmallText tableSmallTextModal">
+                <span id="jornada"></span>
+              </div>
+              <div class="col-5 tableSmallText tableSmallTextModal">
+                <span id="competicao"></span>
+              </div>
+              <div class="col-2">
+                <img id="casaImg" src="" class="p-1 w-100 border bg-secondary rounded">
+              </div>
+              <div class="col-4 text-left d-flex align-items-center justify-content-start pb-2 tableBigText tableBigTextModal">
+                <span id="casa"></span>
+              </div>
+              <div class="col-4 text-right d-flex align-items-center justify-content-end pb-2 tableBigText tableBigTextModal">
+                <span id="fora"></span>
+              </div>
+              <div class="col-2">
+                <img id="foraImg" src="" class="p-1 w-100 border bg-secondary rounded">
+              </div>
+            </div>
+            <div id="progressContainerModal" class="container mt-4">
+              <div id="sampleProgressModal" class="row my-2" style="display: none;">
+                <div id="title" class="col-12 text-center">Média Golos</div>
+                <div class="col-2 text-right">
+                  <h5 id="casa"></h5>
+                </div>
+                <div class="col-8 text-center">
+                  <div class="progress mt-1">
+                    <div id="casaProg" class="progress-bar bg-dark" role="progressbar" style="width: 15%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div id="foraProg" class="progress-bar bg-warning" role="progressbar" style="width: 85%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                </div>
+                <div class="col-2 text-left">
+                  <h5 id="fora"></h5>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- Logout Modal-->
   <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -289,6 +457,66 @@
 
   <script>
 
+(function(){
+  let url = '/database/proximos';
+  let xhr = new XMLHttpRequest();
+  xhr.onload = function() {
+    let data = JSON.parse(this.response);
+    setData(data);
+  }
+  xhr.open('POST',url);
+  xhr.send();
+}());
+
+const setData = (data) => {
+  Object.entries(data)
+  .sort((a,b)=>{
+      return a[1].id - b[1].id
+    })
+  .forEach(elem => {
+    let e = elem[1];
+    console.log(e);
+    let c = document.querySelector("#sampleRow").cloneNode(true);
+    c.id="";
+    c.style.display = 'flex';
+    c.onclick=()=>setMatchModal(e);
+    c.querySelector("#data").innerHTML = e.data;
+    c.querySelector("#hora").innerHTML = e.hora;
+    c.querySelector("#estadio").innerHTML = e.estadio;
+    c.querySelector("#jornada").innerHTML = "J"+e.jornada;
+    c.querySelector("#competicao").innerHTML = e.competicao;
+    c.querySelector("#casa").innerHTML = e.casa;
+    c.querySelector("#fora").innerHTML = e.fora;
+    c.querySelector("#casaImg").src = e.casaImg;
+    c.querySelector("#foraImg").src = e.foraImg;
+    document.querySelector("#tableBody").appendChild(c);
+  });
+}
+
+const setMatchModal = (e) => {
+  console.log(e);
+  let c = document.querySelector("#matchModal");
+  c.querySelector("#data").innerHTML = e.data;
+  c.querySelector("#hora").innerHTML = e.hora;
+  c.querySelector("#estadio").innerHTML = e.estadio;
+  c.querySelector("#jornada").innerHTML = "J"+e.jornada;
+  c.querySelector("#competicao").innerHTML = e.competicao;
+  c.querySelector("#casa").innerHTML = e.casa;
+  c.querySelector("#fora").innerHTML = e.fora;
+  c.querySelector("#casaImg").src = e.casaImg;
+  c.querySelector("#foraImg").src = e.foraImg;
+  let names = ["Posição","Pontos","Jogos","Vitórias","Empates","Derrotas","Golos Marcados","Golos Sofridos","Média de Golos"];
+  for(let i=0;i<e.estatisticas.casa.length;i++){
+    let p = c.querySelector("#sampleProgressModal").cloneNode(true);
+    p.style.display='flex';
+    p.querySelector("#title").innerHTML=names[i];
+    p.querySelector("#casa").innerHTML=e.estatisticas.casa[i];
+    p.querySelector("#fora").innerHTML=e.estatisticas.fora[i];
+    p.querySelector("#casaProg").style.width = ((parseFloat(e.estatisticas.casa[i])/(parseFloat(e.estatisticas.casa[i])+parseFloat(e.estatisticas.fora[i])))*100)+'%';
+    p.querySelector("#foraProg").style.width = ((parseFloat(e.estatisticas.fora[i])/(parseFloat(e.estatisticas.casa[i])+parseFloat(e.estatisticas.fora[i])))*100)+'%';
+    c.querySelector("#progressContainerModal").appendChild(p);
+  }
+}
 
   </script>
 
