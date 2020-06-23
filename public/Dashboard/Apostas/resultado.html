@@ -322,6 +322,19 @@
                     <div class="col-2">
                       <img id="foraImg" src="" class="p-1 w-100 border bg-secondary rounded">
                     </div>
+                    <div id="apoRow" style="display:none">
+                      <div class="col-12 text-left mt-2">
+                        <h class="h5 text-dark">As suas apostas:</h>
+                      </div>
+                      <div class="col-12 text-left">
+                        <span>Ao intervalo:</span>
+                        <span id="int">Impate</span>
+                      </div>
+                      <div class="col-12 text-left">
+                        <span>No Fim:</span>
+                        <span id="fin">UD Mourisquense</span>
+                      </div>
+                    </div>
                   </div>
                 </div></td>
               </tr>
@@ -500,6 +513,20 @@
     let data = JSON.parse(this.response);
     console.log(data);
     setData(data);
+
+    let d = {ids:data.map(e=>e.id)};
+    let url2 = '/database/user/resultado/apostas';
+    let xhr2 = new XMLHttpRequest();
+    xhr2.onload = function() {
+      try{
+        setApostas(JSON.parse(this.response));
+      }catch(e){
+        console.log(this.response);
+      }
+    }
+    xhr2.open('POST',url2);
+    xhr2.setRequestHeader('Content-type', 'application/json');
+    xhr2.send(JSON.stringify(d));
   }
   xhr.open('POST',url);
   xhr.send();
@@ -526,8 +553,20 @@ const setData = (data) => {
     c.querySelector("#fora").innerHTML = e.fora;
     c.querySelector("#casaImg").src = e.casaImg;
     c.querySelector("#foraImg").src = e.foraImg;
+    c.querySelector("#apoRow").id = "apoRow"+e.id;
     document.querySelector("#tableBody").appendChild(c);
   });
+}
+
+const setApostas = (data) => {
+  console.log(data);
+  data.forEach(e=>{
+    console.log(e.id,"apoRow"+e.id);
+    let b = document.querySelector("#apoRow"+e.id);
+    b.style.display = "block";
+    b.querySelector("#int").innerHTML = e.int=="0"?e.jogo.casa:e.int=="1"?"Empatado":e.int=="2"?e.jogo.fora:"Sem Aposta";
+    b.querySelector("#fin").innerHTML = e.fin=="0"?e.jogo.casa:e.fin=="1"?"Empatado":e.fin=="2"?e.jogo.fora:"Sem Aposta";
+  })
 }
 
 const setMatchModal = (e) => {
@@ -572,16 +611,16 @@ const fazerAposta = (id) => {
     document.querySelector("#apFin0").children[0].classList.contains("active") ? 0 :
     document.querySelector("#apFin1").children[0].classList.contains("active") ? 1 :
     document.querySelector("#apFin2").children[0].classList.contains("active") ? 2 : -1;
-  console.log(d);
+  if(d.int==-1&&d.fin==-1){
+    alert("Aposta invalida!\nTêm de escolher alguma opção");
+  }
   let url = '/database/user/fazerAposta';
   let xhr = new XMLHttpRequest();
   xhr.onload = function() {
     try{
-      console.log(this.response);
       let resp = JSON.parse(this.response);
       if(resp.done)alert("Aposta feita com sucesso!");
       else alert("Aposta feita sem sucesso:\n"+resp.error);
-      setInputs(resp);
     }catch(e){
       console.log(this.response);
     }

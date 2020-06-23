@@ -66,6 +66,22 @@
             });
     }
 
+    module.exports.getApostasResultados = ({firebase,req},callback) => {
+        firebase.auth().onAuthStateChanged(user=>{
+            let response = [];
+            firebase.firestore().collection('users').doc(user.email).collection('Apostas').where("id","in",req.body.ids)
+            .get().then((snapshot)=>{
+                snapshot.forEach(snap=>{
+                    response.push(snap.data())
+                })
+                callback({response});
+            }).catch(e=>{
+                console.log(e);
+                response.push(e);
+            })
+        })
+    }
+
     module.exports.fazerAposta = ({firebase,req},callback) => {
         let jogoDoc = 'jogo'+req.body.id;
         firebase.firestore().collection('club').doc('Jogos').collection('proximos').doc(jogoDoc)
