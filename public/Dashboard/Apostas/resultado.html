@@ -619,7 +619,7 @@ const fazerAposta = (id) => {
   xhr.onload = function() {
     try{
       let resp = JSON.parse(this.response);
-      if(resp.done)alert("Aposta feita com sucesso!");
+      if(resp.done)location.reload();
       else alert("Aposta feita sem sucesso:\n"+resp.error);
     }catch(e){
       console.log(this.response);
