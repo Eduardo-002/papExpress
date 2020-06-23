@@ -413,11 +413,47 @@
                 </div>
               </div>
             </div>
+            <div class="row">
+              <h4 class="col-12 mt-2">Ao intervalo:</h4>
+              <div id="apInt0" class="col-4 btn-group-toggle" data-toggle="buttons">
+                <label class="btn btn-dark w-100" onclick="cS('Int',0)">
+                  <input type="checkbox" checked autocomplete="off">Ganha Casa<br>12pts
+                </label>
+              </div>
+              <div id="apInt1" class="col-4 btn-group-toggle" data-toggle="buttons">
+                <label class="btn btn-dark w-100" onclick="cS('Int',1)">
+                  <input type="checkbox" checked autocomplete="off">Impatado<br>12pts
+                </label>
+              </div>
+              <div id="apInt2" class="col-4 btn-group-toggle" data-toggle="buttons">
+                <label class="btn btn-dark w-100" onclick="cS('Int',2)">
+                  <input type="checkbox" checked autocomplete="off">Ganha Fora<br>12pts
+                </label>
+              </div>
+            </div>
+            <div class="row">
+              <h4 class="col-12 mt-2">Ao final:</h4>
+              <div id="apFin0" class="col-4 btn-group-toggle" data-toggle="buttons">
+                <label class="btn btn-dark w-100" onclick="cS('Fin',0)">
+                  <input type="checkbox" checked autocomplete="off">Ganha Casa<br>12pts
+                </label>
+              </div>
+              <div id="apFin1" class="col-4 btn-group-toggle" data-toggle="buttons">
+                <label class="btn btn-dark w-100" onclick="cS('Fin',1)">
+                  <input type="checkbox" checked autocomplete="off">Impatado<br>12pts
+                </label>
+              </div>
+              <div id="apFin2" class="col-4 btn-group-toggle" data-toggle="buttons">
+                <label class="btn btn-dark w-100" onclick="cS('Fin',2)">
+                  <input type="checkbox" checked autocomplete="off">Ganha Fora<br>12pts
+                </label>
+              </div>
+            </div>
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
+          <button id="fazerApostaBtn" type="button" class="btn btn-dark" onclick="fazerAposta()">Fazer Apostas</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
         </div>
       </div>
     </div>
@@ -462,6 +498,7 @@
   let xhr = new XMLHttpRequest();
   xhr.onload = function() {
     let data = JSON.parse(this.response);
+    console.log(data);
     setData(data);
   }
   xhr.open('POST',url);
@@ -505,6 +542,7 @@ const setMatchModal = (e) => {
   c.querySelector("#fora").innerHTML = e.fora;
   c.querySelector("#casaImg").src = e.casaImg;
   c.querySelector("#foraImg").src = e.foraImg;
+  c.querySelector("#fazerApostaBtn").onclick=()=>fazerAposta(e.id);
   let names = ["Posição","Pontos","Jogos","Vitórias","Empates","Derrotas","Golos Marcados","Golos Sofridos","Média de Golos"];
   for(let i=0;i<e.estatisticas.casa.length;i++){
     let p = c.querySelector("#sampleProgressModal").cloneNode(true);
@@ -518,7 +556,42 @@ const setMatchModal = (e) => {
   }
 }
 
-  </script>
+const cS = (a,b) => {
+  if(b!=0)document.querySelector("#ap"+a+0).children[0].classList.remove("active");
+  if(b!=1)document.querySelector("#ap"+a+1).children[0].classList.remove("active");
+  if(b!=2)document.querySelector("#ap"+a+2).children[0].classList.remove("active");
+}
+
+const fazerAposta = (id) => {
+  let d = {id:id};
+  d.int = 
+    document.querySelector("#apInt0").children[0].classList.contains("active") ? 0 :
+    document.querySelector("#apInt1").children[0].classList.contains("active") ? 1 :
+    document.querySelector("#apInt2").children[0].classList.contains("active") ? 2 : -1;
+  d.fin = 
+    document.querySelector("#apFin0").children[0].classList.contains("active") ? 0 :
+    document.querySelector("#apFin1").children[0].classList.contains("active") ? 1 :
+    document.querySelector("#apFin2").children[0].classList.contains("active") ? 2 : -1;
+  console.log(d);
+  let url = '/database/user/fazerAposta';
+  let xhr = new XMLHttpRequest();
+  xhr.onload = function() {
+    try{
+      console.log(this.response);
+      let resp = JSON.parse(this.response);
+      if(resp.done)alert("Aposta feita com sucesso!");
+      else alert("Aposta feita sem sucesso:\n"+resp.error);
+      setInputs(resp);
+    }catch(e){
+      console.log(this.response);
+    }
+  }
+  xhr.open('POST',url);
+  xhr.setRequestHeader('Content-type', 'application/json');
+  xhr.send(JSON.stringify(d));
+}
+
+</script>
 
 </body>
 

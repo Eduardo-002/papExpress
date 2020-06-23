@@ -47,21 +47,76 @@
     }
 
     module.exports.getProximo = ({firebase},callback) => {
-        let collection = 'Jogos';
-        let doc = 'Proximo';
-        const docRef = firebase.firestore().collection(collection).doc(doc);
-        docRef.get().then(res=>{
-            callback({response:res.data()});
-        })
+        firebase.firestore().collection('club').doc('Jogos').collection('proximo').doc('jogo')
+            .get().then(res=>{
+                callback({response:res.data()});
+            })
     }
 
     module.exports.getProximos = ({firebase},callback) => {
-        let collection = 'Jogos';
-        let doc = 'Proximos';
-        const docRef = firebase.firestore().collection(collection).doc(doc);
-        docRef.get().then(res=>{
-            callback({response:res.data()});
+        firebase.firestore().collection('club').doc('Jogos').collection('proximos')
+            .get().then(snapshot=>{
+            let data = [];
+            snapshot.forEach(doc => {
+                data.push(doc.data());
+            });
+            callback({response:data});
+            }).catch(err => {
+                console.log('Error getting documents', err);
+            });
+    }
+
+    module.exports.fazerAposta = ({firebase,req},callback) => {
+        let jogoDoc = 'jogo'+req.body.id;
+        firebase.firestore().collection('club').doc('Jogos').collection('proximos').doc(jogoDoc)
+        .get().then((res)=>{
+            let jogo = res.data();
+            if(jogo.data.ApostaLimite<Date.now()){callback({response:{done:false,error:'Já passou da hora!'}});}
+            firebase.auth().onAuthStateChanged((user)=>{
+                firebase.firestore().collection('users').doc(user.email).collection('Apostas').doc(jogoDoc).set(
+                    {
+                        jogo:jogo,
+                        date:Date.now(),
+                        id:req.body.id,
+                        int:req.body.int,
+                        fin:req.body.fin
+                    },{merge:true}
+                ).then(()=>{
+                    firebase.firestore().collection('users').doc(user.email).collection('ApostasQueue').doc(jogoDoc).set(
+                        {
+                            date:Date.now(),
+                            id:req.body.id,
+                            int:req.body.int,
+                            fin:req.body.fin
+                        },{merge:true}
+                    ).then(()=>{
+                        callback({response:{done:true}});
+                    }).catch(e=>{
+                        console.log(e);
+                    })
+                }).catch(e=>{
+                    console.log(e);
+                })
+            })
+        }).catch((e)=>{
+            console.log(e);
+            callback({response:{done:false,error:e}});
         })
+        /*let collection = [];
+        let doc = [];
+        firebase.auth().onAuthStateChanged((user)=>{
+            collection[0] = 'users';
+            doc[0] = user.email;
+            collection[1] = 'Apostas';
+            doc[1] = 'jogo'+req.body.id;
+            console.log(collection,doc);
+            const docRef = firebase.firestore().collection(collection[0]).doc(doc[0]).collection(collection[1]).doc(doc[1]);
+            docRef.get().then(res=>{
+                //firebase.firestore
+                console.log(res.data());
+                callback({response:{done:true}});
+            })
+        })*/
     }
 
     module.exports.getClassificacao = ({firebase},callback) => {

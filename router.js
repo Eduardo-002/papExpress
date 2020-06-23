@@ -67,6 +67,7 @@
     app.post('/database/proximo',(req,res)=>{login.checkLogged({firebase,req,res},()=>{database.getProximo({firebase},({response})=>{res.send(response);})})})
 
     app.post('/database/proximos',(req,res)=>{login.checkLogged({firebase,req,res},()=>{database.getProximos({firebase},({response})=>{res.send(response);})})})
+    app.post('/database/user/fazerAposta',(req,res)=>{login.checkLogged({firebase,req,res},()=>{database.fazerAposta({firebase,req},({response})=>{res.send(response);})})})
 
     app.post('/database/classificacao',(req,res)=>{login.checkLogged({firebase,req,res},()=>{database.getClassificacao({firebase},({response})=>{res.send(response);})})})
     app.post('/database/jogadores',(req,res)=>{database.getJogadores({firebase},({response})=>{res.send(response);})})
