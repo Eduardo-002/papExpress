@@ -18,6 +18,76 @@
   <!-- Custom styles for this template-->
   <link href="/static/css/sb-admin-2.min.css" rel="stylesheet">
 
+  <style>
+.row:hover{
+  cursor:pointer;
+}
+.tableSmallText{
+  font-size:0.5rem;
+}
+.tableBigText{
+  font-size:0.75rem;
+}
+.tableSmallTextModal{
+  font-size:0.6rem;
+}
+.tableBigTextModal{
+  font-size:0.80rem;
+}
+@media (min-width: 576px){
+  .tableSmallText{
+    font-size:0.8rem;
+  }
+  .tableBigText{
+    font-size:1.2rem;
+  }
+}
+
+@media (min-width: 768px){
+  .tableSmallText{
+    font-size:0.9rem;
+  }
+  .tableBigText{
+    font-size:1.4rem;
+  }
+  .tableSmallTextModal{
+    font-size:0.8rem;
+  }
+  .tableBigTextModal{
+    font-size:1.1rem;
+}
+}
+
+@media (min-width: 992px){ 
+  .tableSmallText{
+    font-size:1.1rem;
+  }
+  .tableBigText{
+    font-size:1.8rem;
+  }
+}
+
+@media (min-width: 1200px){
+  .tableSmallText{
+    font-size:1.2rem;
+  }
+}
+
+.inicialImages{
+  object-fit: cover;
+  width:100%;
+  height:15vw;
+  cursor: pointer;
+}
+.inicialImagesCollapse{
+  object-fit: cover;
+  width:100%;
+  height:18vw;
+  cursor: pointer;
+}
+  </style>
+
+
 </head>
 
 <body id="page-top">
@@ -226,7 +296,63 @@
         <!-- End of Topbar -->
 
         <!-- Begin Page Content -->
-        <div class="container-fluid">
+        <div class="container-fluid" style="max-width: 900px;">
+
+          <table class="table table-bordered table-hover">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">Resultados</th>
+              </tr>
+            </thead>
+            <tbody id="tableBody">
+              <tr id="sampleRow" data-toggle="modal" data-target="#matchModal" style="display:none;">
+                <td><div class="container-fluid" style="">
+                  <div class="row text-center">
+                    <div class="col-1 pb-2 tableSmallText">
+                      <span id="data"></span>
+                    </div>
+                    <div class="col-1 tableSmallText">
+                      <span id="hora"></span>
+                    </div>
+                    <div class="col-4 tableSmallText">
+                      <span id="estadio"></span>
+                    </div>
+                    <div class="col-1 tableSmallText">
+                      <span id="jornada"></span>
+                    </div>
+                    <div class="col-5 tableSmallText">
+                      <span id="competicao"></span>
+                    </div>
+                    <div class="col-2">
+                      <img id="casaImg" src="" class="p-1 w-100 border bg-secondary rounded">
+                    </div>
+                    <div class="col-4 text-left d-flex align-items-center justify-content-start pb-2 tableBigText">
+                      <span id="casa"></span>
+                    </div>
+                    <div class="col-4 text-right d-flex align-items-center justify-content-end pb-2 tableBigText">
+                      <span id="fora"></span>
+                    </div>
+                    <div class="col-2">
+                      <img id="foraImg" src="" class="p-1 w-100 border bg-secondary rounded">
+                    </div>
+                    <div id="apoRow" style="display:none">
+                      <div class="col-12 text-left mt-2">
+                        <h class="h5 text-dark">As suas apostas:</h>
+                      </div>
+                      <!-- <div class="col-12 text-left">
+                        <span>Ao intervalo:</span>
+                        <span id="int">Impate</span>
+                      </div>
+                      <div class="col-12 text-left">
+                        <span>No Fim:</span>
+                        <span id="fin">UD Mourisquense</span>
+                      </div> -->
+                    </div>
+                  </div>
+                </div></td>
+              </tr>
+            </tbody>
+          </table>
 
         </div>
         <!-- End Page Content -->
@@ -254,6 +380,118 @@
   <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
   </a>
+  
+  <!-- Match Modal -->
+  <div class="modal fade" id="matchModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Resultado</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div id="matchModal" class="modal-body">
+          <h1>11 Inicial</h1>
+          <div class="container-fluid border border-dark" style="background-image: url('/static/img/topviewgrass.jpg');background-repeat:repeat;background-size: 150px;">
+            
+            <div class="d-flex flex-row justify-content-center">
+              <div class="col-3 p-1" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                <!-- <img class="img-respnsive border border-dark inicialImages" src="/static/img/Jogadores/joaoFlavio.jpg"> -->
+                <div class="img-respnsive border border-dark inicialImages text-center" style="background:#666;display: flex;justify-content: center;align-content: center;flex-direction: column;">
+                  <h class="h5 pt-2" style="font-size:2vw;">Selecione<br>um<br>Jogador</h>
+                </div>
+                <p class="text-center h4 text-white">AE</p>
+              </div>
+              <div class="col-3 p-1">
+                <img class="img-respnsive border border-dark inicialImages" src="/static/img/Jogadores/vascoCoelho.jpg">
+                <p class="text-center h4 text-white">AC</p>
+              </div>
+              <div class="col-3 p-1">
+                <img class="img-respnsive border border-dark inicialImages" src="/static/img/Jogadores/joaoFlavio.jpg">
+                <p class="text-center h4 text-white">AD</p>
+              </div>
+            </div>
+            <div class="collapse" id="collapseExample">
+              <div class="container-fluid bg-white border rounded">
+                <div class="row"><h class="h3 pt-2">Escolha o AE:</h></div>
+                <div class="row justify-content-center">
+                  <div class="col-4 p-1" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                    <!-- <img class="img-respnsive border border-dark inicialImages" src="/static/img/Jogadores/joaoFlavio.jpg"> -->
+                    <div class="img-respnsive border border-dark inicialImagesCollapse text-center" style="background:#666;display: flex;justify-content: center;align-content: center;flex-direction: column;">
+                      <h class="h5 pt-2" style="font-size:2vw;">Selecione<br>um<br>Jogador</h>
+                    </div>
+                    <p class="text-center h4 text-dark">AE</p>
+                  </div>
+                  <div class="col-4 p-1">
+                    <img class="img-respnsive border border-dark inicialImagesCollapse" src="/static/img/Jogadores/vascoCoelho.jpg">
+                    <p class="text-center h4 text-dark">AC</p>
+                  </div>
+                  <div class="col-4 p-1">
+                    <img class="img-respnsive border border-dark inicialImagesCollapse" src="/static/img/Jogadores/joaoFlavio.jpg">
+                    <p class="text-center h4 text-dark">AD</p>
+                  </div>
+                  <div class="col-4 p-1">
+                    <img class="img-respnsive border border-dark inicialImagesCollapse" src="/static/img/Jogadores/joaoFlavio.jpg">
+                    <p class="text-center h4 text-dark">AD</p>
+                  </div>
+                  <div class="col-4 p-1">
+                    <img class="img-respnsive border border-dark inicialImagesCollapse" src="/static/img/Jogadores/joaoFlavio.jpg">
+                    <p class="text-center h4 text-dark">AD</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="d-flex flex-row justify-content-center">
+              <div class="col-3 p-1">
+                <img class="img-respnsive border border-dark" src="/static/img/Jogadores/joaoFlavio.jpg">
+                <p class="text-center h5">ME</p>
+              </div>
+              <div class="col-3 p-1">
+                <img class="img-respnsive border border-dark" src="/static/img/Jogadores/joaoFlavio.jpg">
+                <p class="text-center h5">MC</p>
+              </div>
+              <div class="col-3 p-1">
+                <img class="img-respnsive border border-dark" src="/static/img/Jogadores/joaoFlavio.jpg">
+                <p class="text-center h5">MD</p>
+              </div>
+            </div>
+            <div class="d-flex flex-row justify-content-center">
+              <div class="col-3 p-1">
+                <img class="img-respnsive border border-dark" src="/static/img/Jogadores/joaoFlavio.jpg">
+                <p class="text-center h5">DE</p>
+              </div>
+              <div class="col-3 p-1">
+                <img class="img-respnsive border border-dark" src="/static/img/Jogadores/joaoFlavio.jpg">
+                <p class="text-center h5">DC</p>
+              </div>
+              <div class="col-3 p-1">
+                <img class="img-respnsive border border-dark" src="/static/img/Jogadores/joaoFlavio.jpg">
+                <p class="text-center h5">DC</p>
+              </div>
+              <div class="col-3 p-1">
+                <img class="img-respnsive border border-dark" src="/static/img/Jogadores/joaoFlavio.jpg">
+                <p class="text-center h5">DD</p>
+              </div>
+            </div>
+            <div class="d-flex flex-row justify-content-center">
+              <div class="col-3 p-1">
+                <img class="img-respnsive border border-dark" src="/static/img/Jogadores/joaoFlavio.jpg">
+                <p class="text-center h5">GR</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button id="fazerApostaBtn" type="button" class="btn btn-dark" onclick="fazerAposta()">Fazer Apostas</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Player Modal -->
+  
 
   <!-- Logout Modal-->
   <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -289,8 +527,131 @@
 
   <script>
 
+(function(){
+  let url = '/database/proximos';
+  let xhr = new XMLHttpRequest();
+  xhr.onload = function() {
+    let data = JSON.parse(this.response);
+    console.log(data);
+    setData(data);
 
-  </script>
+    let d = {ids:data.map(e=>e.id)};
+    let url2 = '/database/user/resultado/apostas';
+    let xhr2 = new XMLHttpRequest();
+    xhr2.onload = function() {
+      try{
+        setApostas(JSON.parse(this.response));
+      }catch(e){
+        console.log(this.response);
+      }
+    }
+    xhr2.open('POST',url2);
+    xhr2.setRequestHeader('Content-type', 'application/json');
+    xhr2.send(JSON.stringify(d));
+  }
+  xhr.open('POST',url);
+  xhr.send();
+}());
+
+const setData = (data) => {
+  Object.entries(data)
+  .sort((a,b)=>{
+      return a[1].id - b[1].id
+    })
+  .forEach(elem => {
+    let e = elem[1];
+    console.log(e);
+    let c = document.querySelector("#sampleRow").cloneNode(true);
+    c.id="";
+    c.style.display = 'flex';
+    c.onclick=()=>setMatchModal(e);
+    c.querySelector("#data").innerHTML = e.data;
+    c.querySelector("#hora").innerHTML = e.hora;
+    c.querySelector("#estadio").innerHTML = e.estadio;
+    c.querySelector("#jornada").innerHTML = "J"+e.jornada;
+    c.querySelector("#competicao").innerHTML = e.competicao;
+    c.querySelector("#casa").innerHTML = e.casa;
+    c.querySelector("#fora").innerHTML = e.fora;
+    c.querySelector("#casaImg").src = e.casaImg;
+    c.querySelector("#foraImg").src = e.foraImg;
+    c.querySelector("#apoRow").id = "apoRow"+e.id;
+    document.querySelector("#tableBody").appendChild(c);
+  });
+}
+
+const setApostas = (data) => {
+  console.log(data);
+  data.forEach(e=>{
+    console.log(e.id,"apoRow"+e.id);
+    let b = document.querySelector("#apoRow"+e.id);
+    b.style.display = "block";
+    b.querySelector("#int").innerHTML = e.int=="0"?e.jogo.casa:e.int=="1"?"Empatado":e.int=="2"?e.jogo.fora:"Sem Aposta";
+    b.querySelector("#fin").innerHTML = e.fin=="0"?e.jogo.casa:e.fin=="1"?"Empatado":e.fin=="2"?e.jogo.fora:"Sem Aposta";
+  })
+}
+
+const setMatchModal = (e) => {
+  console.log(e);
+  let c = document.querySelector("#matchModal");
+  c.querySelector("#data").innerHTML = e.data;
+  c.querySelector("#hora").innerHTML = e.hora;
+  c.querySelector("#estadio").innerHTML = e.estadio;
+  c.querySelector("#jornada").innerHTML = "J"+e.jornada;
+  c.querySelector("#competicao").innerHTML = e.competicao;
+  c.querySelector("#casa").innerHTML = e.casa;
+  c.querySelector("#fora").innerHTML = e.fora;
+  c.querySelector("#casaImg").src = e.casaImg;
+  c.querySelector("#foraImg").src = e.foraImg;
+  c.querySelector("#fazerApostaBtn").onclick=()=>fazerAposta(e.id);
+  let names = ["Posição","Pontos","Jogos","Vitórias","Empates","Derrotas","Golos Marcados","Golos Sofridos","Média de Golos"];
+  for(let i=0;i<e.estatisticas.casa.length;i++){
+    let p = c.querySelector("#sampleProgressModal").cloneNode(true);
+    p.style.display='flex';
+    p.querySelector("#title").innerHTML=names[i];
+    p.querySelector("#casa").innerHTML=e.estatisticas.casa[i];
+    p.querySelector("#fora").innerHTML=e.estatisticas.fora[i];
+    p.querySelector("#casaProg").style.width = ((parseFloat(e.estatisticas.casa[i])/(parseFloat(e.estatisticas.casa[i])+parseFloat(e.estatisticas.fora[i])))*100)+'%';
+    p.querySelector("#foraProg").style.width = ((parseFloat(e.estatisticas.fora[i])/(parseFloat(e.estatisticas.casa[i])+parseFloat(e.estatisticas.fora[i])))*100)+'%';
+    c.querySelector("#progressContainerModal").appendChild(p);
+  }
+}
+
+const cS = (a,b) => {
+  if(b!=0)document.querySelector("#ap"+a+0).children[0].classList.remove("active");
+  if(b!=1)document.querySelector("#ap"+a+1).children[0].classList.remove("active");
+  if(b!=2)document.querySelector("#ap"+a+2).children[0].classList.remove("active");
+}
+
+const fazerAposta = (id) => {
+  let d = {id:id};
+  d.int = 
+    document.querySelector("#apInt0").children[0].classList.contains("active") ? 0 :
+    document.querySelector("#apInt1").children[0].classList.contains("active") ? 1 :
+    document.querySelector("#apInt2").children[0].classList.contains("active") ? 2 : -1;
+  d.fin = 
+    document.querySelector("#apFin0").children[0].classList.contains("active") ? 0 :
+    document.querySelector("#apFin1").children[0].classList.contains("active") ? 1 :
+    document.querySelector("#apFin2").children[0].classList.contains("active") ? 2 : -1;
+  if(d.int==-1&&d.fin==-1){
+    alert("Aposta invalida!\nTêm de escolher alguma opção");
+  }
+  let url = '/database/user/fazerAposta';
+  let xhr = new XMLHttpRequest();
+  xhr.onload = function() {
+    try{
+      let resp = JSON.parse(this.response);
+      if(resp.done)location.reload();
+      else alert("Aposta feita sem sucesso:\n"+resp.error);
+    }catch(e){
+      console.log(this.response);
+    }
+  }
+  xhr.open('POST',url);
+  xhr.setRequestHeader('Content-type', 'application/json');
+  xhr.send(JSON.stringify(d));
+}
+
+</script>
 
 </body>
 
