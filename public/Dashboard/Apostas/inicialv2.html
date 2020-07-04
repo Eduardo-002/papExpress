@@ -5,7 +5,8 @@
 
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> -->
+  <meta name="viewport" content="width=600">
   <meta name="description" content="">
   <meta name="author" content="">
 
@@ -82,7 +83,7 @@
 .inicialImagesCollapse{
   object-fit: cover;
   width:100%;
-  height:18vw;
+  height:21vw;
   cursor: pointer;
 }
   </style>
@@ -305,7 +306,7 @@
               </tr>
             </thead>
             <tbody id="tableBody">
-              <tr id="sampleRow" data-toggle="modal" data-target="#matchModal" style="display:none;" onclick="setJogadores()">
+              <tr id="sampleRow" data-toggle="modal" data-target="#matchModal" style="display:none;">
                 <td><div class="container-fluid" style="">
                   <div class="row text-center">
                     <div class="col-1 pb-2 tableSmallText">
@@ -334,19 +335,6 @@
                     </div>
                     <div class="col-2">
                       <img id="foraImg" src="" class="p-1 w-100 border bg-secondary rounded">
-                    </div>
-                    <div id="apoRow" style="display:none">
-                      <div class="col-12 text-left mt-2">
-                        <h class="h5 text-dark">As suas apostas:</h>
-                      </div>
-                      <!-- <div class="col-12 text-left">
-                        <span>Ao intervalo:</span>
-                        <span id="int">Impate</span>
-                      </div>
-                      <div class="col-12 text-left">
-                        <span>No Fim:</span>
-                        <span id="fin">UD Mourisquense</span>
-                      </div> -->
                     </div>
                   </div>
                 </div></td>
@@ -380,7 +368,9 @@
   <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
   </a>
+
   
+
   <!-- Match Modal -->
   <div class="modal fade" id="matchModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
@@ -392,101 +382,78 @@
           </button>
         </div>
         <div id="matchModal" class="modal-body">
-          <h1>11 Inicial</h1>
-          <div class="container-fluid border border-dark" style="background-image: url('/static/img/topviewgrass.jpg');background-repeat:repeat;background-size: 150px;">
-            
-            <div class="d-flex flex-row justify-content-center">
-              <div class="col-3 p-1" data-toggle="collapse" data-target="#collapseAs" aria-expanded="false" aria-controls="collapseAs">
-                <!-- <img class="img-respnsive border border-dark inicialImages" src="/static/img/Jogadores/joaoFlavio.jpg"> -->
-                <div class="img-respnsive border border-dark inicialImages text-center" style="background:#666;display: flex;justify-content: center;align-content: center;flex-direction: column;">
-                  <h class="h5 pt-2" style="font-size:2vw;">Selecione<br>um<br>Jogador</h>
-                </div>
-                <p class="text-center h4 text-white">AE</p>
+          <div class="container-fluid" style="">
+            <div class="row text-center">
+              <div class="col-1 pb-2 tableSmallText tableSmallTextModal">
+                <span id="data"></span>
               </div>
-              <div class="col-3 p-1" data-toggle="collapse" data-target="#collapseAs" aria-expanded="false" aria-controls="collapseAs">
-                <img class="img-respnsive border border-dark inicialImages" src="/static/img/Jogadores/vascoCoelho.jpg">
-                <p class="text-center h4 text-white">AC</p>
+              <div class="col-1 tableSmallText tableSmallTextModal">
+                <span id="hora"></span>
               </div>
-              <div class="col-3 p-1" data-toggle="collapse" data-target="#collapseAs" aria-expanded="false" aria-controls="collapseAs"> 
-                <img class="img-respnsive border border-dark inicialImages" src="/static/img/Jogadores/joaoFlavio.jpg">
-                <p class="text-center h4 text-white">AD</p>
+              <div class="col-4 tableSmallText tableSmallTextModal">
+                <span id="estadio"></span>
+              </div>
+              <div class="col-1 tableSmallText tableSmallTextModal">
+                <span id="jornada"></span>
+              </div>
+              <div class="col-5 tableSmallText tableSmallTextModal">
+                <span id="competicao"></span>
+              </div>
+              <div class="col-2">
+                <img id="casaImg" src="" class="p-1 w-100 border bg-secondary rounded">
+              </div>
+              <div class="col-4 text-left d-flex align-items-center justify-content-start pb-2 tableBigText tableBigTextModal">
+                <span id="casa"></span>
+              </div>
+              <div class="col-4 text-right d-flex align-items-center justify-content-end pb-2 tableBigText tableBigTextModal">
+                <span id="fora"></span>
+              </div>
+              <div class="col-2">
+                <img id="foraImg" src="" class="p-1 w-100 border bg-secondary rounded">
               </div>
             </div>
-            <div class="collapse" id="collapseAs">
-              <div class="container-fluid bg-white border rounded">
-                <div class="row"><h class="h3 pt-2">Escolha:</h></div>
-                <div id="collapseA" class="row justify-content-center">
-                  <div id="collapseAElem" class="col-4 p-1" data-toggle="collapse" data-target="#collapseAs" aria-expanded="false" aria-controls="collapseAs" style="display: none;">
-                    <img class="img-respnsive border border-dark inicialImages" src="/static/img/Jogadores/joaoFlavio.jpg">
+            <h class="h4 mt-4">Escolha os Jogadores:</h>
+            <div class="row border border-dark"  style="background-image: url('/static/img/topviewgrass.jpg');background-repeat:repeat;background-size: 150px;">
+              <div class="container-fluid">
+                <div id="clickTracker" style="display:none"></div>
+                <div class="d-flex flex-row justify-content-center">
+                  <div id="jogadorAE" class="col-3 p-1" data-toggle="collapse" data-target="#collapseAs" aria-expanded="false" aria-controls="collapseAs"></div>
+                  <div id="jogadorAC" class="col-3 p-1" data-toggle="collapse" data-target="#collapseAs" aria-expanded="false" aria-controls="collapseAs"></div>
+                  <div id="jogadorAD" class="col-3 p-1" data-toggle="collapse" data-target="#collapseAs" aria-expanded="false" aria-controls="collapseAs"></div>
+                </div>
+                <div id="collapseAs" class="collapse">
+                  <div id="collapseAsRow" class="row bg-white p-2">
+                    
                   </div>
                 </div>
-              </div>
-            </div>
-            <div class="d-flex flex-row justify-content-center">
-              <div class="col-3 p-1" data-toggle="collapse" data-target="#collapseMs" aria-expanded="false" aria-controls="collapseMs">
-                <!-- <img class="img-respnsive border border-dark inicialImages" src="/static/img/Jogadores/joaoFlavio.jpg"> -->
-                <div class="img-respnsive border border-dark inicialImages text-center" style="background:#666;display: flex;justify-content: center;align-content: center;flex-direction: column;">
-                  <h class="h5 pt-2" style="font-size:2vw;">Selecione<br>um<br>Jogador</h>
+                <div class="d-flex flex-row justify-content-center">
+                  <div id="jogadorME" class="col-3 p-1" data-toggle="collapse" data-target="#collapseAs" aria-expanded="false" aria-controls="collapseAs"></div>
+                  <div id="jogadorMC" class="col-3 p-1" data-toggle="collapse" data-target="#collapseAs" aria-expanded="false" aria-controls="collapseAs"></div>
+                  <div id="jogadorMD" class="col-3 p-1" data-toggle="collapse" data-target="#collapseAs" aria-expanded="false" aria-controls="collapseAs"></div>
                 </div>
-                <p class="text-center h4 text-white">ME</p>
-              </div>
-              <div class="col-3 p-1" data-toggle="collapse" data-target="#collapseMs" aria-expanded="false" aria-controls="collapseMs">
-                <img class="img-respnsive border border-dark inicialImages" src="/static/img/Jogadores/vascoCoelho.jpg">
-                <p class="text-center h4 text-white">MC</p>
-              </div>
-              <div class="col-3 p-1" data-toggle="collapse" data-target="#collapseMs" aria-expanded="false" aria-controls="collapseMs"> 
-                <img class="img-respnsive border border-dark inicialImages" src="/static/img/Jogadores/joaoFlavio.jpg">
-                <p class="text-center h4 text-white">MD</p>
-              </div>
-            </div>
-            <div class="collapse" id="collapseMs">
-              <div class="container-fluid bg-white border rounded">
-                <div class="row"><h class="h3 pt-2">Escolha o AE:</h></div>
-                <div id="collapseM" class="row justify-content-center">
-
+                <div id="collapseMs" class="collapse">
+                  <div id="collapseMsRow" class="row bg-white p-2">
+                    
+                  </div>
                 </div>
-              </div>
-            </div>
-
-            <!-- Row Defesa -->
-            <div class="d-flex flex-row justify-content-center">
-              <div class="col-3 p-1" data-toggle="collapse" data-target="#collapseDs" aria-expanded="false" aria-controls="collapseDs">
-                <p class="text-center h4 text-white">DE</p>
-              </div>
-              <div class="col-3 p-1" data-toggle="collapse" data-target="#collapseDs" aria-expanded="false" aria-controls="collapseDs">
-                <p class="text-center h4 text-white">DC</p>
-              </div>
-              <div class="col-3 p-1" data-toggle="collapse" data-target="#collapseDs" aria-expanded="false" aria-controls="collapseDs"> 
-                <p class="text-center h4 text-white">DC</p>
-              </div>
-              <div class="col-3 p-1" data-toggle="collapse" data-target="#collapseDs" aria-expanded="false" aria-controls="collapseDs"> 
-                <p class="text-center h4 text-white">DD</p>
-              </div>
-            </div>
-            <div class="collapse mb-3" id="collapseDs">
-              <div class="container-fluid bg-white border rounded">
-                <div class="row"><h class="h3 pt-2">Escolha:</h></div>
-                <div id="collapseD" class="row justify-content-center">
-
+                <div class="d-flex flex-row justify-content-center">
+                  <div id="jogadorDE" class="col-3 p-1" data-toggle="collapse" data-target="#collapseAs" aria-expanded="false" aria-controls="collapseAs"></div>
+                  <div id="jogadorDCE" class="col-3 p-1" data-toggle="collapse" data-target="#collapseAs" aria-expanded="false" aria-controls="collapseAs"></div>
+                  <div id="jogadorDCD" class="col-3 p-1" data-toggle="collapse" data-target="#collapseAs" aria-expanded="false" aria-controls="collapseAs"></div>
+                  <div id="jogadorDD" class="col-3 p-1" data-toggle="collapse" data-target="#collapseAs" aria-expanded="false" aria-controls="collapseAs"></div>
                 </div>
-              </div>
-            </div>
-
-            <!-- Row GR -->
-            <div class="d-flex flex-row justify-content-center">
-              <div class="col-3 p-1" data-toggle="collapse" data-target="#collapseGRs" aria-expanded="false" aria-controls="collapseGRs">
-                <!-- <img class="img-respnsive border border-dark inicialImages" src="/static/img/Jogadores/joaoFlavio.jpg"> -->
-                <div class="img-respnsive border border-dark inicialImages text-center" style="background:#666;display: flex;justify-content: center;align-content: center;flex-direction: column;">
-                  <h class="h5 pt-2" style="font-size:2vw;">Selecione<br>um<br>Jogador</h>
+                <div id="collapseDs" class="collapse">
+                  <div id="collapseDsRow" class="row bg-white p-2">
+    
+                  </div>
                 </div>
-                <p class="text-center h4 text-white">GR</p>
-              </div>
-            </div>
-            <div class="collapse mb-3" id="collapseGRs">
-              <div class="container-fluid bg-white border rounded">
-                <div class="row"><h class="h3 pt-2">Escolha:</h></div>
-                <div id="collapseGR" class="row justify-content-center">
-
+                <div class="d-flex flex-row justify-content-center">
+                  <div id="jogadorGR" class="col-3 p-1" data-toggle="collapse" data-target="#collapseAs" aria-expanded="false" aria-controls="collapseAs"></div>
+                </div>
+                <div id="collapseGs" class="collapse">
+                  <div id="collapseGsRow" class="row bg-white p-2">
+                    
+                  </div>
                 </div>
               </div>
             </div>
@@ -497,16 +464,6 @@
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
         </div>
       </div>
-    </div>
-  </div>
-
-  <!-- Player Modal -->
-  
-  <!-- Elements to clone -->
-  <div style="display:none;">
-    <!-- <img class="img-respnsive border border-dark inicialImages" src="/static/img/Jogadores/joaoFlavio.jpg"> -->
-    <div class="img-respnsive border border-dark inicialImages text-center" style="background:#666;display: flex;justify-content: center;align-content: center;flex-direction: column;">
-      <h class="h5 pt-2" style="font-size:2vw;">Selecione<br>um<br>Jogador</h>
     </div>
   </div>
 
@@ -532,6 +489,27 @@
     </div>
   </div>
 
+  <!-- Elements to clone -->
+  <div style="display:none">
+    <div id="cloneJogadorCartaSem">
+      <div class="img-respnsive border border-dark inicialImages text-center" style="background:#666;display: flex;justify-content: center;align-content: center;flex-direction: column;">
+        <h class="h5 pt-2" style="font-size:2vw;">Selecione<br>um<br>Jogador</h>
+      </div>
+      <p class="text-center h4 text-white"></p>
+      <div id="imgCamisola" style="display: none;">-1</div>
+    </div>
+    <div id="cloneJogadorCartaCom">
+      <img class="img-respnsive border border-dark inicialImages" src="/static/img/Jogadores/joaoFlavio.jpg">
+      <p class="text-center h4 text-white"></p>
+      <div id="imgCamisola" style="display: none;">-1</div>
+    </div>
+    <div id="cloneJogadorCollapse">
+      <div class="col-4 p-1" data-toggle="collapse" data-target="#collapseAs" aria-expanded="false" aria-controls="collapseAs">
+        <img class="img-respnsive border border-dark inicialImagesCollapse" src="/static/img/Jogadores/joaoFlavio.jpg">
+      </div>
+    </div>
+  </div>
+
   <!-- Bootstrap core JavaScript-->
   <script src="/static/vendor/jquery/jquery.min.js"></script>
   <script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -545,71 +523,33 @@
   <script>
 
 (function(){
-  let url = '/database/proximos';
-  let xhr = new XMLHttpRequest();
-  xhr.onload = function() {
-    let data = JSON.parse(this.response);
-    console.log(data);
-    setData(data);
-
-    let d = {ids:data.map(e=>e.id)};
-    let url2 = '/database/user/inicial/apostas';
-    let xhr2 = new XMLHttpRequest();
-    xhr2.onload = function() {
-      try{
-        setApostas(JSON.parse(this.response));
-      }catch(e){
-        console.log(this.response);
-      }
-    }
-    xhr2.open('POST',url2);
-    xhr2.setRequestHeader('Content-type', 'application/json');
-    xhr2.send(JSON.stringify(d));
-  }
-  xhr.open('POST',url);
-  xhr.send();
+  mRequest({method:'POST',url:'/database/proximos'},(res)=>{
+    Object.entries(res)
+    .sort((a,b)=>{
+        return a[1].id - b[1].id
+      })
+    .forEach(elem => {
+      let e = elem[1];
+      //console.log(e);
+      let c = document.querySelector("#sampleRow").cloneNode(true);
+      c.id="";
+      c.style.display = 'flex';
+      c.onclick=()=>setMatchModal(e);
+      c.querySelector("#data").innerHTML = e.data;
+      c.querySelector("#hora").innerHTML = e.hora;
+      c.querySelector("#estadio").innerHTML = e.estadio;
+      c.querySelector("#jornada").innerHTML = "J"+e.jornada;
+      c.querySelector("#competicao").innerHTML = e.competicao;
+      c.querySelector("#casa").innerHTML = e.casa;
+      c.querySelector("#fora").innerHTML = e.fora;
+      c.querySelector("#casaImg").src = e.casaImg;
+      c.querySelector("#foraImg").src = e.foraImg;
+      document.querySelector("#tableBody").appendChild(c);
+    });
+  })
 }());
 
-const setData = (data) => {
-  Object.entries(data)
-  .sort((a,b)=>{
-      return a[1].id - b[1].id
-    })
-  .forEach(elem => {
-    let e = elem[1];
-    console.log(e);
-    let c = document.querySelector("#sampleRow").cloneNode(true);
-    c.id="";
-    c.style.display = 'flex';
-    //c.onclick=()=>setMatchModal(e);
-    c.onclick=()=>setJogadores();
-    c.querySelector("#data").innerHTML = e.data;
-    c.querySelector("#hora").innerHTML = e.hora;
-    c.querySelector("#estadio").innerHTML = e.estadio;
-    c.querySelector("#jornada").innerHTML = "J"+e.jornada;
-    c.querySelector("#competicao").innerHTML = e.competicao;
-    c.querySelector("#casa").innerHTML = e.casa;
-    c.querySelector("#fora").innerHTML = e.fora;
-    c.querySelector("#casaImg").src = e.casaImg;
-    c.querySelector("#foraImg").src = e.foraImg;
-    c.querySelector("#apoRow").id = "apoRow"+e.id;
-    document.querySelector("#tableBody").appendChild(c);
-  });
-}
-
-const setApostas = (data) => {
-  console.log(data);
-  data.forEach(e=>{
-    console.log(e.id,"apoRow"+e.id);
-    let b = document.querySelector("#apoRow"+e.id);
-    b.style.display = "block";
-    b.querySelector("#int").innerHTML = e.int=="0"?e.jogo.casa:e.int=="1"?"Empatado":e.int=="2"?e.jogo.fora:"Sem Aposta";
-    b.querySelector("#fin").innerHTML = e.fin=="0"?e.jogo.casa:e.fin=="1"?"Empatado":e.fin=="2"?e.jogo.fora:"Sem Aposta";
-  })
-}
-
 const setMatchModal = (e) => {
-  console.log(e);
   let c = document.querySelector("#matchModal");
   c.querySelector("#data").innerHTML = e.data;
   c.querySelector("#hora").innerHTML = e.hora;
@@ -621,99 +561,60 @@ const setMatchModal = (e) => {
   c.querySelector("#casaImg").src = e.casaImg;
   c.querySelector("#foraImg").src = e.foraImg;
   c.querySelector("#fazerApostaBtn").onclick=()=>fazerAposta(e.id);
-  let names = ["Posição","Pontos","Jogos","Vitórias","Empates","Derrotas","Golos Marcados","Golos Sofridos","Média de Golos"];
-  for(let i=0;i<e.estatisticas.casa.length;i++){
-    let p = c.querySelector("#sampleProgressModal").cloneNode(true);
-    p.style.display='flex';
-    p.querySelector("#title").innerHTML=names[i];
-    p.querySelector("#casa").innerHTML=e.estatisticas.casa[i];
-    p.querySelector("#fora").innerHTML=e.estatisticas.fora[i];
-    p.querySelector("#casaProg").style.width = ((parseFloat(e.estatisticas.casa[i])/(parseFloat(e.estatisticas.casa[i])+parseFloat(e.estatisticas.fora[i])))*100)+'%';
-    p.querySelector("#foraProg").style.width = ((parseFloat(e.estatisticas.fora[i])/(parseFloat(e.estatisticas.casa[i])+parseFloat(e.estatisticas.fora[i])))*100)+'%';
-    c.querySelector("#progressContainerModal").appendChild(p);
-  }
-}
-
-const cS = (a,b) => {
-  if(b!=0)document.querySelector("#ap"+a+0).children[0].classList.remove("active");
-  if(b!=1)document.querySelector("#ap"+a+1).children[0].classList.remove("active");
-  if(b!=2)document.querySelector("#ap"+a+2).children[0].classList.remove("active");
-}
-
-const fazerAposta = (id) => {
-  let d = {id:id};
-  d.int = 
-    document.querySelector("#apInt0").children[0].classList.contains("active") ? 0 :
-    document.querySelector("#apInt1").children[0].classList.contains("active") ? 1 :
-    document.querySelector("#apInt2").children[0].classList.contains("active") ? 2 : -1;
-  d.fin = 
-    document.querySelector("#apFin0").children[0].classList.contains("active") ? 0 :
-    document.querySelector("#apFin1").children[0].classList.contains("active") ? 1 :
-    document.querySelector("#apFin2").children[0].classList.contains("active") ? 2 : -1;
-  if(d.int==-1&&d.fin==-1){
-    alert("Aposta invalida!\nTêm de escolher alguma opção");
-  }
-  let url = '/database/user/fazerAposta';
-  let xhr = new XMLHttpRequest();
-  xhr.onload = function() {
-    try{
-      let resp = JSON.parse(this.response);
-      if(resp.done)location.reload();
-      else alert("Aposta feita sem sucesso:\n"+resp.error);
-    }catch(e){
-      console.log(this.response);
+  //let data = {aposta:["-1","-1","-1","-1","-1","-1","-1","-1","-1","-1","-1"]};
+  mRequest({method:'POST',url:'/database/user/inicial/apostas',data:{id:e.id}},(data)=>{
+    let posicoes = ['AE','AC','AD','ME','MC','MD','DE','DCE','DCD','DD','GR'];
+    for(let i=0;i<11;i++){ // id's sao distribuidos pelo array, da esquerda para a direita de cima para baixo, AE -> 0 . AC -> 1 ...
+      if(document.querySelector("#posicao"+i))document.querySelector("#posicao"+i).remove();
+      let c;
+      if(data[0].apostas[i]!=-1){
+        c = document.querySelector("#cloneJogadorCartaCom").cloneNode(true);
+        c.querySelector("img").src="/static/img/Jogadores/"+data[0].apostas[i]+".jpg";
+      }else{
+        c = document.querySelector("#cloneJogadorCartaSem").cloneNode(true);
+      }
+      c.onclick = () => {
+        document.querySelector("#clickTracker").innerHTML=i;
+      }
+      c.id="posicao"+i;
+      c.querySelector("p").innerHTML = posicoes[i][0]+posicoes[i][1];
+      c.querySelector("#imgCamisola").innerHTML = data[0].apostas[i];
+      document.querySelector("#jogador"+posicoes[i]).appendChild(c);
+      document.querySelector("#jogador"+posicoes[i]).dataset.target = "#collapse"+posicoes[i][0]+"s";
     }
-  }
-  xhr.open('POST',url);
-  xhr.setRequestHeader('Content-type', 'application/json');
-  xhr.send(JSON.stringify(d));
+    for(let i=0;i<data[1].length;i++){
+      let pos = data[1][i].pos=='ae'||data[1][i].pos=='ac'||data[1][i].pos=='ad'?'AC':
+                data[1][i].pos=='me'||data[1][i].pos=='mc'||data[1][i].pos=='md'?'MC':
+                data[1][i].pos=='de'||data[1][i].pos=='dc'||data[1][i].pos=='dd'?'DC':
+                data[1][i].pos=='gr'?'GR':console.log('Player Posicions bad error');
+      let c = document.querySelector("#cloneJogadorCollapse").cloneNode(true);
+      c.querySelector("img").src="/static/img/Jogadores/"+data[1][i].camisola+".jpg";
+      c.children[0].dataset.target="#collapse"+pos[0]+"s";
+      c.querySelector("img").onclick = () => {
+        let n = data[1][i].camisola;
+        let p = document.querySelector("#clickTracker").innerHTML;
+        document.querySelector("#posicao"+p).innerHTML = '';
+
+        let clone = document.querySelector("#cloneJogadorCartaCom").cloneNode(true);
+        clone.querySelector("img").src="/static/img/Jogadores/"+n+".jpg";
+        clone.querySelector("#imgCamisola").innerHTML = ""+n;
+
+        document.querySelector("#posicao"+p).appendChild(clone);
+      }
+      document.querySelector("#collapse"+pos[0]+"sRow").appendChild(c.children[0]);
+    }
+  });
 }
 
-const setJogadores = () => {
-  let url = '/database/club/getJogadores';
-  let xhr = new XMLHttpRequest();
-  xhr.onload = function() {
-    let data = JSON.parse(this.response);
-    console.log(data);
-    let a = data.filter(v=>v.pos=='ae'||v.pos=='ac'||v.pos=='ad').sort((a,b)=>parseInt(a.camisola)-parseInt(b.camisola));
-    let m = data.filter(v=>v.pos=='me'||v.pos=='mc'||v.pos=='md').sort((a,b)=>parseInt(a.camisola)-parseInt(b.camisola));
-    let d = data.filter(v=>v.pos=='de'||v.pos=='dc'||v.pos=='dd').sort((a,b)=>parseInt(a.camisola)-parseInt(b.camisola));
-    let gr = data.filter(v=>v.pos=='gr').sort((a,b)=>parseInt(a.camisola)-parseInt(b.camisola));
-    console.log(a,m,d,gr);
-
-    let collapseA = document.querySelector("#collapseA");
-    a.forEach(e=>{
-      let c = document.querySelector("#collapseAElem").cloneNode(true);
-      c.style.display = "block";
-      c.querySelector("img").src = "/static/img/Jogadores/"+e.camisola+".jpg";
-      document.querySelector("#collapseD").appendChild(c);
-    })
-    let collapseM = document.querySelector("#collapseA");
-    m.forEach(e=>{
-      let c = document.querySelector("#collapseAElem").cloneNode(true);
-      c.style.display = "block";
-      c.querySelector("img").src = "/static/img/Jogadores/"+e.camisola+".jpg";
-      document.querySelector("#collapseD").appendChild(c);
-    })
-    let collapseD = document.querySelector("#collapseA");
-    d.forEach(e=>{
-      let c = document.querySelector("#collapseAElem").cloneNode(true);
-      c.style.display = "block";
-      c.querySelector("img").src = "/static/img/Jogadores/"+e.camisola+".jpg";
-      document.querySelector("#collapseD").appendChild(c);
-    })
-    let collapseGR = document.querySelector("#collapseA");
-    gr.forEach(e=>{
-      let c = document.querySelector("#collapseAElem").cloneNode(true);
-      c.style.display = "block";
-      c.querySelector("img").src = "/static/img/Jogadores/"+e.camisola+".jpg";
-      document.querySelector("#collapseGR").appendChild(c);
-    })
-
-    
+const fazerAposta = () => {
+  let data = [];
+  for(let i=0;i<11;i++){
+    data.push(document.querySelector("#posicao"+i).querySelector("#imgCamisola").innerHTML);
   }
-  xhr.open('POST',url);
-  xhr.send();
+  mRequest({method:'POST',url:'/database/user/inicial/apostar',data:{data:data}},(res)=>{
+    console.log(res);
+    alert(res.text);
+  })
 }
 
 </script>

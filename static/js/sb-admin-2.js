@@ -98,3 +98,22 @@ const fillNav = (data) => {
   }
   document.querySelector("#navNotiElem").remove();
 }
+
+const mRequest = ({method,url,data},callback) => { // my function request
+  let xhr = new XMLHttpRequest();
+  xhr.onload = function() {
+    try{
+      //console.log(this.response);
+      callback(JSON.parse(this.response));
+    }catch(e){
+      console.log(e,this.response);
+    }
+  }
+  xhr.open(method,url);
+  if(data){
+    xhr.setRequestHeader('Content-type', 'application/json');
+    xhr.send(JSON.stringify(data));
+  }else{
+    xhr.send();
+  }
+}

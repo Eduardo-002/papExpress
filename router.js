@@ -24,7 +24,7 @@
     app.get('/dashboard/proximo',(req,res)=>checkLogin({firebase,req,res},()=>res.sendFile(path.join(__dirname,'/public','/Dashboard/proximo.html'))));
 
     app.get('/dashboard/resultado',(req,res)=>checkLogin({firebase,req,res},()=>res.sendFile(path.join(__dirname,'/public','/Dashboard/Apostas/resultado.html'))));
-    app.get('/dashboard/inicial',(req,res)=>checkLogin({firebase,req,res},()=>res.sendFile(path.join(__dirname,'/public','/Dashboard/Apostas/inicial.html'))));
+    app.get('/dashboard/inicial',(req,res)=>checkLogin({firebase,req,res},()=>res.sendFile(path.join(__dirname,'/public','/Dashboard/Apostas/inicialv2.html'))));
     app.get('/dashboard/historico',(req,res)=>checkLogin({firebase,req,res},()=>res.sendFile(path.join(__dirname,'/public','/Dashboard/Apostas/historico.html'))));
     
     app.get('/dashboard/classificacao',(req,res)=>checkLogin({firebase,req,res},()=>res.sendFile(path.join(__dirname,'/public','/Dashboard/Tabelas/classificacao.html'))));
@@ -67,7 +67,10 @@
     app.post('/database/proximo',(req,res)=>{login.checkLogged({firebase,req,res},()=>{database.getProximo({firebase},({response})=>{res.send(response);})})})
 
     app.post('/database/proximos',(req,res)=>{login.checkLogged({firebase,req,res},()=>{database.getProximos({firebase},({response})=>{res.send(response);})})})
+    app.post('/database/club/getJogadores',(req,res)=>{login.checkLogged({firebase,req,res},()=>{database.getJogadoresV2({firebase},({response})=>{res.send(response);})})})
     app.post('/database/user/resultado/apostas',(req,res)=>{login.checkLogged({firebase,req,res},()=>{database.getApostasResultados({firebase,req},({response})=>{res.send(response);})})})
+    app.post('/database/user/inicial/apostas',(req,res)=>{login.checkLogged({firebase,req,res},()=>{database.getInicial({firebase,req},({response})=>{res.send(response);})})})
+    app.post('/database/user/inicial/apostar',(req,res)=>{login.checkLogged({firebase,req,res},()=>{database.setInicial({firebase,req},({response})=>{res.send(response);})})})
     app.post('/database/user/fazerAposta',(req,res)=>{login.checkLogged({firebase,req,res},()=>{database.fazerAposta({firebase,req},({response})=>{res.send(response);})})})
 
     app.post('/database/classificacao',(req,res)=>{login.checkLogged({firebase,req,res},()=>{database.getClassificacao({firebase},({response})=>{res.send(response);})})})

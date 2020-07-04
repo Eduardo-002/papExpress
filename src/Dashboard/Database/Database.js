@@ -1,3 +1,5 @@
+const { response } = require("express");
+
 (function(){
     module.exports.get = ({firebase,table},callback) => {
         const docRef = firebase.firestore().collection('club').doc(table);
@@ -53,6 +55,19 @@
             })
     }
 
+    module.exports.getJogadoresV2 = ({firebase},callback) => {
+        firebase.firestore().collection('club').doc('Jogadores').collection('Jogadores')
+            .get().then(snapshot=>{
+                let data = [];
+                snapshot.forEach(doc => {
+                    data.push(doc.data());
+                });
+                callback({response:data});
+            }).catch(err => {
+                console.log('Error getting documents', err);
+            });
+    }
+
     module.exports.getProximos = ({firebase},callback) => {
         firebase.firestore().collection('club').doc('Jogos').collection('proximos')
             .get().then(snapshot=>{
@@ -78,6 +93,40 @@
             }).catch(e=>{
                 console.log(e);
                 response.push(e);
+            })
+        })
+    }
+
+    module.exports.getInicial = ({firebase,req},callback) => {
+        firebase.auth().onAuthStateChanged(user=>{
+            console.log(req.body.id,user.email);
+            firebase.firestore().collection('users').doc(user.email).collection('Inicial').doc('jogo'+req.body.id)
+            .get().then((res)=>{
+                let apostas = res.data();
+                firebase.firestore().collection('club').doc('Jogadores').collection('Jogadores')
+                .get().then((querySnapshot)=>{
+                    let jogadores = querySnapshot.docs.map((doc)=>{
+                        return {id:doc.id,...doc.data()}
+                    })
+                    callback({response:[apostas,jogadores]});
+                });
+            })
+        })
+    }
+
+    module.exports.getInicial = ({firebase,req},callback) => {
+        firebase.auth().onAuthStateChanged(user=>{
+            console.log(req.body.id,user.email);
+            firebase.firestore().collection('users').doc(user.email).collection('Inicial').doc('jogo'+req.body.id)
+            .get().then((res)=>{
+                let apostas = res.data();
+                firebase.firestore().collection('club').doc('Jogadores').collection('Jogadores')
+                .get().then((querySnapshot)=>{
+                    let jogadores = querySnapshot.docs.map((doc)=>{
+                        return {id:doc.id,...doc.data()}
+                    })
+                    callback({response:[apostas,jogadores]});
+                });
             })
         })
     }
