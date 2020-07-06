@@ -114,9 +114,9 @@ const { response } = require("express");
         })
     }
 
-    module.exports.getInicial = ({firebase,req},callback) => {
+    module.exports.setInicial = ({firebase,req},callback) => {
         firebase.auth().onAuthStateChanged(user=>{
-            console.log(req.body.id,user.email);
+            //console.log(req.body.id,user.email);
             firebase.firestore().collection('users').doc(user.email).collection('Inicial').doc('jogo'+req.body.id)
             .get().then((res)=>{
                 let apostas = res.data();
