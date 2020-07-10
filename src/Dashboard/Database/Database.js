@@ -60,8 +60,9 @@ const { response } = require("express");
             .get().then(snapshot=>{
                 let data = [];
                 snapshot.forEach(doc => {
-                    data.push(doc.data());
+                    data.push([doc.id,doc.data()]);
                 });
+                console.log(data);
                 callback({response:data});
             }).catch(err => {
                 console.log('Error getting documents', err);
@@ -99,7 +100,7 @@ const { response } = require("express");
 
     module.exports.getInicial = ({firebase,req},callback) => {
         firebase.auth().onAuthStateChanged(user=>{
-            console.log(req.body.id,user.email);
+            //console.log(req.body.id,user.email);
             firebase.firestore().collection('users').doc(user.email).collection('Inicial').doc('jogo'+req.body.id)
             .get().then((res)=>{
                 let apostas = res.data();
@@ -116,17 +117,21 @@ const { response } = require("express");
 
     module.exports.setInicial = ({firebase,req},callback) => {
         firebase.auth().onAuthStateChanged(user=>{
-            //console.log(req.body.id,user.email);
-            firebase.firestore().collection('users').doc(user.email).collection('Inicial').doc('jogo'+req.body.id)
-            .get().then((res)=>{
-                let apostas = res.data();
-                firebase.firestore().collection('club').doc('Jogadores').collection('Jogadores')
-                .get().then((querySnapshot)=>{
-                    let jogadores = querySnapshot.docs.map((doc)=>{
-                        return {id:doc.id,...doc.data()}
-                    })
-                    callback({response:[apostas,jogadores]});
-                });
+            console.log(req.body.id,user.email);
+            firebase.firestore().collection('club').doc('Jogos').collection('proximos').doc('jogo'+req.body.id)
+            .get().then(resp=>{
+                firebase.firestore().collection('users').doc(user.email).collection('Inicial').doc('jogo'+req.body.id)
+                .set({
+                    apostas:req.body.data,
+                    jogo:resp.data(),
+                    id:req.body.id
+                }).then(res=>{
+                    callback({response:{text:'Aposta feita com sucesso'}})
+                }).catch(e=>{
+                    callback({response:{text:'Erro!',e:e}})
+                })
+            }).catch(e=>{
+                callback({response:{text:'Erro!',e:e}})
             })
         })
     }

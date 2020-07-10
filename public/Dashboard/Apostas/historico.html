@@ -5,7 +5,8 @@
 
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> -->
+  <meta name="viewport" content="width=600">
   <meta name="description" content="">
   <meta name="author" content="">
 
@@ -17,6 +18,76 @@
 
   <!-- Custom styles for this template-->
   <link href="/static/css/sb-admin-2.min.css" rel="stylesheet">
+
+  <style>
+.row:hover{
+  cursor:pointer;
+}
+.tableSmallText{
+  font-size:0.5rem;
+}
+.tableBigText{
+  font-size:0.75rem;
+}
+.tableSmallTextModal{
+  font-size:0.6rem;
+}
+.tableBigTextModal{
+  font-size:0.80rem;
+}
+@media (min-width: 576px){
+  .tableSmallText{
+    font-size:0.8rem;
+  }
+  .tableBigText{
+    font-size:1.2rem;
+  }
+}
+
+@media (min-width: 768px){
+  .tableSmallText{
+    font-size:0.9rem;
+  }
+  .tableBigText{
+    font-size:1.4rem;
+  }
+  .tableSmallTextModal{
+    font-size:0.8rem;
+  }
+  .tableBigTextModal{
+    font-size:1.1rem;
+}
+}
+
+@media (min-width: 992px){ 
+  .tableSmallText{
+    font-size:1.1rem;
+  }
+  .tableBigText{
+    font-size:1.8rem;
+  }
+}
+
+@media (min-width: 1200px){
+  .tableSmallText{
+    font-size:1.2rem;
+  }
+}
+
+.inicialImages{
+  object-fit: cover;
+  width:100%;
+  height:15vw;
+  cursor: pointer;
+}
+.inicialImagesCollapse{
+  object-fit: cover;
+  width:100%;
+  height:21vw;
+  cursor: pointer;
+}
+  </style>
+
 
 </head>
 
@@ -226,7 +297,105 @@
         <!-- End of Topbar -->
 
         <!-- Begin Page Content -->
-        <div class="container-fluid">
+        <div class="container-fluid" style="max-width: 900px;">
+          <table class="table table-bordered table-hover">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">Resultados</th>
+              </tr>
+            </thead>
+            <tbody id="tableBody">
+              <tr id="sampleRow" data-toggle="modal" data-target="#matchModal" onclick="setMatchModal(0)" style="display:none;">
+                <td><div class="container-fluid" style="">
+                  <div class="row text-center">
+                    <div class="col-1 pb-2 tableSmallText">
+                      <span id="data"></span>
+                    </div>
+                    <div class="col-1 tableSmallText">
+                      <span id="hora"></span>
+                    </div>
+                    <div class="col-4 tableSmallText">
+                      <span id="estadio"></span>
+                    </div>
+                    <div class="col-1 tableSmallText">
+                      <span id="jornada"></span>
+                    </div>
+                    <div class="col-5 tableSmallText">
+                      <span id="competicao"></span>
+                    </div>
+                    <div class="col-2">
+                      <img id="casaImg" src="" class="p-1 w-100 border bg-secondary rounded">
+                    </div>
+                    <div class="col-4 text-left d-flex align-items-center justify-content-start pb-2 tableBigText">
+                      <span id="casa"></span>
+                    </div>
+                    <div class="col-4 text-right d-flex align-items-center justify-content-end pb-2 tableBigText">
+                      <span id="fora"></span>
+                    </div>
+                    <div class="col-2">
+                      <img id="foraImg" src="" class="p-1 w-100 border bg-secondary rounded">
+                    </div>
+                    <div id="apoRow" style="display:none">
+                      <div class="col-12 text-left mt-2">
+                        <h class="h5 text-dark">As suas apostas:</h>
+                      </div>
+                      <div class="col-12 text-left">
+                        <span>Ao intervalo:</span>
+                        <span id="int">Impate</span>
+                      </div>
+                      <div class="col-12 text-left">
+                        <span>No Fim:</span>
+                        <span id="fin">UD Mourisquense</span>
+                      </div>
+                    </div>
+                  </div>
+                </div></td>
+              </tr>
+            </tbody>
+          </table>
+          <table class="table table-bordered table-hover">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">Resultados</th>
+              </tr>
+            </thead>
+            <tbody id="tableBody">
+              <tr id="sampleRow" data-toggle="modal" data-target="#matchModal" style="display:none;">
+                <td><div class="container-fluid" style="">
+                  <div class="row text-center">
+                    <div class="col-1 pb-2 tableSmallText">
+                      <span id="data"></span>
+                    </div>
+                    <div class="col-1 tableSmallText">
+                      <span id="hora"></span>
+                    </div>
+                    <div class="col-4 tableSmallText">
+                      <span id="estadio"></span>
+                    </div>
+                    <div class="col-1 tableSmallText">
+                      <span id="jornada"></span>
+                    </div>
+                    <div class="col-5 tableSmallText">
+                      <span id="competicao"></span>
+                    </div>
+                    <div class="col-2">
+                      <img id="casaImg" src="" class="p-1 w-100 border bg-secondary rounded">
+                    </div>
+                    <div class="col-4 text-left d-flex align-items-center justify-content-start pb-2 tableBigText">
+                      <span id="casa"></span>
+                    </div>
+                    <div class="col-4 text-right d-flex align-items-center justify-content-end pb-2 tableBigText">
+                      <span id="fora"></span>
+                    </div>
+                    <div class="col-2">
+                      <img id="foraImg" src="" class="p-1 w-100 border bg-secondary rounded">
+                    </div>
+                    <div id="jogoIdTable" style="display:none"></div>
+                  </div>
+                </div></td>
+              </tr>
+            </tbody>
+          </table>
 
         </div>
         <!-- End Page Content -->
@@ -255,6 +424,105 @@
     <i class="fas fa-angle-up"></i>
   </a>
 
+  
+
+  <!-- Match Modal -->
+  <div class="modal fade" id="matchModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Resultado</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div id="matchModal" class="modal-body">
+          <div class="container-fluid" style="">
+            <div class="row text-center">
+              <div class="col-1 pb-2 tableSmallText tableSmallTextModal">
+                <span id="data"></span>
+              </div>
+              <div class="col-1 tableSmallText tableSmallTextModal">
+                <span id="hora"></span>
+              </div>
+              <div class="col-4 tableSmallText tableSmallTextModal">
+                <span id="estadio"></span>
+              </div>
+              <div class="col-1 tableSmallText tableSmallTextModal">
+                <span id="jornada"></span>
+              </div>
+              <div class="col-5 tableSmallText tableSmallTextModal">
+                <span id="competicao"></span>
+              </div>
+              <div class="col-2">
+                <img id="casaImg" src="" class="p-1 w-100 border bg-secondary rounded">
+              </div>
+              <div class="col-4 text-left d-flex align-items-center justify-content-start pb-2 tableBigText tableBigTextModal">
+                <span id="casa"></span>
+              </div>
+              <div class="col-4 text-right d-flex align-items-center justify-content-end pb-2 tableBigText tableBigTextModal">
+                <span id="fora"></span>
+              </div>
+              <div class="col-2">
+                <img id="foraImg" src="" class="p-1 w-100 border bg-secondary rounded">
+              </div>
+              <div id="jogoId" style="display:none"></div>
+            </div>
+            <h class="h4 mt-4">Escolha os Jogadores:</h>
+            <div class="row border border-dark"  style="background-image: url('/static/img/topviewgrass.jpg');background-repeat:repeat;background-size: 150px;">
+              <div class="container-fluid">
+                <div id="clickTracker" style="display:none"></div>
+                <div class="d-flex flex-row justify-content-center">
+                  <div id="jogadorAE" class="col-3 p-1" data-toggle="collapse" data-target="#collapseAs" aria-expanded="false" aria-controls="collapseAs"></div>
+                  <div id="jogadorAC" class="col-3 p-1" data-toggle="collapse" data-target="#collapseAs" aria-expanded="false" aria-controls="collapseAs"></div>
+                  <div id="jogadorAD" class="col-3 p-1" data-toggle="collapse" data-target="#collapseAs" aria-expanded="false" aria-controls="collapseAs"></div>
+                </div>
+                <div id="collapseAs" class="collapse">
+                  <div id="collapseAsRow" class="row bg-white p-2">
+                    
+                  </div>
+                </div>
+                <div class="d-flex flex-row justify-content-center">
+                  <div id="jogadorME" class="col-3 p-1" data-toggle="collapse" data-target="#collapseAs" aria-expanded="false" aria-controls="collapseAs"></div>
+                  <div id="jogadorMC" class="col-3 p-1" data-toggle="collapse" data-target="#collapseAs" aria-expanded="false" aria-controls="collapseAs"></div>
+                  <div id="jogadorMD" class="col-3 p-1" data-toggle="collapse" data-target="#collapseAs" aria-expanded="false" aria-controls="collapseAs"></div>
+                </div>
+                <div id="collapseMs" class="collapse">
+                  <div id="collapseMsRow" class="row bg-white p-2">
+                    
+                  </div>
+                </div>
+                <div class="d-flex flex-row justify-content-center">
+                  <div id="jogadorDE" class="col-3 p-1" data-toggle="collapse" data-target="#collapseAs" aria-expanded="false" aria-controls="collapseAs"></div>
+                  <div id="jogadorDCE" class="col-3 p-1" data-toggle="collapse" data-target="#collapseAs" aria-expanded="false" aria-controls="collapseAs"></div>
+                  <div id="jogadorDCD" class="col-3 p-1" data-toggle="collapse" data-target="#collapseAs" aria-expanded="false" aria-controls="collapseAs"></div>
+                  <div id="jogadorDD" class="col-3 p-1" data-toggle="collapse" data-target="#collapseAs" aria-expanded="false" aria-controls="collapseAs"></div>
+                </div>
+                <div id="collapseDs" class="collapse">
+                  <div id="collapseDsRow" class="row bg-white p-2">
+    
+                  </div>
+                </div>
+                <div class="d-flex flex-row justify-content-center">
+                  <div id="jogadorGR" class="col-3 p-1" data-toggle="collapse" data-target="#collapseAs" aria-expanded="false" aria-controls="collapseAs"></div>
+                </div>
+                <div id="collapseGs" class="collapse">
+                  <div id="collapseGsRow" class="row bg-white p-2">
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button id="fazerApostaBtn" type="button" class="btn btn-dark" onclick="fazerAposta()">Fazer Apostas</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Logout Modal-->
   <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -277,6 +545,27 @@
     </div>
   </div>
 
+  <!-- Elements to clone -->
+  <div style="display:none">
+    <div id="cloneJogadorCartaSem">
+      <div class="img-respnsive border border-dark inicialImages text-center" style="background:#666;display: flex;justify-content: center;align-content: center;flex-direction: column;">
+        <h class="h5 pt-2" style="font-size:2vw;">Selecione<br>um<br>Jogador</h>
+      </div>
+      <p class="text-center h4 text-white"></p>
+      <div id="imgCamisola" style="display: none;">-1</div>
+    </div>
+    <div id="cloneJogadorCartaCom">
+      <img class="img-respnsive border border-dark inicialImages" src="/static/img/Jogadores/joaoFlavio.jpg">
+      <p class="text-center h4 text-white"></p>
+      <div id="imgCamisola" style="display: none;">-1</div>
+    </div>
+    <div id="cloneJogadorCollapse">
+      <div class="col-4 p-1" data-toggle="collapse" data-target="#collapseAs" aria-expanded="false" aria-controls="collapseAs">
+        <img class="img-respnsive border border-dark inicialImagesCollapse" src="/static/img/Jogadores/joaoFlavio.jpg">
+      </div>
+    </div>
+  </div>
+
   <!-- Bootstrap core JavaScript-->
   <script src="/static/vendor/jquery/jquery.min.js"></script>
   <script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -289,8 +578,92 @@
 
   <script>
 
+(function(){
+  mRequest({method:'POST',url:'/database/proximos'},(res)=>{
+    Object.entries(res)
+    .sort((a,b)=>{
+        return a[1].id - b[1].id
+      })
+    .forEach(elem => {
+      let e = elem[1];
+      console.log(e);
+      let c = document.querySelector("#sampleRow").cloneNode(true);
+      c.id="";
+      c.style.display = 'flex';
+      c.onclick=()=>setMatchModal(e);
+      c.querySelector("#data").innerHTML = e.data;
+      c.querySelector("#hora").innerHTML = e.hora;
+      c.querySelector("#estadio").innerHTML = e.estadio;
+      c.querySelector("#jornada").innerHTML = "J"+e.jornada;
+      c.querySelector("#competicao").innerHTML = e.competicao;
+      c.querySelector("#casa").innerHTML = e.casa;
+      c.querySelector("#fora").innerHTML = e.fora;
+      c.querySelector("#casaImg").src = e.casaImg;
+      c.querySelector("#foraImg").src = e.foraImg;
+      document.querySelector("#tableBody").appendChild(c);
+    });
+  })
+}());
 
-  </script>
+const setMatchModal = (e) => {
+  let c = document.querySelector("#matchModal");
+  c.querySelector("#data").innerHTML = e.data;
+  c.querySelector("#hora").innerHTML = e.hora;
+  c.querySelector("#estadio").innerHTML = e.estadio;
+  c.querySelector("#jornada").innerHTML = "J"+e.jornada;
+  c.querySelector("#competicao").innerHTML = e.competicao;
+  c.querySelector("#casa").innerHTML = e.casa;
+  c.querySelector("#fora").innerHTML = e.fora;
+  c.querySelector("#casaImg").src = e.casaImg;
+  c.querySelector("#foraImg").src = e.foraImg;
+  c.querySelector("#jogoId").innerHTML = e.id;
+  c.querySelector("#fazerApostaBtn").onclick=()=>fazerAposta(e.id);
+  //let data = {aposta:["-1","-1","-1","-1","-1","-1","-1","-1","-1","-1","-1"]};
+  mRequest({method:'POST',url:'/database/user/inicial/apostas',data:{id:e.id}},(data)=>{
+    let posicoes = ['AE','AC','AD','ME','MC','MD','DE','DCE','DCD','DD','GR'];
+    for(let i=0;i<11;i++){ // id's sao distribuidos pelo array, da esquerda para a direita de cima para baixo, AE -> 0 . AC -> 1 ...
+      if(document.querySelector("#posicao"+i))document.querySelector("#posicao"+i).remove();
+      let c;
+      if(data[0].apostas[i]!=-1){
+        c = document.querySelector("#cloneJogadorCartaCom").cloneNode(true);
+        c.querySelector("img").src="/static/img/Jogadores/"+data[0].apostas[i]+".jpg";
+      }else{
+        c = document.querySelector("#cloneJogadorCartaSem").cloneNode(true);
+      }
+      c.onclick = () => {
+        document.querySelector("#clickTracker").innerHTML=i;
+      }
+      c.id="posicao"+i;
+      c.querySelector("p").innerHTML = posicoes[i][0]+posicoes[i][1];
+      c.querySelector("#imgCamisola").innerHTML = data[0].apostas[i];
+      document.querySelector("#jogador"+posicoes[i]).appendChild(c);
+      document.querySelector("#jogador"+posicoes[i]).dataset.target = "#collapse"+posicoes[i][0]+"s";
+    }
+    for(let i=0;i<data[1].length;i++){
+      let pos = data[1][i].pos=='ae'||data[1][i].pos=='ac'||data[1][i].pos=='ad'?'AC':
+                data[1][i].pos=='me'||data[1][i].pos=='mc'||data[1][i].pos=='md'?'MC':
+                data[1][i].pos=='de'||data[1][i].pos=='dc'||data[1][i].pos=='dd'?'DC':
+                data[1][i].pos=='gr'?'GR':console.log('Player Posicions bad error');
+      let c = document.querySelector("#cloneJogadorCollapse").cloneNode(true);
+      c.querySelector("img").src="/static/img/Jogadores/"+data[1][i].camisola+".jpg";
+      c.children[0].dataset.target="#collapse"+pos[0]+"s";
+      c.querySelector("img").onclick = () => {
+        let n = data[1][i].camisola;
+        let p = document.querySelector("#clickTracker").innerHTML;
+        document.querySelector("#posicao"+p).innerHTML = '';
+
+        let clone = document.querySelector("#cloneJogadorCartaCom").cloneNode(true);
+        clone.querySelector("img").src="/static/img/Jogadores/"+n+".jpg";
+        clone.querySelector("#imgCamisola").innerHTML = ""+n;
+
+        document.querySelector("#posicao"+p).appendChild(clone);
+      }
+      document.querySelector("#collapse"+pos[0]+"sRow").appendChild(c.children[0]);
+    }
+  });
+}
+
+</script>
 
 </body>
 

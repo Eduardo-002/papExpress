@@ -18,19 +18,6 @@
   <!-- Custom styles for this template-->
   <link href="/static/css/sb-admin-2.min.css" rel="stylesheet">
 
-  <style>
-    .table-image, td, th {
-      vertical-align: middle;
-    }
-    .img-square{
-      width:70px;
-      height:70px;
-      margin: auto;
-      border:0;
-      background-size:cover;
-    }
-  </style>
-
 </head>
 
 <body id="page-top">
@@ -254,29 +241,10 @@
         <!-- End of Topbar -->
 
         <!-- Begin Page Content -->
-        <div class="container-fluid">
-
-          <div class="container">
-            <div class="row">
-              <div class="col-12 table-responsive-xl">
-                  <table class="table table-image">
-                    <thead>
-                      <tr>
-                        <th style="width:12%" scope="col">Imagem</th>
-                        <th style="width:12%" scope="col">Posição</th>
-                        <th style="width:76%" scope="col">Nome</th>
-                      </tr>
-                    </thead>
-                    <tbody class="tableData">
-                        
-                    </tbody>
-                  </table>   
-              </div>
-            </div>
-          </div>
-
+        <div class="container-fluid text-center">
+          <h class="h1 mt-3">Disponivel em Breve!</h>
         </div>
-        <!-- /.container-fluid -->
+        <!-- End Page Content -->
 
       </div>
       <!-- End of Main Content -->
@@ -324,35 +292,6 @@
     </div>
   </div>
 
-  <!-- Jogador Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-            <div class="card">
-                <img id="modalImg" class="card-img-top" src="..." alt="Card image cap">
-                <div class="card-body">
-                    <p id="modalNumber" class="card-text"></p>
-                    <p id="modalPosition" class="card-text"></p>
-                    <p id="modalFeet" class="card-text"></p>
-                    <p id="modalHight" class="card-text"></p>
-                    <p id="modalWeight" class="card-text"></p>
-                    <p id="modalBorn" class="card-text"></p>
-                    <p id="modalNatorality" class="card-text"></p>
-                    <p id="modalNationality" class="card-text"></p>
-                </div>
-            </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <!-- Bootstrap core JavaScript-->
   <script src="/static/vendor/jquery/jquery.min.js"></script>
   <script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -364,65 +303,8 @@
   <script src="/static/js/sb-admin-2.js"></script>
 
   <script>
-(function(){
-  let url = '/database/jogadores';
-  var xhr = new XMLHttpRequest();
-  xhr.onload = function() {
-    let data = JSON.parse(this.response);
-    setTable(data);
-  }
-  xhr.open('POST',url);
-  xhr.send();
-}())
 
-const setTable = (data) => {
-  //let obj = Object.entries(data);
-  let obj = data;
-  console.log(obj);
-  obj.forEach(elem=>{
-    console.log(elem[0],elem[1].camisola);
-    // Start of table row
-    let row = document.createElement('tr');
-    row.setAttribute('data-toggle','modal');
-    row.setAttribute('data-target','#exampleModal');
-    row.onclick = () => setModal(elem[1]);
 
-    let cell = document.createElement('td');
-    let img = document.createElement('div');
-    img.style = "background-image: url(\"/static/img/Jogadores/"+elem[1].camisola+".jpg\")";
-    img.className = 'img-square';
-    cell.append(img);
-    row.append(cell);
-    
-    cell = document.createElement('td');
-    cell.innerHTML = elem[1].pos.toUpperCase();
-    cell.className = 'align-middle';
-    row.append(cell);
-
-    cell = document.createElement('td');
-    cell.innerHTML = elem[0];
-    cell.className = 'align-middle';
-    row.append(cell);
-
-    let table = document.querySelector('.tableData').appendChild(row);
-    // End of table row
-
-    // Start of model
-  })
-}
-
-const setModal = (elem) => {
-    document.querySelector('#exampleModalLabel').innerHTML=elem.nome;
-    document.querySelector('#modalImg').src='/static/img/Jogadores/'+elem.camisola+'.jpg';
-    document.querySelector('#modalNumber').innerHTML='Número: '+elem.camisola;
-    document.querySelector('#modalPosition').innerHTML='Posição: '+elem.posicao;
-    document.querySelector('#modalFeet').innerHTML='Pé Preferencial: '+elem.pepreferencial;
-    document.querySelector('#modalHight').innerHTML='Altura: '+elem.altura;
-    document.querySelector('#modalWeight').innerHTML='Peso: '+elem.peso;
-    document.querySelector('#modalBorn').innerHTML='Data de Nascimento: '+elem.nascimento;
-    document.querySelector('#modalNatorality').innerHTML='Naturalidade: '+elem.naturalidade;
-    document.querySelector('#modalNationality').innerHTML='Nacionalidade: '+elem.nacionalidade;
-}
   </script>
 
 </body>

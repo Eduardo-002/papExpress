@@ -18,6 +18,7 @@
     
     app.get('/dashboard/blank',(req,res)=>checkLogin({firebase,req,res},()=>res.sendFile(path.join(__dirname,'/public','/Dashboard/Pages/blank.html'))));
     app.get('/dashboard/blank2',(req,res)=>checkLogin({firebase,req,res},()=>res.sendFile(path.join(__dirname,'/public','/Dashboard/Pages/blank2.html'))));
+    app.get('/dashboard/embreve',(req,res)=>checkLogin({firebase,req,res},()=>res.sendFile(path.join(__dirname,'/public','/Dashboard/Pages/embreve.html'))));
     
     app.get('/dashboard/user',(req,res)=>checkLogin({firebase,req,res},()=>res.sendFile(path.join(__dirname,'/public','/Dashboard/User/user.html'))));
     
@@ -25,7 +26,7 @@
 
     app.get('/dashboard/resultado',(req,res)=>checkLogin({firebase,req,res},()=>res.sendFile(path.join(__dirname,'/public','/Dashboard/Apostas/resultado.html'))));
     app.get('/dashboard/inicial',(req,res)=>checkLogin({firebase,req,res},()=>res.sendFile(path.join(__dirname,'/public','/Dashboard/Apostas/inicialv2.html'))));
-    app.get('/dashboard/historico',(req,res)=>checkLogin({firebase,req,res},()=>res.sendFile(path.join(__dirname,'/public','/Dashboard/Apostas/historico.html'))));
+    //app.get('/dashboard/historico',(req,res)=>checkLogin({firebase,req,res},()=>res.sendFile(path.join(__dirname,'/public','/Dashboard/Apostas/historico.html'))));
     
     app.get('/dashboard/classificacao',(req,res)=>checkLogin({firebase,req,res},()=>res.sendFile(path.join(__dirname,'/public','/Dashboard/Tabelas/classificacao.html'))));
     app.get('/dashboard/jogadores',(req,res)=>checkLogin({firebase,req,res},()=>res.sendFile(path.join(__dirname,'/public','/Dashboard/Tabelas/jogadores.html'))));
@@ -74,7 +75,7 @@
     app.post('/database/user/fazerAposta',(req,res)=>{login.checkLogged({firebase,req,res},()=>{database.fazerAposta({firebase,req},({response})=>{res.send(response);})})})
 
     app.post('/database/classificacao',(req,res)=>{login.checkLogged({firebase,req,res},()=>{database.getClassificacao({firebase},({response})=>{res.send(response);})})})
-    app.post('/database/jogadores',(req,res)=>{database.getJogadores({firebase},({response})=>{res.send(response);})})
+    app.post('/database/jogadores',(req,res)=>{database.getJogadoresV2({firebase},({response})=>{res.send(response);})})
     app.post('/database/novidades',(req,res)=>{database.getNoticias({firebase},({response})=>{res.send(response);})})
     app.post('/database/comentarios',(req,res)=>{database.getComentarios({req,firebase},({response})=>{res.send(response);})})
 
