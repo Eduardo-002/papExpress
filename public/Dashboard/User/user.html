@@ -242,55 +242,73 @@
         <!-- End of Topbar -->
 
         <!-- Begin Page Content -->
-        <div class="container-fluid">
+        <div class="container-fluid" style="max-width: 900px;">
+
           
-          <h1>Perfil</h1>
 
-          <form>
-            <div class="form-row">
-              <div class="form-group col-md-6">
-                <label>Primeiro Nome</label>
-                <input type="text" class="form-control" id="inpFirstName" placeholder="Email">
-              </div>
-              <div class="form-group col-md-6">
-                <label>Ultimo Nome</label>
-                <input type="text" class="form-control" id="inpLastName" placeholder="Password">
-              </div>
+          <div class="container bg-white border my-3 p-4">
+            <div class="pb-2 h1">Estatísticas</div>
+            <div class="row">
+              <div class="col-md-4"><p>Pontos Totais: 2375</p></div>
+              <div class="col-md-4"><p>Pontos de 11 Inicial: 1200</p></div>
+              <div class="col-md-4"><p>Pontos de Resultados: 1175</p></div>
+              <div class="col-md-4"><p>Pontos: 2375</p></div>
+              <div class="col-md-4"><p>Número de Apostas: 15</p></div>
+              <div class="col-md-4"><p>Rank Global: #27</p></div>
+              <div class="col-md-4"><p>Rank 11 Inicial: #16</p></div>
+              <div class="col-md-4"><p>Rank Resultados: #39</p></div>
             </div>
-            <div class="form-group">
-              <label>Email</label>
-              <input type="text" class="form-control" id="inpEmail" placeholder="1234 Main St" value="asd@asd.com" readonly>
-            </div>
-            <div class="form-row">
-              <div class="form-group col-md-4">
-                <label>País</label>
-                <input type="text" class="form-control" id="inpPais" placeholder=".">
-              </div>
-              <div class="form-group col-md-4">
-                <label>Distrito</label>
-                <input type="text" class="form-control" id="inpDist" placeholder=".">
-              </div>
-              <div class="form-group col-md-4">
-                <label>Concelho</label>
-                <input type="text" class="form-control" id="inpConc" placeholder=".">
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="form-group col-md-2">
-                <label>Idade</label>
-                <select id="inpAge" class="form-control">
-                  <option value="-1" disabled selected>...</option>
-                  <option value="0">0-17</option>
-                  <option value="1">18-30</option>
-                  <option value="2">31-45</option>
-                  <option value="3">46-66</option>
-                  <option value="4">67-&#8734;</option>
-                </select>
-              </div>
-            </div>
-          </form>
-          <button class="btn btn-primary" onclick="console.log(getInputs());">Atualizar</button>
+          </div>
+          
+          <div class="container-fluid bg-white border my-3 p-4">
+            <div class="pb-2 h1">Perfil</div>
 
+            <form>
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label>Primeiro Nome</label>
+                  <input type="text" class="form-control" id="inpFirstName" placeholder="Email">
+                </div>
+                <div class="form-group col-md-6">
+                  <label>Ultimo Nome</label>
+                  <input type="text" class="form-control" id="inpLastName" placeholder="Password">
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Email</label>
+                <input type="text" class="form-control" id="inpEmail" placeholder="1234 Main St" value="asd@asd.com" readonly>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-4">
+                  <label>País</label>
+                  <input type="text" class="form-control" id="inpPais" placeholder=".">
+                </div>
+                <div class="form-group col-md-4">
+                  <label>Distrito</label>
+                  <input type="text" class="form-control" id="inpDist" placeholder=".">
+                </div>
+                <div class="form-group col-md-4">
+                  <label>Concelho</label>
+                  <input type="text" class="form-control" id="inpConc" placeholder=".">
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-2">
+                  <label>Idade</label>
+                  <select id="inpAge" class="form-control">
+                    <option value="-1" disabled selected>...</option>
+                    <option value="0">0-17</option>
+                    <option value="1">18-30</option>
+                    <option value="2">31-45</option>
+                    <option value="3">46-66</option>
+                    <option value="4">67-&#8734;</option>
+                  </select>
+                </div>
+              </div>
+            </form>
+            <button class="btn btn-primary" onclick="console.log(getInputs());">Atualizar</button>
+
+          </div>
         </div>
         <!-- End Page Content -->
 

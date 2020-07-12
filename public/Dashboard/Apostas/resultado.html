@@ -446,17 +446,17 @@
               <h4 class="col-12 mt-2">Ao intervalo:</h4>
               <div id="apInt0" class="col-4 btn-group-toggle" data-toggle="buttons">
                 <label class="btn btn-dark w-100" onclick="cS('Int',0)">
-                  <input type="checkbox" checked autocomplete="off">Ganha Casa<br>12pts
+                  <input type="checkbox" checked autocomplete="off">Ganha Casa<br><span id="apInt0Pt">12pts</span> pts
                 </label>
               </div>
               <div id="apInt1" class="col-4 btn-group-toggle" data-toggle="buttons">
                 <label class="btn btn-dark w-100" onclick="cS('Int',1)">
-                  <input type="checkbox" checked autocomplete="off">Impatado<br>12pts
+                  <input type="checkbox" checked autocomplete="off">Impatado<br><span id="apInt1Pt">12pts</span> pts
                 </label>
               </div>
               <div id="apInt2" class="col-4 btn-group-toggle" data-toggle="buttons">
                 <label class="btn btn-dark w-100" onclick="cS('Int',2)">
-                  <input type="checkbox" checked autocomplete="off">Ganha Fora<br>12pts
+                  <input type="checkbox" checked autocomplete="off">Ganha Fora<br><span id="apInt2Pt">12pts</span> pts
                 </label>
               </div>
             </div>
@@ -464,17 +464,17 @@
               <h4 class="col-12 mt-2">Ao final:</h4>
               <div id="apFin0" class="col-4 btn-group-toggle" data-toggle="buttons">
                 <label class="btn btn-dark w-100" onclick="cS('Fin',0)">
-                  <input type="checkbox" checked autocomplete="off">Ganha Casa<br>12pts
+                  <input type="checkbox" checked autocomplete="off">Ganha Casa<br><span id="apFin0Pt">12pts</span> pts
                 </label>
               </div>
               <div id="apFin1" class="col-4 btn-group-toggle" data-toggle="buttons">
                 <label class="btn btn-dark w-100" onclick="cS('Fin',1)">
-                  <input type="checkbox" checked autocomplete="off">Impatado<br>12pts
+                  <input type="checkbox" checked autocomplete="off">Impatado<br><span id="apFin1Pt">12pts</span> pts
                 </label>
               </div>
               <div id="apFin2" class="col-4 btn-group-toggle" data-toggle="buttons">
                 <label class="btn btn-dark w-100" onclick="cS('Fin',2)">
-                  <input type="checkbox" checked autocomplete="off">Ganha Fora<br>12pts
+                  <input type="checkbox" checked autocomplete="off">Ganha Fora<br><span id="apFin2Pt">12pts</span> pts
                 </label>
               </div>
             </div>
@@ -609,6 +609,12 @@ const setMatchModal = (e) => {
     p.querySelector("#foraProg").style.width = ((parseFloat(e.estatisticas.fora[i])/(parseFloat(e.estatisticas.casa[i])+parseFloat(e.estatisticas.fora[i])))*100)+'%';
     c.querySelector("#progressContainerModal").appendChild(p);
   }
+  c.querySelector("#apInt0Pt").innerHTML = e.pontosVitoria*0.5;
+  c.querySelector("#apInt1Pt").innerHTML = e.pontosEmpate*0.5;
+  c.querySelector("#apInt2Pt").innerHTML = e.pontosDerrota*0.5;
+  c.querySelector("#apFin0Pt").innerHTML = e.pontosVitoria;
+  c.querySelector("#apFin1Pt").innerHTML = e.pontosEmpate;
+  c.querySelector("#apFin2Pt").innerHTML = e.pontosDerrota;
 }
 
 const cS = (a,b) => {
