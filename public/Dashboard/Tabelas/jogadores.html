@@ -29,6 +29,11 @@
       border:0;
       background-size:cover;
     }
+    .card-img-top{
+      width:40%;
+      margin-left:50%;
+      transform: translateX(-50%);
+    }
   </style>
 
 </head>
@@ -117,14 +122,14 @@
       </div>
 
       <li class="nav-item">
-        <a class="nav-link" href="/dashboard/embreve">
+        <a class="nav-link" href="/dashboard/loja">
           <i class="fas fa-store"></i>
           <span>Loja</span></a>
       </li>
 
       <!-- Nav Item - Charts -->
       <li class="nav-item">
-        <a class="nav-link" href="/dashboard/embreve">
+        <a class="nav-link" href="/dashboard/socios">
           <i class="fas fa-handshake"></i>
           <span>Sócios</span></a>
       </li>
@@ -346,6 +351,9 @@
                     <p id="modalBorn" class="card-text"></p>
                     <p id="modalNatorality" class="card-text"></p>
                     <p id="modalNationality" class="card-text"></p>
+                    <p id="modalGames" class="card-text"></p>
+                    <p id="modalMinutes" class="card-text"></p>
+                    <p id="modalGM" class="card-text"></p>
                 </div>
             </div>
         </div>
@@ -422,6 +430,9 @@ const setModal = (elem) => {
     document.querySelector('#modalBorn').innerHTML='Data de Nascimento: '+elem.nascimento;
     document.querySelector('#modalNatorality').innerHTML='Naturalidade: '+elem.naturalidade;
     document.querySelector('#modalNationality').innerHTML='Nacionalidade: '+elem.nacionalidade;
+    document.querySelector('#modalGames').innerHTML='Jogos: '+elem.jogos;
+    document.querySelector('#modalMinutes').innerHTML='Minutos: '+elem.min;
+    document.querySelector('#modalGM').innerHTML='Golos Marcados: '+elem.gm;
 }
   </script>
 

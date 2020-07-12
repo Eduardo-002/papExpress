@@ -33,6 +33,9 @@
     app.get('/dashboard/novidadesold',(req,res)=>checkLogin({firebase,req,res},()=>res.sendFile(path.join(__dirname,'/public','/Dashboard/Tabelas/novidades.html'))));
     app.get('/dashboard/novidades',(req,res)=>checkLogin({firebase,req,res},()=>res.sendFile(path.join(__dirname,'/public','/Dashboard/Tabelas/novidadesNew.html'))));
 
+    app.get('/dashboard/loja',(req,res)=>checkLogin({firebase,req,res},()=>res.sendFile(path.join(__dirname,'/public','/Dashboard/Clube/loja.html'))));
+    app.get('/dashboard/socios',(req,res)=>checkLogin({firebase,req,res},()=>res.sendFile(path.join(__dirname,'/public','/Dashboard/Clube/socios.html'))));
+
     app.get('/dashboard/historia',(req,res)=>checkLogin({firebase,req,res},()=>res.sendFile(path.join(__dirname,'/public','/Dashboard/Acerca/historia.html'))));
     app.get('/dashboard/mourisquense',(req,res)=>checkLogin({firebase,req,res},()=>res.sendFile(path.join(__dirname,'/public','/Dashboard/Acerca/mourisquense.html'))));
 

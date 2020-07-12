@@ -243,30 +243,67 @@
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
-          <!-- Page Heading -->
-          <h1 class="h3 mb-4 text-gray-800">AF Aveiro 1ª Divisão</h1>
-          <table class="table table-striped">
-            <thead class="thead-dark">
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col"></th>
-                <th scope="col">P</th>
-                <th scope="col">J</th>
-                <th scope="col">V</th>
-                <th scope="col">E</th>
-                <th scope="col">D</th>
-                <th scope="col">GM</th>
-                <th scope="col">GS</th>
-              </tr>
-            </thead>
-            <tbody class="tableData">
-              
-            </tbody>
-          </table>
+          <!-- Portfolio Item Heading -->
+          <h1 class="my-4">Page Heading
+            <small>Secondary Text</small>
+          </h1>
 
+          <!-- Portfolio Item Row -->
+          <div class="row">
+
+            <div class="col-md-8">
+              <img class="img-fluid" src="http://placehold.it/750x500" alt="">
+            </div>
+
+            <div class="col-md-4">
+              <h3 class="my-3">Project Description</h3>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Sed dui lorem, adipiscing in adipiscing et, interdum nec metus. Mauris ultricies, justo eu convallis placerat, felis enim.</p>
+              <h3 class="my-3">Project Details</h3>
+              <ul>
+                <li>Lorem Ipsum</li>
+                <li>Dolor Sit Amet</li>
+                <li>Consectetur</li>
+                <li>Adipiscing Elit</li>
+              </ul>
+            </div>
+
+          </div>
+          <!-- /.row -->
+
+          <!-- Related Projects Row -->
+          <h3 class="my-4">Related Projects</h3>
+
+          <div class="row">
+
+            <div class="col-md-3 col-sm-6 mb-4">
+              <a href="#">
+                    <img class="img-fluid" src="http://placehold.it/500x300" alt="">
+                  </a>
+            </div>
+
+            <div class="col-md-3 col-sm-6 mb-4">
+              <a href="#">
+                    <img class="img-fluid" src="http://placehold.it/500x300" alt="">
+                  </a>
+            </div>
+
+            <div class="col-md-3 col-sm-6 mb-4">
+              <a href="#">
+                    <img class="img-fluid" src="http://placehold.it/500x300" alt="">
+                  </a>
+            </div>
+
+            <div class="col-md-3 col-sm-6 mb-4">
+              <a href="#">
+                    <img class="img-fluid" src="http://placehold.it/500x300" alt="">
+                  </a>
+            </div>
+
+          </div>
+          <!-- /.row -->
+          
         </div>
-        <!-- /.container-fluid -->
-
+        <!-- End Page Content -->
       </div>
       <!-- End of Main Content -->
 
@@ -323,42 +360,9 @@
   <!-- Custom scripts for all pages-->
   <script src="/static/js/sb-admin-2.js"></script>
 
-  <!-- <script src="/static/js/myjs.js"></script> -->
-
   <script>
 
-(function(){
-  let url = '/database/classificacao';
-  let xhr = new XMLHttpRequest();
-  xhr.onload = function() {
-    let data = JSON.parse(this.response);
-    setTable(data);
-  }
-  xhr.open('POST',url);
-  xhr.send();
-}())
 
-const setTable = (data) => {
-  let array = Object.entries(data);
-  array.sort((a,b)=>parseInt(a[1][0])-parseInt(b[1][0]))
-  array.forEach((elem)=>{
-    let table=document.querySelector('.tableData');
-    let row = document.createElement('tr');
-    if(elem[1][9]){row.style.background = "#ccc";row.style.color="#666"}
-    let cell = document.createElement('td');
-    cell.innerHTML = elem[1][0];
-    row.append(cell);
-    cell = document.createElement('td');
-    cell.innerHTML = elem[0];
-    row.append(cell);
-    for(let i=1;i<8;i++){
-      cell = document.createElement('td');
-      cell.innerHTML = elem[1][i];
-      row.append(cell);
-    }
-    table.appendChild(row);
-  })
-}
   </script>
 
 </body>

@@ -120,14 +120,14 @@
       </div>
 
       <li class="nav-item">
-        <a class="nav-link" href="/dashboard/embreve">
+        <a class="nav-link" href="/dashboard/loja">
           <i class="fas fa-store"></i>
           <span>Loja</span></a>
       </li>
 
       <!-- Nav Item - Charts -->
       <li class="nav-item">
-        <a class="nav-link" href="/dashboard/embreve">
+        <a class="nav-link" href="/dashboard/socios">
           <i class="fas fa-handshake"></i>
           <span>Sócios</span></a>
       </li>
@@ -279,7 +279,7 @@
           </div>
           <p class="h3 mt-3" id="ctitle">Titulo</p>
           <p class="py-2" id="cdescription">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <button  class="btn btn-dark mb-3"><span id="cardLikesButton"></span><i class="fa fa-heart" aria-hidden="true"></i></button>
+          <button  class="btn btn-dark mb-3" onclick="this.children[1].style.color='#f22'"><span id="cardLikesButton"></span><i class="fa fa-heart" aria-hidden="true"></i></button>
           <button id="cardComButton" type="button" class="btn btn-dark mb-3" data-toggle="modal" data-target="#exampleModal">Comentários...</button>
         </div>
       </div>
@@ -324,55 +324,30 @@
               <form class="w-100">
                 <div class="form-group">
                   <label for="exampleInputEmail1">Escrever Comentário.</label>
-                  <input type="text" class="form-control " id="exampleInputEmail1" aria-describedby="emailHelp">
+                  <input id="comentText" type="text" class="form-control " id="exampleInputEmail1" aria-describedby="emailHelp">
                 </div>
                 <div class="row">
                   <div class="col-8"></div>
                   <div class="col-4">
-                    <button type="submit" class="btn btn-primary btn-block">Comentar</button>
+                    <!--<button type="submit" class="btn btn-primary btn-block">Comentar</button>-->
+                    <div class="btn btn-primary btn-block" onclick="fazerComentario()">Comentar</div>
                   </div>
                 </div>
               </form>
             </div>
             <div id="commentBox" class="row border my-1" style="display: none;">
               <div class="col-2">
-                <img src="/static/img/Jogadores/vascoCoelho.jpg" class="img-fluid m-1 rounded-circle border" alt="Responsive image">
+                <img src="/static/img/Jogadores/vascoCoelho.jpg" class="img-fluid m-1 rounded-circle border" alt="Responsive image" style="height:50px;width:50px;">
               </div>
               <div class="col-10">
                 <p id="commentName" class="p-2 h5">Nome</p>
                 <p id="commentDesc" class="p-1">texto do comentáro</p>
               </div>
               <div class="col-12 text-right pb-1">
-                <small class="text-muted">12/05/2005</small>
+                <small id="commentDate" class="text-muted">12/05/2005</small>
               </div>
             </div>
           </div>
-          <!-- <div class="list-group">
-            <a href="#" class="list-group-item list-group-item-action">
-              <div class="d-flex w-100 justify-content-between">
-                <h5 class="mb-1">List group item heading</h5>
-                <small>3 days ago</small>
-              </div>
-              <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-              <small>Donec id elit non mi porta.</small>
-            </a>
-            <a href="#" class="list-group-item list-group-item-action">
-              <div class="d-flex w-100 justify-content-between">
-                <h5 class="mb-1">List group item heading</h5>
-                <small class="text-muted">3 days ago</small>
-              </div>
-              <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-              <small class="text-muted">Donec id elit non mi porta.</small>
-            </a>
-            <a href="#" class="list-group-item list-group-item-action">
-              <div class="d-flex w-100 justify-content-between">
-                <h5 class="mb-1">List group item heading</h5>
-                <small class="text-muted">3 days ago</small>
-              </div>
-              <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-              <small class="text-muted">Donec id elit non mi porta.</small>
-            </a>
-          </div> -->
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -500,7 +475,7 @@ const loadComments = (elem) => {
 const setCard = (data) => {
   // remove all old comments
   let clones = document.getElementsByClassName('cloneCloneMessage');
-  for(let i=0;i<clones.length;i++)clones[i].parentNode.removeChild(clones[i]);
+  for(let i=0;i<clones.length;i++)clones[i].style.display = 'none';
   
   // get the data object keys
   let keys = Object.keys(data);
@@ -513,13 +488,35 @@ const setCard = (data) => {
     // set the values
     clone.style.display = "flex";
     clone.classList.add("cloneCloneMessage");
+    let img = clone.querySelector("img");
+    img.src = data[key].userImg;
     let name = clone.querySelector("#commentName");
     name.innerHTML = data[key].userName;
     let coment = clone.querySelector("#commentDesc");
     coment.innerHTML = data[key].userText;
+    let date = clone.querySelector("#commentDate");
+    date.innerHTML = data[key].date;
     // add clone to container
     document.getElementById("messagesContainer").appendChild(clone);
   })
+}
+
+const fazerComentario = () => {
+  let texto = document.querySelector("#comentText").value;
+  let clones = document.getElementsByClassName('cloneCloneMessage');
+  let clone = clones[0].cloneNode(true);
+  clone.style.display = "flex";
+  clone.classList.add("cloneCloneMessage");
+  let img = clone.querySelector("img");
+  img.src = "/static/img/avataaars.png";
+  let name = clone.querySelector("#commentName");
+  name.innerHTML = "Eduardo Campos"
+  let coment = clone.querySelector("#commentDesc");
+  coment.innerHTML = texto;
+  let date = clone.querySelector("#commentDate");
+  date.innerHTML = "21/07/2020";
+  // add clone to container
+  document.getElementById("messagesContainer").insertBefore(clone,document.getElementById("messagesContainer").children[2]);
 }
   </script>
 

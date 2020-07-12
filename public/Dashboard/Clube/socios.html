@@ -243,30 +243,78 @@
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
-          <!-- Page Heading -->
-          <h1 class="h3 mb-4 text-gray-800">AF Aveiro 1ª Divisão</h1>
-          <table class="table table-striped">
-            <thead class="thead-dark">
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col"></th>
-                <th scope="col">P</th>
-                <th scope="col">J</th>
-                <th scope="col">V</th>
-                <th scope="col">E</th>
-                <th scope="col">D</th>
-                <th scope="col">GM</th>
-                <th scope="col">GS</th>
-              </tr>
-            </thead>
-            <tbody class="tableData">
-              
-            </tbody>
-          </table>
-
+          <section class="pricing py-5">
+            <div class="container">
+              <div class="row">
+                <!-- Free Tier -->
+                <div class="col-lg-4">
+                  <div class="card mb-5 mb-lg-0">
+                    <div class="card-body">
+                      <h5 class="card-title text-muted text-uppercase text-center">Free</h5>
+                      <h6 class="card-price text-center">$0<span class="period">/month</span></h6>
+                      <hr>
+                      <ul class="fa-ul">
+                        <li><span class="fa-li"><i class="fas fa-check"></i></span>Single User</li>
+                        <li><span class="fa-li"><i class="fas fa-check"></i></span>5GB Storage</li>
+                        <li><span class="fa-li"><i class="fas fa-check"></i></span>Unlimited Public Projects</li>
+                        <li><span class="fa-li"><i class="fas fa-check"></i></span>Community Access</li>
+                        <li class="text-muted"><span class="fa-li"><i class="fas fa-times"></i></span>Unlimited Private Projects</li>
+                        <li class="text-muted"><span class="fa-li"><i class="fas fa-times"></i></span>Dedicated Phone Support</li>
+                        <li class="text-muted"><span class="fa-li"><i class="fas fa-times"></i></span>Free Subdomain</li>
+                        <li class="text-muted"><span class="fa-li"><i class="fas fa-times"></i></span>Monthly Status Reports</li>
+                      </ul>
+                      <a href="#" class="btn btn-block btn-primary text-uppercase">Button</a>
+                    </div>
+                  </div>
+                </div>
+                <!-- Plus Tier -->
+                <div class="col-lg-4">
+                  <div class="card mb-5 mb-lg-0">
+                    <div class="card-body">
+                      <h5 class="card-title text-muted text-uppercase text-center">Plus</h5>
+                      <h6 class="card-price text-center">$9<span class="period">/month</span></h6>
+                      <hr>
+                      <ul class="fa-ul">
+                        <li><span class="fa-li"><i class="fas fa-check"></i></span><strong>5 Users</strong></li>
+                        <li><span class="fa-li"><i class="fas fa-check"></i></span>50GB Storage</li>
+                        <li><span class="fa-li"><i class="fas fa-check"></i></span>Unlimited Public Projects</li>
+                        <li><span class="fa-li"><i class="fas fa-check"></i></span>Community Access</li>
+                        <li><span class="fa-li"><i class="fas fa-check"></i></span>Unlimited Private Projects</li>
+                        <li><span class="fa-li"><i class="fas fa-check"></i></span>Dedicated Phone Support</li>
+                        <li><span class="fa-li"><i class="fas fa-check"></i></span>Free Subdomain</li>
+                        <li class="text-muted"><span class="fa-li"><i class="fas fa-times"></i></span>Monthly Status Reports</li>
+                      </ul>
+                      <a href="#" class="btn btn-block btn-primary text-uppercase">Button</a>
+                    </div>
+                  </div>
+                </div>
+                <!-- Pro Tier -->
+                <div class="col-lg-4">
+                  <div class="card">
+                    <div class="card-body">
+                      <h5 class="card-title text-muted text-uppercase text-center">Pro</h5>
+                      <h6 class="card-price text-center">$49<span class="period">/month</span></h6>
+                      <hr>
+                      <ul class="fa-ul">
+                        <li><span class="fa-li"><i class="fas fa-check"></i></span><strong>Unlimited Users</strong></li>
+                        <li><span class="fa-li"><i class="fas fa-check"></i></span>150GB Storage</li>
+                        <li><span class="fa-li"><i class="fas fa-check"></i></span>Unlimited Public Projects</li>
+                        <li><span class="fa-li"><i class="fas fa-check"></i></span>Community Access</li>
+                        <li><span class="fa-li"><i class="fas fa-check"></i></span>Unlimited Private Projects</li>
+                        <li><span class="fa-li"><i class="fas fa-check"></i></span>Dedicated Phone Support</li>
+                        <li><span class="fa-li"><i class="fas fa-check"></i></span><strong>Unlimited</strong> Free Subdomains</li>
+                        <li><span class="fa-li"><i class="fas fa-check"></i></span>Monthly Status Reports</li>
+                      </ul>
+                      <a href="#" class="btn btn-block btn-primary text-uppercase">Button</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          
         </div>
-        <!-- /.container-fluid -->
-
+        <!-- End Page Content -->
       </div>
       <!-- End of Main Content -->
 
@@ -323,42 +371,9 @@
   <!-- Custom scripts for all pages-->
   <script src="/static/js/sb-admin-2.js"></script>
 
-  <!-- <script src="/static/js/myjs.js"></script> -->
-
   <script>
 
-(function(){
-  let url = '/database/classificacao';
-  let xhr = new XMLHttpRequest();
-  xhr.onload = function() {
-    let data = JSON.parse(this.response);
-    setTable(data);
-  }
-  xhr.open('POST',url);
-  xhr.send();
-}())
 
-const setTable = (data) => {
-  let array = Object.entries(data);
-  array.sort((a,b)=>parseInt(a[1][0])-parseInt(b[1][0]))
-  array.forEach((elem)=>{
-    let table=document.querySelector('.tableData');
-    let row = document.createElement('tr');
-    if(elem[1][9]){row.style.background = "#ccc";row.style.color="#666"}
-    let cell = document.createElement('td');
-    cell.innerHTML = elem[1][0];
-    row.append(cell);
-    cell = document.createElement('td');
-    cell.innerHTML = elem[0];
-    row.append(cell);
-    for(let i=1;i<8;i++){
-      cell = document.createElement('td');
-      cell.innerHTML = elem[1][i];
-      row.append(cell);
-    }
-    table.appendChild(row);
-  })
-}
   </script>
 
 </body>

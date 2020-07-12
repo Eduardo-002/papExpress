@@ -242,14 +242,14 @@
       </div>
 
       <li class="nav-item">
-        <a class="nav-link" href="/dashboard/embreve">
+        <a class="nav-link" href="/dashboard/loja">
           <i class="fas fa-store"></i>
           <span>Loja</span></a>
       </li>
 
       <!-- Nav Item - Charts -->
       <li class="nav-item">
-        <a class="nav-link" href="/dashboard/embreve">
+        <a class="nav-link" href="/dashboard/socios">
           <i class="fas fa-handshake"></i>
           <span>Sócios</span></a>
       </li>
@@ -496,7 +496,7 @@
               </div>
               <div id="jogoId" style="display:none"></div>
             </div>
-            <h class="h4 mt-4">Escolha os Jogadores:</h>
+            <div class="mt-3"><h class="h4 mt-4">Escolha os Jogadores:</h></div>
             <div class="row border border-dark"  style="background-image: url('/static/img/topviewgrass.jpg');background-repeat:repeat;background-size: 150px;">
               <div class="container-fluid">
                 <div id="clickTracker" style="display:none"></div>
@@ -540,6 +540,9 @@
                   </div>
                 </div>
               </div>
+            </div>
+            <div class="mt-2">
+              <h class="h5">Máximo de Pontos Ganhos: <span id="maxPointsEarn">5</span></h>
             </div>
           </div>
         </div>
@@ -585,14 +588,14 @@
     <div id="cloneJogadorCartaCom" class="playerCard">
       <img class="img-respnsive border border-dark inicialImages" src="">
       <p class="text-center h4 text-white"></p>
-      <div class="border rounded bg-secondary text-white playerPointsValue">+5</div>
+      <div id="playerCardPoints" class="border rounded bg-secondary text-white playerPointsValue">+5</div>
       <div id="playerCardName" class="playerCardStats text-center">Manuel Cardozo</div>
       <div id="imgCamisola" style="display: none;">-1</div>
     </div>
     <div id="cloneJogadorCollapse">
       <div class="col-4 p-1 playerCardOut" data-toggle="collapse" data-target="#collapseAs" aria-expanded="false" aria-controls="collapseAs">
         <img class="img-respnsive border border-dark inicialImagesCollapse" src="">
-        <div class="border rounded bg-secondary text-white playerPointsValue">+5</div>
+        <div id="playerCardPoints" class="border rounded bg-secondary text-white playerPointsValue">+5</div>
         <div id="playerCardName" class="playerCardStatsOut text-center">Manuel Cardozo</div>
       </div>
     </div>
@@ -659,6 +662,9 @@ const setMatchModal = (e) => {
       if(data[0].apostas[i]!=-1){
         c = document.querySelector("#cloneJogadorCartaCom").cloneNode(true);
         c.querySelector("img").src="/static/img/Jogadores/"+data[0].apostas[i]+".jpg";
+        let player = data[1].find(elem=>elem.camisola==data[0].apostas[i]);
+        c.querySelector("#playerCardPoints").innerHTML = Math.floor((2000-player.min)/100);
+        c.querySelector("#playerCardName").innerHTML = player.id;
       }else{
         c = document.querySelector("#cloneJogadorCartaSem").cloneNode(true);
       }
@@ -678,7 +684,9 @@ const setMatchModal = (e) => {
                 data[1][i].pos=='gr'?'GR':console.log('Player Posicions bad error');
       let c = document.querySelector("#cloneJogadorCollapse").cloneNode(true);
       c.querySelector("img").src="/static/img/Jogadores/"+data[1][i].camisola+".jpg";
-      c.querySelector("#playerCardName").innerHTML = data[1][i].id;
+      let player = data[1][i];
+      c.querySelector("#playerCardPoints").innerHTML = Math.floor((2000-player.min)/100);
+      c.querySelector("#playerCardName").innerHTML = player.id;
       c.children[0].dataset.target="#collapse"+pos[0]+"s";
       c.querySelector("img").onclick = () => {
         let n = data[1][i].camisola;
@@ -687,13 +695,26 @@ const setMatchModal = (e) => {
 
         let clone = document.querySelector("#cloneJogadorCartaCom").cloneNode(true);
         clone.querySelector("img").src="/static/img/Jogadores/"+n+".jpg";
+        let player = data[1][i];
+        clone.querySelector("#playerCardPoints").innerHTML = Math.floor((2000-player.min)/100);
+        clone.querySelector("#playerCardName").innerHTML = player.id;
         clone.querySelector("#imgCamisola").innerHTML = ""+n;
 
         document.querySelector("#posicao"+p).appendChild(clone);
+        updateTotalPoints(data);
       }
       document.querySelector("#collapse"+pos[0]+"sRow").appendChild(c.children[0]);
     }
+    updateTotalPoints(data);
   });
+}
+
+const updateTotalPoints = (data) => {
+  let total=0;
+  for(let i=0;i<11;i++){
+    total+=Math.floor((2000-parseInt(data[1].find(elem=>elem.camisola==document.querySelector("#posicao"+i).querySelector("#imgCamisola").innerHTML).min))/100);
+  }
+  document.querySelector("#maxPointsEarn").innerHTML = total;
 }
 
 const fazerAposta = () => {
